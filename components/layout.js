@@ -36,6 +36,7 @@ export default function Layout({ children, home }) {
               width={144}
               alt={name}
               className='object-contain'
+              loader=''
             />
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
           </>

@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@300;400;500&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Noto Sans Mono', monospace;
 }
 
 @layer base {

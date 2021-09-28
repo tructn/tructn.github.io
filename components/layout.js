@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
@@ -28,15 +27,13 @@ export default function Layout({ children, home }) {
       <header className={styles.header}>
         {home ? (
           <>
-            <Image
-              priority
+            <img
               src="/images/p.png"
               className={utilStyles.borderCircle}
               height={144}
               width={144}
               alt={name}
               className='object-contain'
-              loader=''
             />
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
           </>
@@ -44,7 +41,7 @@ export default function Layout({ children, home }) {
           <>
             <Link href="/">
               <a>
-                <Image
+                <img
                   priority
                   src="/images/p.png"
                   className={utilStyles.borderCircle}

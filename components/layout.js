@@ -3,7 +3,7 @@ import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 
-const name = "Truc Nguyen"
+const name = "Truc's notebook 😎"
 export const siteTitle = "Truc Nguyen"
 
 export default function Layout({ children, home }) {
@@ -42,7 +42,6 @@ export default function Layout({ children, home }) {
             <Link href="/">
               <a>
                 <img
-                  priority
                   src="/images/p.png"
                   className={utilStyles.borderCircle}
                   height={108}

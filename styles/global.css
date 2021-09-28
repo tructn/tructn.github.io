@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Inconsolata', monospace;
+}
+
+@layer base {
+  a {
+    @apply font-bold text-rose-400;
+  }
+}

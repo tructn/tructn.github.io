@@ -25,5 +25,28 @@ code {
   a {
     @apply text-blue-700;
   }
-  
+
+  h1 {
+    @apply text-3xl my-3 font-bold;
+  }
+
+  h2 {
+    @apply text-2xl my-3 font-bold;
+  }
+
+  h3 {
+    @apply text-xl my-2;
+  }
+
+  h4 {
+    @apply text-lg my-2;
+  }
+
+  p {
+    @apply my-3;
+  }
+
+  blockquote {
+    @apply bg-blueGray-100 p-2 border-l-4 border-teal-500 hover:bg-blueGray-200 transition-all my-3;
+  }
 }

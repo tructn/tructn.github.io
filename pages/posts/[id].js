@@ -14,9 +14,11 @@ export default function Post({ postData }) {
         <title>{postData.title}</title>
       </Head>
       <article>
-        <h1 className={utilStyles.headingXl}>{postData.title}</h1>
-        <div className={utilStyles.lightText}>
-          <Date dateString={postData.date} />
+        <div className='mb-5'>
+          <h1 className={utilStyles.headingXl}>{postData.title}</h1>
+          <div className={utilStyles.lightText}>
+            <Date dateString={postData.date} />
+          </div>
         </div>
         <ReactMarkdown components={CodeBlock} remarkPlugins={[remarkGfm]}>{postData.markdown}</ReactMarkdown>
       </article>

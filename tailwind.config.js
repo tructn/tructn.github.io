@@ -11,7 +11,11 @@ module.exports = {
         teal: colors.teal,
         blueGray: colors.blueGray,
         violet: colors.violet
-      }
+      },
+      listStyleType: {
+        square: 'square',
+        roman: 'upper-roman',
+      },
     },
     fontFamily: {
       'display': ['Space Mono']

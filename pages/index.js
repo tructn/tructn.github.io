@@ -13,12 +13,12 @@ export default function Home({ allPostsData }) {
       </Head>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className='font-display text-3xl my-4'>Recently Published</h2>
-        <ul className='bg-blueGray-100 p-3 rounded-xl'>
+        <ul className='flex flex-col gap-4'>
           {allPostsData.map(({ id, date, title, tags }) => (
-            <li key={id}>
+            <li key={id} className='bg-blueGray-100 p-3 rounded-xl'>
               <div className='flex items-center justify-between'>
                 <Link href={`/posts/${id}`}>
-                  <a className='text-black hover:text-rose-400 hover:font-bold'>{title}</a>
+                  <a className='text-black hover:text-teal-500'>{title}</a>
                 </Link>
                 <div>
                   {tags.map((tag, index) => {

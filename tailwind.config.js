@@ -13,6 +13,9 @@ module.exports = {
         violet: colors.violet
       }
     },
+    fontFamily: {
+      'display': ['Space Mono']
+    }
   },
   variants: {
     extend: {},

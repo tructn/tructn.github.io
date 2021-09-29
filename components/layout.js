@@ -2,8 +2,9 @@ import Head from 'next/head'
 import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
+import { HiArrowCircleLeft } from 'react-icons/hi'
 
-const name = "Truc's Notes 🥗🌈🎶👻"
+const name = "Truc's Notes"
 export const siteTitle = "Truc Nguyen"
 
 export default function Layout({ children, home }) {
@@ -24,38 +25,18 @@ export default function Layout({ children, home }) {
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <header className={styles.header}>
+      <header className='text-center mb-10'>
         {home ? (
           <>
-            <img
-              src="/images/p.png"
-              className={utilStyles.borderCircle}
-              height={144}
-              width={144}
-              alt={name}
-              className='object-contain'
-            />
-            <h1 className={utilStyles.heading2Xl}>{name}</h1>
+            <h1 className='font-display text-5xl'>{name}</h1>
           </>
         ) : (
           <>
-            <Link href="/">
-              <a>
-                <img
-                  src="/images/p.png"
-                  className={utilStyles.borderCircle}
-                  height={108}
-                  width={108}
-                  alt={name}
-                  className='object-contain'
-                />
-              </a>
-            </Link>
-            <h2 className={utilStyles.headingLg}>
+            <h1 className='font-display text-5xl'>
               <Link href="/">
                 <a className={utilStyles.colorInherit}>{name}</a>
               </Link>
-            </h2>
+            </h1>
           </>
         )}
       </header>
@@ -63,7 +44,7 @@ export default function Layout({ children, home }) {
       {!home && (
         <div className={styles.backToHome}>
           <Link href="/">
-            <a>← Back to home</a>
+            <a className='text-black hover:text-blueGray-500 flex gap-1 items-center'><HiArrowCircleLeft /> Back to home</a>
           </Link>
         </div>
       )}

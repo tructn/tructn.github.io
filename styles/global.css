@@ -12,13 +12,13 @@ code {
 }
 
 ::-moz-selection {
-  color: black;
-  background: lime;
+  color: white;
+  background: black;
 }
 
 ::selection {
-  color: black;
-  background: lime;
+  color: white;
+  background: black;
 }
 
 @layer base {

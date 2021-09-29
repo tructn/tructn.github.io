@@ -12,14 +12,20 @@ export default function Home({ allPostsData }) {
         <title>{siteTitle}</title>
       </Head>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className='text-3xl font-bold my-4'>Recently Published</h2>
-        <ul className='bg-blueGray-100 p-4 rounded-xl'>
-          {allPostsData.map(({ id, date, title }) => (
+        <h2 className='font-display text-3xl my-4'>Recently Published</h2>
+        <ul className='bg-blueGray-100 p-3 rounded-xl'>
+          {allPostsData.map(({ id, date, title, tags }) => (
             <li key={id}>
-              <Link href={`/posts/${id}`}>
-                <a className='text-black hover:text-blueGray-400'>{title}</a>
-              </Link>
-              <br />
+              <div className='flex items-center justify-between'>
+                <Link href={`/posts/${id}`}>
+                  <a className='text-black hover:text-rose-400 hover:font-bold'>{title}</a>
+                </Link>
+                <div>
+                  {tags.map((tag, index) => {
+                    return <span className='text-xs mr-1 bg-black p-1 rounded text-white' key={index}>{tag}</span>
+                  })}
+                </div>
+              </div>
               <small className='text-sm text-blueGray-400'>
                 <Date dateString={date} />
               </small>

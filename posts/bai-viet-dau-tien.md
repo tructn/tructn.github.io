@@ -1,6 +1,7 @@
 ---
 title: "Bài viết đầu tiên"
 date: "2021-09-28"
+tags: ['blog','developer']
 ---
 
 ![Test hinh anh](/images/dev.jpg)

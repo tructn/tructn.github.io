@@ -4,15 +4,15 @@ date: "2021-09-29"
 tags: ['c#']
 ---
 ## 👓 Mình thường xài ```Tuple``` như thế nào
-Đôi khi cần một cấu trúc dữ liệu đơn giản để chứa 2 đến 3 thuộc tính, ví dụ như ```DisplayName``` bên dưới.
+Đôi khi cần một cấu trúc dữ liệu đơn giản để chứa 2 đến 3 thuộc tính, ví dụ như ```UserName``` bên dưới.
 ```csharp
-class DisplayName
+class UserName
 {
     public string FirstName {get; set;}
     public string LastName {get; set;}
 }
 
-DisplayName GetDisplayName()
+UserName GetUserName()
 {
     //code
 }
@@ -20,7 +20,7 @@ DisplayName GetDisplayName()
 
 Lúc này dùng Tuple không cần tạo thêm class hay struct.
 ```csharp
-(string FirstName, string LastName) GetDisplayName()
+(string FirstName, string LastName) GetUserName()
 {
     //code
 }

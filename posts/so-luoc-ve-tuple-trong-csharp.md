@@ -3,7 +3,7 @@ title: "Sơ lược về Tuple trong C#"
 date: "2021-09-29"
 tags: ['c#']
 ---
-## 👓 Mình thường xài ```Tuple``` như thế nào
+### Mình thường xài ```Tuple``` như thế nào
 Đôi khi cần một cấu trúc dữ liệu đơn giản để chứa 2 đến 3 thuộc tính, ví dụ như ```UserName``` bên dưới.
 ```csharp
 class UserName
@@ -51,5 +51,5 @@ var name = (FirstName, LastName);
 
 > Trước C# 7.0 thì Tuple không xịn được như vầy (có thể khái báo được ```FirstName```, ```LastName``` strong tuple), vì các thuộc tính là ```Item1```, ```Item2```, ```Item3```...
 
-## 🎃 References
+### References
 - https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-7

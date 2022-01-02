@@ -1,24 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Space+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime&family=Inter&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
+  font-size: 11pt;
 }
 
 code {
-  font-family: 'Space Mono', monospace;
+  font-family: 'Courier Prime', monospace !important;
 }
 
 ::-moz-selection {
   color: white;
-  background: black;
+  background: rgb(0, 180, 45);
 }
 
 ::selection {
   color: white;
-  background: black;
+  background: rgb(0, 180, 45);
 }
 
 @layer base {
@@ -47,6 +48,6 @@ code {
   }
 
   blockquote {
-    @apply bg-blueGray-100 p-2 border-l-4 border-teal-500 hover:bg-blueGray-200 transition-all my-3;
+    @apply bg-slate-200 p-2 border-l-4 border-green-500 hover:bg-blueGray-200 transition-all my-3;
   }
 }

@@ -4,4 +4,4 @@
 
 Access the blog with link below:
 
-🐪 https://trucng.github.io/
+🐪 https://tructn.github.io/

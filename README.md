@@ -1,4 +1,4 @@
-# trucng.github.io
+# tructn.github.io
 
 ## My person blog deployed on Github Pages.
 

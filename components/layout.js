@@ -1,53 +1,60 @@
 import Head from 'next/head'
-import styles from './layout.module.css'
-import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 import { HiArrowCircleLeft } from 'react-icons/hi'
 
-const name = "t r u c n g u y e n n o t e s"
-export const siteTitle = "Truc Nguyen"
+const name = '🐣 Hi, I am Truc'
+export const siteTitle = "Truc's notes"
+
+const Back = () => {
+  return (
+    <Link href='/'>
+      <a className='text-slate-500 hover:text-emerald-500 flex items-center gap-2'>
+        <HiArrowCircleLeft size='30' />
+        <span>Back to home</span>
+      </a>
+    </Link>
+  )
+}
 
 export default function Layout({ children, home }) {
   return (
-    <div className={styles.container}>
+    <div className='flex flex-col'>
       <Head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel='icon' href='/favicon.ico' />
         <meta
-          name="description"
-          content="Learn how to build a personal website using Next.js"
+          name='description'
+          content='Learn how to build a personal website using Next.js'
         />
         <meta
-          property="og:image"
+          property='og:image'
           content={`https://og-image.vercel.app/${encodeURI(
             siteTitle
           )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.zeit.co%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
         />
-        <meta name="og:title" content={siteTitle} />
-        <meta name="twitter:card" content="summary_large_image" />
+        <meta name='og:title' content={siteTitle} />
+        <meta name='twitter:card' content='summary_large_image' />
       </Head>
-      <header className='text-center mb-10'>
-        {home ? (
-          <>
-            <h1 className='font-display text-violet-500 text-2xl'>{name}</h1>
-          </>
-        ) : (
-          <>
-            <h1 className='font-display text-violet-500 text-2xl'>
-              <Link href="/">
-                <a className={utilStyles.colorInherit}>{name}</a>
-              </Link>
-            </h1>
-          </>
+      <div className='w-1/2 mx-auto'>
+        <header className='my-10'>
+          {home ? (
+            <>
+              <h1 className='font-display'>{name}</h1>
+              <small>
+                This is my personal notes for things I have learned in my daily
+                works or I failed to do in my life.
+              </small>
+            </>
+          ) : (
+            <Back />
+          )}
+        </header>
+        <main>{children}</main>
+        {!home && (
+          <div className='py-10'>
+            <Back />
+          </div>
         )}
-      </header>
-      <main>{children}</main>
-      {!home && (
-        <div className={styles.backToHome}>
-          <Link href="/">
-            <a className='text-black hover:text-blueGray-500 flex gap-1 items-center'><HiArrowCircleLeft /> Back to home</a>
-          </Link>
-        </div>
-      )}
+      </div>
     </div>
   )
 }

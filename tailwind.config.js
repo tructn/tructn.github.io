@@ -1,7 +1,10 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}'
+  ],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
@@ -13,15 +16,15 @@ module.exports = {
       },
       listStyleType: {
         square: 'square',
-        roman: 'upper-roman',
-      },
+        roman: 'upper-roman'
+      }
     },
     fontFamily: {
-      'display': ['Inter']
+      display: ['Mali']
     }
   },
   variants: {
-    extend: {},
+    extend: {}
   },
-  plugins: [],
+  plugins: []
 }

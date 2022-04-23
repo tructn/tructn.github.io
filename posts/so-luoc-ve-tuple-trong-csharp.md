@@ -6,7 +6,7 @@ tags: ['c#']
 
 ### 🤔 Túp-pồ (akka Tupple) là cái gì ?
 
-Đôi khi cần một cấu trúc dữ liệu đơn giản để chứa 2 đến 3 thuộc tính, ví dụ như `UserName` bên dưới.
+Khi muốn trả về nhiều giá trị từ một hàm, hoặc cần một cấu trúc dữ liệu đơn giản để chứa 2 đến 3 thuộc tính, ví dụ như `UserName` bên dưới.
 
 ```csharp
 class UserName
@@ -21,7 +21,7 @@ UserName GetUserName()
 }
 ```
 
-Lúc này dùng Tuple không cần tạo thêm class hay struct.
+Thì `tupple` giúp mình làm việc này dễ dàng hơn
 
 ```csharp
 (string FirstName, string LastName) GetUserName()
@@ -30,7 +30,7 @@ Lúc này dùng Tuple không cần tạo thêm class hay struct.
 }
 ```
 
-### 🙋‍♂️ Tạo tupple như thế nào ?
+### 🙋‍♂️ Tạo Tupple như thế nào ?
 
 - Cách 1
 
@@ -61,7 +61,7 @@ var name = (FirstName, LastName);
 (string fName, string lName) = name;
 ```
 
-> Trước C# 7.0 thì Tuple không xịn được như vầy (có thể khái báo được `FirstName`, `LastName` strong tuple), vì các thuộc tính là `Item1`, `Item2`, `Item3`...
+> Trước C# 7.0 thì Tuple không xịn được như vầy (có thể khái báo được FirstName, LastName strong tuple), vì các thuộc tính là Item1, Item2, Item3...
 
 ## References
 

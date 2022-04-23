@@ -1,13 +1,18 @@
 //https://thetombomb.com/posts/adding-code-snippets-to-static-markdown-in-Next%20js
 import React from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { vs } from 'react-syntax-highlighter/dist/cjs/styles/prism'
+import { base16AteliersulphurpoolLight } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 
 const CodeBlock = {
   code({ node, inline, className, children, ...props }) {
     const match = /language-(\w+)/.exec(className || '')
     return !inline && match ? (
-      <SyntaxHighlighter style={vs} language={match[1]} PreTag='div' {...props}>
+      <SyntaxHighlighter
+        style={base16AteliersulphurpoolLight}
+        language={match[1]}
+        PreTag='div'
+        {...props}
+      >
         {String(children).replace(/\n$/, '')}
       </SyntaxHighlighter>
     ) : (

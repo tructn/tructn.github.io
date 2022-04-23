@@ -19,7 +19,7 @@ h6 {
 }
 
 code {
-  font-family: 'Inconsolata', monospace !important;
+  font-family: 'SF Mono', 'Inconsolata', 'Consolas', monospace !important;
   font-size: 13pt !important;
 }
 
@@ -49,11 +49,11 @@ code {
 
 @layer base {
   h1 {
-    @apply text-5xl my-3 font-bold !important;
+    @apply text-5xl my-2 font-bold !important;
   }
 
   h2 {
-    @apply text-4xl my-2 font-bold !important;
+    @apply text-4xl my-5 font-bold !important;
   }
 
   h3 {
@@ -76,7 +76,15 @@ code {
     @apply my-3 text-slate-700;
   }
 
+  a {
+    @apply text-emerald-500 hover:underline;
+  }
+
   blockquote {
     @apply rounded-xl bg-slate-200 p-2 border-l-8 border-emerald-500 hover:bg-slate-200 transition-all my-3;
+  }
+
+  article ul li {
+    @apply list-disc ml-10;
   }
 }

@@ -2,6 +2,7 @@
 title: 'Sơ lược về Tuple trong C#'
 date: '2021-09-29'
 tags: ['c#']
+published: true
 ---
 
 ### 🤔 Túp-pồ (akka Tupple) là cái gì ?

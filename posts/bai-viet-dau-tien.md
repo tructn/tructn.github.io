@@ -2,6 +2,7 @@
 title: 'Tập tành viết lách'
 date: '2021-09-28'
 tags: ['không chủ đề']
+published: true
 ---
 
 ![Test hinh anh](/images/dev.jpg)

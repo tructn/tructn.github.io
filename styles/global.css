@@ -35,23 +35,31 @@ code {
 
 @layer base {
   h1 {
-    @apply text-3xl my-3 font-bold;
+    @apply text-5xl my-3 font-bold !important;
   }
 
   h2 {
-    @apply text-2xl my-3 font-bold;
+    @apply text-4xl my-2 font-bold !important;
   }
 
   h3 {
-    @apply text-xl my-2;
+    @apply text-3xl my-2 font-bold !important;
   }
 
   h4 {
-    @apply text-lg my-2;
+    @apply text-2xl my-2 font-bold !important;
+  }
+
+  h5 {
+    @apply text-xl my-2 font-bold !important;
+  }
+
+  h6 {
+    @apply text-lg my-2 font-bold !important;
   }
 
   p {
-    @apply my-3;
+    @apply my-3 text-slate-700;
   }
 
   blockquote {

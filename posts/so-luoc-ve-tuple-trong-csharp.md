@@ -4,7 +4,7 @@ date: '2021-09-29'
 tags: ['c#']
 ---
 
-## Mình thường xài `Tuple` như thế nào
+### 🤔 Túp-pồ (akka Tupple) là cái gì ?
 
 Đôi khi cần một cấu trúc dữ liệu đơn giản để chứa 2 đến 3 thuộc tính, ví dụ như `UserName` bên dưới.
 
@@ -30,25 +30,29 @@ Lúc này dùng Tuple không cần tạo thêm class hay struct.
 }
 ```
 
-Có thể gán giá trị cho tuple như vầy
+### 🙋‍♂️ Tạo tupple như thế nào ?
+
+- Cách 1
 
 ```csharp
 (string FirstName, string LastName) name1 = ("Truc", "Nguyen");
 ```
 
-Hoặc như vầy
+- Cách 2
 
 ```csharp
 var name2 = (LastName: "Nguyen", FirstName: "Truc");
 ```
 
-Hoặc như vầy 😁
+- Cách 3
 
 ```csharp
 string FirstName = "Truc";
 string LastName = "Nguyen";
 var name = (FirstName, LastName);
 ```
+
+### 🚀 Lấy giá trị từ Tupple như thế nào ?
 
 Để lấy giá trị ra từ Tuple có thể viết (người ta gọi là **destructing**)
 

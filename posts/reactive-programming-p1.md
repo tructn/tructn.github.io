@@ -2,7 +2,7 @@
 title: 'Reactive programming notes (p1)'
 date: '2022-04-23'
 tags: ['reactiveprogramming', 'rxjs']
-published: false
+published: true
 ---
 
 ## 🤔 Reactive programming (Rx) ?
@@ -42,6 +42,5 @@ subject.subscribe({
 
 - https://en.wikipedia.org/wiki/Reactive_programming
 - https://reactivex.io/
-- https://github.com/dotnet/reactive
 - [Intro to Reactive Programming by Jordan Jozwiak of Google - CS50 Tech Talk](https://www.youtube.com/watch?v=KOjC3RhwKU4)
 - https://gist.github.com/staltz/868e7e9bc2a7b8c1f754

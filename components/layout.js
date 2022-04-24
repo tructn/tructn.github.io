@@ -8,7 +8,7 @@ export const siteTitle = "Truc's Notebook";
 const Back = () => {
     return (
         <Link href="/">
-            <a className="text-slate-500 hover:text-emerald-500 flex items-center gap-2">
+            <a className="hover:text-emerald-500 flex items-center gap-2">
                 <HiArrowCircleLeft size="30" />
                 <span>Back to home</span>
             </a>
@@ -24,16 +24,16 @@ export default function Layout({children, home}) {
                 <meta name="og:title" content={siteTitle} />
                 <meta name="twitter:card" content="summary_large_image" />
             </Head>
-            <div className="h-full flex flex-col px-2 md:w-1/2 mx-auto text-slate-600">
+            <div className="h-full flex flex-col px-2 md:w-1/2 mx-auto">
                 <header className="my-10">
                     {home ? (
                         <>
                             <h1>{name}</h1>
-                            <small>
+                            <p>
                                 This is my personal notes for things I have
                                 learned in my daily works or I failed to do in
                                 my life.
-                            </small>
+                            </p>
                         </>
                     ) : (
                         <Back />

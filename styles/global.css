@@ -1,12 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Courier+Prime&family=Fuzzy+Bubbles&family=IBM+Plex+Serif&family=Inter&family=Yomogi&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime&family=Inter&family=Source+Serif+Pro&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body,
 time {
-    font-family: 'Inter', cursive !important;
-    font-size: 12pt !important;
+  font-family: 'Inter', cursive !important;
+  font-size: 14pt;
 }
 
 h1,
@@ -15,76 +16,76 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Inter', cursive !important;
+  font-family: 'Inter', cursive !important;
 }
 
 code {
-    font-family: 'Courier Prime', 'Inconsolata', 'Consolas', monospace !important;
-    font-size: 12pt !important;
+  font-family: 'Courier Prime', 'Inconsolata', 'Consolas', monospace !important;
+  font-size: 14pt !important;
 }
 
 ::-moz-selection {
-    color: white;
-    background: #10b981;
+  color: white;
+  background: #10b981;
 }
 
 ::selection {
-    color: white;
-    background: #10b981;
+  color: white;
+  background: #10b981;
 }
 
 /* Custom scrollbar */
 *::-webkit-scrollbar {
-    width: 6px;
+  width: 6px;
 }
 
 *::-webkit-scrollbar-track {
-    background: #e2e8f0;
+  background: #e2e8f0;
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: #10b981;
-    border: 2px solid #10b981;
+  background-color: #10b981;
+  border: 2px solid #10b981;
 }
 
 @layer base {
-    h1 {
-        @apply text-3xl my-2 font-bold !important;
-    }
+  h1 {
+    @apply text-3xl my-2 font-bold !important;
+  }
 
-    h2 {
-        @apply text-2xl my-5 font-bold !important;
-    }
+  h2 {
+    @apply text-2xl my-5 font-bold !important;
+  }
 
-    h3 {
-        @apply text-xl my-2 font-bold !important;
-    }
+  h3 {
+    @apply text-xl my-2 font-bold !important;
+  }
 
-    h4 {
-        @apply text-lg my-2 font-bold !important;
-    }
+  h4 {
+    @apply text-lg my-2 font-bold !important;
+  }
 
-    h5 {
-        @apply text-sm my-2 font-bold !important;
-    }
+  h5 {
+    @apply text-sm my-2 font-bold !important;
+  }
 
-    h6 {
-        @apply text-lg my-2 font-bold !important;
-    }
+  h6 {
+    @apply text-lg my-2 font-bold !important;
+  }
 
-    p {
-        @apply my-3 text-slate-700;
-    }
+  p {
+    @apply my-3;
+  }
 
-    a {
-        @apply text-emerald-500 hover:underline;
-    }
+  a {
+    @apply text-emerald-500 hover:underline;
+  }
 
-    blockquote {
-        @apply rounded-xl bg-slate-200 p-2 border-l-8 border-emerald-500 hover:bg-slate-200 transition-all my-3;
-    }
+  blockquote {
+    @apply rounded-xl bg-slate-200 p-2 border-l-8 border-emerald-500 hover:bg-slate-200 transition-all my-3;
+  }
 
-    article ul li {
-        @apply list-disc ml-10;
-    }
+  article ul li {
+    @apply list-disc ml-10;
+  }
 }

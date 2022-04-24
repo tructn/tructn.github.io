@@ -7,7 +7,7 @@
 body,
 time {
   font-family: 'Inter', cursive !important;
-  font-size: 14pt;
+  font-size: 11pt;
 }
 
 h1,
@@ -21,7 +21,7 @@ h6 {
 
 code {
   font-family: 'Courier Prime', 'Inconsolata', 'Consolas', monospace !important;
-  font-size: 14pt !important;
+  font-size: 11pt !important;
 }
 
 ::-moz-selection {

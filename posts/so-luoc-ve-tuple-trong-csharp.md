@@ -33,19 +33,19 @@ Thì `tupple` giúp mình làm việc này dễ dàng hơn
 
 ### 🙋‍♂️ Tạo Tupple như thế nào ?
 
-- Cách 1
+Cách 1
 
 ```csharp
 (string FirstName, string LastName) name1 = ("Truc", "Nguyen");
 ```
 
-- Cách 2
+Cách 2
 
 ```csharp
 var name2 = (LastName: "Nguyen", FirstName: "Truc");
 ```
 
-- Cách 3
+Cách 3
 
 ```csharp
 string FirstName = "Truc";
@@ -66,4 +66,4 @@ var name = (FirstName, LastName);
 
 ## References
 
-- https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-7
+-   https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-7

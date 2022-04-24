@@ -5,8 +5,8 @@
 
 body,
 time {
-    font-family: 'IBM Plex Serif', cursive !important;
-    font-size: 12pt !important;
+    font-family: 'Inter', cursive !important;
+    font-size: 14pt !important;
 }
 
 h1,
@@ -15,12 +15,12 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'IBM Plex Serif', cursive !important;
+    font-family: 'Inter', cursive !important;
 }
 
 code {
     font-family: 'Courier Prime', 'Inconsolata', 'Consolas', monospace !important;
-    font-size: 11pt !important;
+    font-size: 13pt !important;
 }
 
 ::-moz-selection {

@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import {HiArrowCircleLeft} from 'react-icons/hi';
 
-const name = 'Hi, I am Truc';
+const name = '🐣 Hi, I am Truc';
 export const siteTitle = "Truc's Notebook";
 
 const Back = () => {
@@ -29,7 +29,7 @@ export default function Layout({children, home}) {
                     {home ? (
                         <>
                             <h1>{name}</h1>
-                            <small className="text-sm">
+                            <small>
                                 This is my personal notes for things I have
                                 learned in my daily works or I failed to do in
                                 my life.

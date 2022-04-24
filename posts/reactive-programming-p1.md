@@ -1,7 +1,7 @@
 ---
 title: 'Reactive Programming Note (p1)'
 date: '2022-04-23'
-tags: ['reactiveprogramming', 'rxjs']
+tags: ['rxjs']
 published: true
 ---
 

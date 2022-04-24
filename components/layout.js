@@ -18,13 +18,13 @@ const Back = () => {
 
 export default function Layout({children, home}) {
     return (
-        <div className="flex flex-col">
+        <div>
             <Head>
                 <link rel="icon" href="/favicon.ico" />
                 <meta name="og:title" content={siteTitle} />
                 <meta name="twitter:card" content="summary_large_image" />
             </Head>
-            <div className="w-1/2 mx-auto text-slate-600">
+            <div className="h-full flex flex-col px-2 md:w-1/2 mx-auto text-slate-600">
                 <header className="my-10">
                     {home ? (
                         <>

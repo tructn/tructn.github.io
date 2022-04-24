@@ -17,7 +17,7 @@ export default function Home({allPostsData}) {
                         .map(({id, date, title, tags}) => (
                             <li
                                 key={id}
-                                className="border shadow rounded p-3 flex flex-col"
+                                className="border rounded p-2 flex flex-col bg-white"
                             >
                                 <div className="flex items-center justify-between">
                                     <span className="text-lg text-slate-600">
@@ -27,7 +27,7 @@ export default function Home({allPostsData}) {
                                         {tags.map((tag, index) => {
                                             return (
                                                 <span
-                                                    className="rounded text-xs mr-1 bg-emerald-500 p-1 text-white"
+                                                    className="rounded text-xs mr-0 bg-emerald-500 p-1 text-white"
                                                     key={index}
                                                 >
                                                     {tag}

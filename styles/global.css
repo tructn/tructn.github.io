@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Inconsolata&family=Inter&family=Mali&family=Roboto+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime&family=Fuzzy+Bubbles&family=IBM+Plex+Serif&family=Inter&family=Yomogi&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body,
 time {
-    font-family: 'Inter', cursive !important;
-    font-size: 11pt !important;
+    font-family: 'IBM Plex Serif', cursive !important;
+    font-size: 12pt !important;
 }
 
 h1,
@@ -15,12 +15,12 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Inter', cursive !important;
+    font-family: 'IBM Plex Serif', cursive !important;
 }
 
 code {
-    font-family: 'SF Mono', 'Inconsolata', 'Consolas', monospace !important;
-    font-size: 10pt !important;
+    font-family: 'Courier Prime', 'Inconsolata', 'Consolas', monospace !important;
+    font-size: 11pt !important;
 }
 
 ::-moz-selection {

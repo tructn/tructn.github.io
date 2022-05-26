@@ -7,7 +7,7 @@
 body,
 time {
   font-family: 'Inter', cursive !important;
-  font-size: 11pt;
+  font-size: 10pt;
 }
 
 h1,
@@ -77,12 +77,8 @@ code {
     @apply my-3;
   }
 
-  a {
-    @apply text-emerald-500 hover:underline;
-  }
-
   blockquote {
-    @apply rounded-xl bg-slate-200 p-2 border-l-8 border-emerald-500 hover:bg-slate-200 transition-all my-3;
+    @apply rounded-xl p-2 border-l-8 border-emerald-500 hover:bg-slate-200 transition-all my-3;
   }
 
   article ul li {

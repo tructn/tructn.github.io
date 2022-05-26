@@ -17,10 +17,18 @@ export default function Home({ allPostsData }) {
             .map(({ id, date, title, tags }) => (
               <li
                 key={id}
-                className='border rounded p-2 flex flex-col bg-white'
+                className='rounded p-5 flex flex-col border'
               >
                 <div className='flex items-center justify-between'>
-                  <span className='text-xl'>{title}</span>
+                  <div className='flex flex-col gap-3'>
+                    <h3>{title}</h3>
+                    <small className='text-sm'>
+                      <Date dateString={date} />
+                    </small>
+                    <Link href={`/posts/${id}`}>
+                      <a className='hover:underline-offset-2 hover:underline'>Read more...</a>
+                    </Link>
+                  </div>
                   <div>
                     {tags.map((tag, index) => {
                       return (
@@ -34,14 +42,7 @@ export default function Home({ allPostsData }) {
                     })}
                   </div>
                 </div>
-                <small className='text-sm text-slate-500'>
-                  <Date dateString={date} />
-                </small>
-                <Link href={`/posts/${id}`}>
-                  <a className='transition-all text-md text-emerald-500 hover:text-emerald-600'>
-                    Read more...
-                  </a>
-                </Link>
+
               </li>
             ))}
         </ul>

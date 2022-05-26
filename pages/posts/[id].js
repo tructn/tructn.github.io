@@ -1,13 +1,12 @@
 import Layout from '../../components/layout';
-import {getAllPostIds, getPostData} from '../../lib/posts';
+import { getAllPostIds, getPostData } from '../../lib/posts';
 import Head from 'next/head';
 import Date from '../../components/date';
-import utilStyles from '../../styles/utils.module.css';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import CodeBlock from '../../components/codeblock';
 
-export default function Post({postData}) {
+export default function Post({ postData }) {
     return (
         <Layout>
             <Head>
@@ -15,8 +14,8 @@ export default function Post({postData}) {
             </Head>
             <article className="break-words">
                 <div className="mb-5">
-                    <h1 className={utilStyles.headingXl}>{postData.title}</h1>
-                    <div className={utilStyles.lightText}>
+                    <h1>{postData.title}</h1>
+                    <div>
                         <Date dateString={postData.date} />
                     </div>
                 </div>
@@ -39,7 +38,7 @@ export async function getStaticPaths() {
     };
 }
 
-export async function getStaticProps({params}) {
+export async function getStaticProps({ params }) {
     const postData = await getPostData(params.id);
     return {
         props: {

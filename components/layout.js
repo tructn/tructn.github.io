@@ -1,22 +1,11 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import {HiArrowCircleLeft} from 'react-icons/hi';
+import { FiArrowLeft } from 'react-icons/fi';
 
-const name = '🐣 Hi, I am Truc';
+const name = 'Hi, I am Truc';
 export const siteTitle = "Truc's Notebook";
 
-const Back = () => {
-    return (
-        <Link href="/">
-            <a className="hover:text-emerald-500 flex items-center gap-2">
-                <HiArrowCircleLeft size="30" />
-                <span>Back to home</span>
-            </a>
-        </Link>
-    );
-};
-
-export default function Layout({children, home}) {
+export default function Layout({ children, home }) {
     return (
         <div>
             <Head>
@@ -31,20 +20,22 @@ export default function Layout({children, home}) {
                             <h1>{name}</h1>
                             <p>
                                 This is my personal notes for things I have
-                                learned in my daily works or I failed to do in
-                                my life.
+                                learned in my daily works.
                             </p>
                         </>
                     ) : (
-                        <Back />
+                        <div className='relative mb-5'>
+                            <Link href="/">
+                                <a className="flex items-center gap-2 absolute left-0">
+                                    <button className='p-2 bg-slate-100 rounded-full hover:bg-slate-500 hover:text-white transition-all'>
+                                        <FiArrowLeft size="30" />
+                                    </button>
+                                </a>
+                            </Link>
+                        </div>
                     )}
                 </header>
                 <main>{children}</main>
-                {!home && (
-                    <div className="py-10">
-                        <Back />
-                    </div>
-                )}
             </div>
         </div>
     );

@@ -1,12 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Courier+Prime&family=Inter&family=Source+Serif+Pro&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Courier+Prime&family=Gulzar&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body,
 time {
-  font-family: 'Inter', cursive !important;
+  font-family: "Gulzar", cursive !important;
   font-size: 10pt;
 }
 
@@ -16,22 +15,12 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Inter', cursive !important;
+  font-family: "Gulzar", cursive !important;
 }
 
 code {
-  font-family: 'Courier Prime', 'Inconsolata', 'Consolas', monospace !important;
+  font-family: "Courier Prime", "Inconsolata", "Consolas", monospace !important;
   font-size: 11pt !important;
-}
-
-::-moz-selection {
-  color: white;
-  background: #10b981;
-}
-
-::selection {
-  color: white;
-  background: #10b981;
 }
 
 /* Custom scrollbar */
@@ -78,7 +67,7 @@ code {
   }
 
   blockquote {
-    @apply rounded-xl p-2 border-l-8 border-emerald-500 hover:bg-slate-200 transition-all my-3;
+    @apply rounded-xl p-2 border-l-8 border-black hover:bg-slate-200 transition-all my-3;
   }
 
   article ul li {

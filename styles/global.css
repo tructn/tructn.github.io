@@ -6,7 +6,7 @@
 body,
 time {
   font-family: "Gulzar", cursive !important;
-  font-size: 10pt;
+  font-size: 12pt;
 }
 
 h1,
@@ -38,34 +38,6 @@ code {
 }
 
 @layer base {
-  h1 {
-    @apply text-3xl my-2 font-bold !important;
-  }
-
-  h2 {
-    @apply text-2xl my-5 font-bold !important;
-  }
-
-  h3 {
-    @apply text-xl my-2 font-bold !important;
-  }
-
-  h4 {
-    @apply text-lg my-2 font-bold !important;
-  }
-
-  h5 {
-    @apply text-sm my-2 font-bold !important;
-  }
-
-  h6 {
-    @apply text-lg my-2 font-bold !important;
-  }
-
-  p {
-    @apply my-3;
-  }
-
   blockquote {
     @apply rounded-xl p-2 border-l-8 border-black hover:bg-slate-200 transition-all my-3;
   }

@@ -1,26 +1,26 @@
 import Layout from "../../components/layout"
-import { getAllPostIds, getPostData } from "../../lib/posts"
+import { getArticleIds, getArticle } from "../../utils"
 import Head from "next/head"
 import Date from "../../components/date"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import CodeBlock from "../../components/codeblock"
 
-export default function Post({ postData }) {
+export default function Post({ article }) {
   return (
     <Layout>
       <Head>
-        <title>{postData.title}</title>
+        <title>{article.title}</title>
       </Head>
       <article className="break-words">
         <div className="mb-5">
-          <h1>{postData.title}</h1>
+          <h1 className="text-2xl">{article.title}</h1>
           <div>
-            <Date dateString={postData.date} />
+            <Date dateString={article.date} />
           </div>
         </div>
         <ReactMarkdown components={CodeBlock} remarkPlugins={[remarkGfm]}>
-          {postData.markdown}
+          {article.markdown}
         </ReactMarkdown>
       </article>
     </Layout>
@@ -28,7 +28,7 @@ export default function Post({ postData }) {
 }
 
 export async function getStaticPaths() {
-  const paths = getAllPostIds()
+  const paths = getArticleIds()
   return {
     paths,
     fallback: false,
@@ -36,10 +36,10 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const postData = await getPostData(params.id)
+  const article = await getArticle(params.id)
   return {
     props: {
-      postData,
+      article,
     },
   }
 }

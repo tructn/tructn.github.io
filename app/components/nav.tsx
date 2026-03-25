@@ -4,9 +4,6 @@ const navItems = {
   "/": {
     name: "Home",
   },
-  "/blog": {
-    name: "Blog",
-  },
 };
 
 export function Navbar() {
@@ -23,7 +20,7 @@ export function Navbar() {
                 <Link
                   key={path}
                   href={path}
-                  className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1"
+                  className="transition-colors flex align-middle relative py-1 px-3 m-1 rounded-md text-black hover:bg-blue-100 hover:text-black focus-visible:outline-blue-400 focus-visible:outline-2"
                 >
                   {name}
                 </Link>

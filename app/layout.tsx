@@ -15,15 +15,15 @@ const sans = Elms_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "TN notes",
-    template: "%s | TN notes",
+    default: "TN Notes",
+    template: "%s | TN Notes",
   },
   description: "This is my personal notes.",
   openGraph: {
-    title: "TN notes",
+    title: "TN Notes",
     description: "This is my personal notes.",
     url: baseUrl,
-    siteName: "TN notes",
+    siteName: "TN Notes",
     locale: "en_GB",
     type: "website",
   },

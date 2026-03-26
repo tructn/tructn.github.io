@@ -2,7 +2,10 @@ import Link from "next/link";
 
 const navItems = {
   "/": {
-    name: "Home",
+    name: "blog",
+  },
+  "/about": {
+    name: "about me",
   },
 };
 
@@ -20,7 +23,7 @@ export function Navbar() {
                 <Link
                   key={path}
                   href={path}
-                  className="transition-colors flex align-middle relative py-1 px-3 m-1 rounded-md text-black hover:bg-blue-100 hover:text-black focus-visible:outline-blue-400 focus-visible:outline-2"
+                  className="transition-colors flex align-middle relative py-1 px-3 m-1 rounded-md text-black hover:bg-black/10 hover:underline hover:underline-offset-4 hover:decoration-2 hover:decoration-black focus-visible:outline-black focus-visible:outline-2"
                 >
                   {name}
                 </Link>

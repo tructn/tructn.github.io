@@ -1,20 +1,21 @@
-import { notFound } from 'next/navigation'
-import { CustomMDX } from 'app/components/mdx'
-import { formatDate, getBlogPosts } from 'app/blog/utils'
-import { baseUrl } from 'app/sitemap'
+import { notFound } from "next/navigation";
+import { CustomMDX } from "app/components/mdx";
+import { formatDate, getBlogPosts } from "app/blog/utils";
+import { baseUrl } from "app/sitemap";
 
 export async function generateStaticParams() {
-  let posts = getBlogPosts()
+  let posts = getBlogPosts();
 
   return posts.map((post) => ({
     slug: post.slug,
-  }))
+  }));
 }
 
-export function generateMetadata({ params }) {
-  let post = getBlogPosts().find((post) => post.slug === params.slug)
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  let post = getBlogPosts().find((post) => post.slug === slug);
   if (!post) {
-    return
+    return;
   }
 
   let {
@@ -22,10 +23,10 @@ export function generateMetadata({ params }) {
     publishedAt: publishedTime,
     summary: description,
     image,
-  } = post.metadata
+  } = post.metadata;
   let ogImage = image
     ? image
-    : `${baseUrl}/og?title=${encodeURIComponent(title)}`
+    : `${baseUrl}/og?title=${encodeURIComponent(title)}`;
 
   return {
     title,
@@ -33,7 +34,7 @@ export function generateMetadata({ params }) {
     openGraph: {
       title,
       description,
-      type: 'article',
+      type: "article",
       publishedTime,
       url: `${baseUrl}/blog/${post.slug}`,
       images: [
@@ -43,56 +44,64 @@ export function generateMetadata({ params }) {
       ],
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title,
       description,
       images: [ogImage],
     },
-  }
+  };
 }
 
-export default function Blog({ params }) {
-  let post = getBlogPosts().find((post) => post.slug === params.slug)
+export default async function Blog({ params }) {
+  const { slug } = await params;
+  let post = getBlogPosts().find((post) => post.slug === slug);
 
   if (!post) {
-    notFound()
+    notFound();
   }
 
   return (
-    <section>
-      <script
-        type="application/ld+json"
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BlogPosting',
-            headline: post.metadata.title,
-            datePublished: post.metadata.publishedAt,
-            dateModified: post.metadata.publishedAt,
-            description: post.metadata.summary,
-            image: post.metadata.image
-              ? `${baseUrl}${post.metadata.image}`
-              : `/og?title=${encodeURIComponent(post.metadata.title)}`,
-            url: `${baseUrl}/blog/${post.slug}`,
-            author: {
-              '@type': 'Person',
-              name: 'My Portfolio',
-            },
-          }),
-        }}
-      />
-      <h1 className="title font-semibold text-2xl tracking-tighter">
-        {post.metadata.title}
-      </h1>
-      <div className="flex justify-between items-center mt-2 mb-8 text-sm">
-        <p className="text-sm text-neutral-600 dark:text-neutral-400">
-          {formatDate(post.metadata.publishedAt)}
-        </p>
+    <section className="w-full flex justify-center antialiased">
+      <div className="w-full">
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BlogPosting",
+              headline: post.metadata.title,
+              datePublished: post.metadata.publishedAt,
+              dateModified: post.metadata.publishedAt,
+              description: post.metadata.summary,
+              image: post.metadata.image
+                ? `${baseUrl}${post.metadata.image}`
+                : `/og?title=${encodeURIComponent(post.metadata.title)}`,
+              url: `${baseUrl}/blog/${post.slug}`,
+              author: {
+                "@type": "Person",
+                name: "TN Blog",
+              },
+            }),
+          }}
+        />
+        <header className="mb-10">
+          <h1 className="title font-bold text-3xl sm:text-4xl tracking-tight mb-4">
+            {post.metadata.title}
+          </h1>
+          <div className="flex items-center text-sm opacity-60">
+            <time dateTime={post.metadata.publishedAt}>
+              {formatDate(post.metadata.publishedAt)}
+            </time>
+          </div>
+        </header>
+
+        <div className="h-px w-full bg-[var(--color-border)] mb-8 opacity-50" />
+
+        <article className="prose max-w-none">
+          <CustomMDX source={post.content} />
+        </article>
       </div>
-      <article className="prose">
-        <CustomMDX source={post.content} />
-      </article>
     </section>
-  )
+  );
 }

@@ -32,7 +32,7 @@ export default function Footer() {
         </li>
       </ul>
       <p className="mt-8 text-black">
-        © {new Date().getFullYear()} Truc Nguyen
+        © {new Date().getFullYear()} truc nguyen
       </p>
     </footer>
   );

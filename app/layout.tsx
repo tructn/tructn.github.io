@@ -5,9 +5,9 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "./components/footer";
 import { baseUrl } from "./sitemap";
-import { Elms_Sans } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 
-const sans = Elms_Sans({
+const sans = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
 });
@@ -15,15 +15,15 @@ const sans = Elms_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "TN Notes",
-    template: "%s | TN Notes",
+    default: "tn notes",
+    template: "%s | tn notes",
   },
-  description: "This is my personal notes.",
+  description: "this is my personal notes.",
   openGraph: {
-    title: "TN Notes",
-    description: "This is my personal notes.",
+    title: "tn notes",
+    description: "this is my personal notes.",
     url: baseUrl,
-    siteName: "TN Notes",
+    siteName: "tn notes",
     locale: "en_GB",
     type: "website",
   },

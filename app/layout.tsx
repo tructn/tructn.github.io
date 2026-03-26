@@ -5,11 +5,12 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "./components/footer";
 import { baseUrl } from "./sitemap";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Elms_Sans } from "next/font/google";
 
-const sans = Plus_Jakarta_Sans({
+const sans = Elms_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {

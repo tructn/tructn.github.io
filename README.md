@@ -1,1 +1,3 @@
-# TN Notes
+# tn notes
+
+this blog is a place where i can share my thoughts, ideas, and experiences with the world. i'm not sure what i'll be writing about yet, but i'm excited to find out. i'm hoping to write about a variety of topics, including technology, software development, and my personal life. i'm also hoping to write about my travels and my experiences in different cultures. i'm not sure what the future holds, but i'm excited to find out.

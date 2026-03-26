@@ -19,7 +19,7 @@ export function BlogPosts() {
           <Link
             key={post.slug}
             href={`/blog/${post.slug}`}
-            className="group flex flex-col bg-white border border-black rounded-xl shadow hover:shadow-lg transition-all duration-300 overflow-hidden hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
+            className="group flex flex-col bg-white border border-black rounded-lg shadow hover:shadow-lg transition-all duration-300 overflow-hidden hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
           >
             <div className="h-1 w-full bg-black group-hover:bg-black transition-colors duration-300" />
             <div className="flex flex-col flex-1 p-6">

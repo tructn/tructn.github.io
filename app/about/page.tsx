@@ -1,8 +1,8 @@
 import { BlogPosts } from "app/components/posts";
 
 export const metadata = {
-  title: "about me",
-  description: "learn more about TN.",
+  title: "About me",
+  description: "Learn more about TN.",
 };
 
 export default function Page() {
@@ -10,17 +10,17 @@ export default function Page() {
     <section className="w-full flex justify-center mt-4 sm:mt-8 antialiased">
       <div className="w-full">
         <h1 className="font-semibold text-2xl mb-4 tracking-tighter text-black">
-          about me
+          About me
         </h1>
         <p className="text-black/80 text-sm leading-relaxed mb-4">
-          hi, i'm truc, a software engineer with a passion for building web
+          Hi, i'm Truc, a software engineer with a passion for building web
           applications. i have experience in various technologies and enjoy
           learning new things. this blog is where i share my thoughts,
           experiences, and knowledge about software development and other topics
           that interest me.
         </p>
         <p className="text-black/80 text-sm leading-relaxed mb-4">
-          feel free to explore my blog posts and reach out if you have any
+          Feel free to explore my blog posts and reach out if you have any
           questions or just want to connect!
         </p>
       </div>

@@ -1,5 +1,6 @@
 import { getBlogPosts } from 'app/blog/utils';
-
+export const dynamic = "force-static";
+export const revalidate = 3600; // optional ISR
 export const baseUrl = 'https://tructn.github.io';
 
 export default async function sitemap() {

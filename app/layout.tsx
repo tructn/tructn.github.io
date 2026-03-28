@@ -16,15 +16,15 @@ const sans = Elms_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "tn notes",
-    template: "%s | tn notes",
+    default: "the quick notes",
+    template: "%s | the quick notes",
   },
   description: "this is my personal notes.",
   openGraph: {
-    title: "tn notes",
+    title: "the quick notes",
     description: "this is my personal notes.",
     url: baseUrl,
-    siteName: "tn notes",
+    siteName: "the quick notes",
     locale: "en_GB",
     type: "website",
   },
@@ -52,6 +52,20 @@ export default function RootLayout({
     <html lang="en" className={cx("text-black bg-[#f7f6f3]", sans.className)}>
       <body className="antialiased max-w-3xl mx-4 mt-8 lg:mx-auto">
         <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
+          <header className="mb-6 text-center">
+            <h1 className="text-3xl font-bold mb-2">
+              <a
+                href="/"
+                className="hover:underline focus:underline outline-none"
+              >
+                the quick notes
+              </a>
+            </h1>
+            <p className="text-base text-gray-600 italic">
+              Fast, quirky, and occasionally buggy: where tech meets sticky
+              notes!
+            </p>
+          </header>
           <Navbar />
           {children}
           <Footer />

@@ -1,5 +1,3 @@
-import { BlogPosts } from "app/components/posts";
-
 export const metadata = {
   title: "About me",
   description: "Learn more about TN.",
@@ -13,9 +11,9 @@ export default function Page() {
           About me
         </h1>
         <p className="text-black/80 text-sm leading-relaxed mb-4">
-          Hi, i'm Truc, a software engineer with a passion for building web
-          applications. i have experience in various technologies and enjoy
-          learning new things. this blog is where i share my thoughts,
+          Hi, I'm Truc, a software engineer with a passion for building web
+          applications. I have experience in various technologies and enjoy
+          learning new things. This blog is where I share my thoughts,
           experiences, and knowledge about software development and other topics
           that interest me.
         </p>

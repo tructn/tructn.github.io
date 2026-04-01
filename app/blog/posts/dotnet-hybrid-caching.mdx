@@ -1,0 +1,158 @@
+---
+title: .NET Hybrid Caching ft ValueTask, Decorator Pattern, and Redis
+publishedAt: 2026-04-01
+summary: A practical .NET demo using ValueTask, the decorator pattern with Scrutor, and a hybrid cache with Redis backplane. Includes code samples, load test results, and an analysis of pros and cons.
+---
+
+# .NET Hybrid Caching ft ValueTask, Decorator Pattern, and Redis
+
+This note documents a practical .NET demo using:
+
+- `ValueTask<T>` for efficient async APIs
+- The decorator pattern with Scrutor
+- Hybrid cache with Redis backplane
+
+It includes code samples, load test results, and an analysis of pros and cons. I wrote this for my future self and anyone who wants to quickly set up a scalable, high-performance .NET API with modern caching patterns.
+
+---
+
+## Key Concepts & Implementation
+
+### 1. ValueTask&lt;T&gt; for Efficient Async APIs
+
+The `ILookupService` interface returns a `ValueTask<IList<LookupModel>>`, which is more efficient than `Task<T>` for high-throughput scenarios when results are often cached or synchronous.
+
+```csharp
+internal interface ILookupService
+{
+	ValueTask<IList<LookupModel>> GetCategoriesAsync();
+}
+```
+
+> **Tip:** Use `ValueTask<T>` when the result is often available synchronously (e.g., cache). This avoids unnecessary allocations and improves performance, especially under high load.
+
+### 2. Decorator Pattern with Scrutor
+
+Scrutor enables easy registration of decorators in DI. Here, `LookupCacheDecorator` wraps the actual `LookupService` to add caching logic:
+
+```csharp
+builder.Services.AddScoped<ILookupService, LookupService>();
+builder.Services.Decorate<ILookupService, LookupCacheDecorator>();
+```
+
+The decorator checks the cache before calling the inner service:
+
+```csharp
+public async ValueTask<IList<LookupModel>> GetCategoriesAsync()
+{
+	var isCacheMissed = false;
+	var categories = await _cache.GetOrCreateAsync("categories", async (ct) =>
+	{
+		isCacheMissed = true;
+		_logger.LogInformation("[CACHE MISSED] Getting categories from normal lookup service");
+		var categories = await _innerLookupService.GetCategoriesAsync();
+		return categories;
+	});
+
+	if (!isCacheMissed)
+	{
+		_logger.LogInformation("[CACHE HIT] Categories were found in cache");
+	}
+
+	return categories;
+}
+```
+
+### 3. Hybrid Cache with Redis Backplane
+
+
+The hybrid cache combines in-memory and distributed (Redis) caching for optimal performance and scalability. The latest setup configures cache expiration options:
+
+```csharp
+builder.Services.AddHybridCache(options =>
+{
+	options.DefaultEntryOptions = new HybridCacheEntryOptions
+	{
+		Expiration = TimeSpan.FromMinutes(5),
+		LocalCacheExpiration = TimeSpan.FromMinutes(5)
+	};
+});
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+	options.Configuration = "localhost:6379";
+	options.InstanceName = "hybrid_cache_demo";
+});
+```
+
+This means cache entries will expire from both memory and Redis after 5 minutes by default.
+
+```csharp
+builder.Services.AddHybridCache();
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+	options.Configuration = "localhost:6379";
+	options.InstanceName = "hybrid_cache_demo";
+});
+```
+
+## Sample Endpoint
+
+```csharp
+app.MapGet("/v1/categories", async (ILookupService service) =>
+{
+	var result = await service.GetCategoriesAsync();
+	return Results.Ok(result);
+});
+```
+
+## Load Testing
+
+Using [bombardier](https://github.com/codesenberg/bombardier):
+
+```
+bombardier http://localhost:5274/v1/categories -n 10000 -c 125
+```
+
+Sample output:
+
+```
+Bombarding http://localhost:5274/v1/categories with 10000 request(s) using 125 connection(s)
+ 10000 / 10000 [===================================================================================================================================================================] 100.00% 6209/s 1s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec      6937.44   16840.22   82646.36
+  Latency       19.61ms   147.46ms      1.37s
+  Latency Distribution
+	 50%     2.62ms
+	 75%     3.12ms
+	 90%     3.71ms
+	 95%     4.24ms
+	 99%      1.36s
+  HTTP codes:
+	1xx - 0, 2xx - 10000, 3xx - 0, 4xx - 0, 5xx - 0
+	others - 0
+  Throughput:     2.34MB/s
+```
+
+## Pros and Cons
+
+### Pros
+
+- **Performance:** Hybrid cache provides fast in-memory reads and distributed consistency.
+- **Scalability:** Redis backplane enables cache sharing across instances.
+- **Separation of Concerns:** Decorator pattern keeps caching logic separate from business logic.
+- **Efficiency:** `ValueTask<T>` reduces allocations for frequently cached results.
+
+### Cons
+
+- **Complexity:** More moving parts (decorators, hybrid cache, Redis) than a simple cache.
+- **Redis Dependency:** Requires Redis server for distributed cache.
+- **Cache Invalidation:** Must design cache expiration and invalidation carefully. Not covered in this demo for simplicity.
+- **Potential Data Inconsistency:** With multiple servers behind a load balancer, each server checks its own memory cache first. This means data may be briefly inconsistent between servers until the cache expires or is invalidated.
+
+## References
+
+- [ASP.NET Core Hybrid Caching Documentation](https://learn.microsoft.com/en-us/aspnet/core/performance/caching/hybrid?view=aspnetcore-10.0)
+- [Scrutor (Decorator Pattern for .NET DI)](https://github.com/khellang/Scrutor)
+- [Redis Docker Image](https://hub.docker.com/_/redis)
+- [Decorator Pattern (Wikipedia)](https://en.wikipedia.org/wiki/Decorator_pattern)

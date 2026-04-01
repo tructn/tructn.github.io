@@ -62,7 +62,7 @@ public async ValueTask<IList<LookupModel>> GetCategoriesAsync()
 ### 3. Hybrid Cache with Redis Backplane
 
 
-The hybrid cache combines in-memory and distributed (Redis) caching for optimal performance and scalability. The latest setup configures cache expiration options:
+The hybrid cache combines in-memory and distributed (Redis) caching for optimal performance and scalability. 
 
 ```csharp
 builder.Services.AddHybridCache(options =>
@@ -81,15 +81,6 @@ builder.Services.AddStackExchangeRedisCache(options =>
 ```
 
 This means cache entries will expire from both memory and Redis after 5 minutes by default.
-
-```csharp
-builder.Services.AddHybridCache();
-builder.Services.AddStackExchangeRedisCache(options =>
-{
-	options.Configuration = "localhost:6379";
-	options.InstanceName = "hybrid_cache_demo";
-});
-```
 
 ## Sample Endpoint
 

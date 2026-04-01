@@ -42,7 +42,7 @@ The decorator checks the cache before calling the inner service:
 public async ValueTask<IList<LookupModel>> GetCategoriesAsync()
 {
 	var isCacheMissed = false;
-	var categories = await _cache.GetOrCreateAsync("categories", async (ct) =>
+	var categories = await _cache.GetOrCreateAsync("/categories", async (ct) =>
 	{
 		isCacheMissed = true;
 		_logger.LogInformation("[CACHE MISSED] Getting categories from normal lookup service");
@@ -76,7 +76,7 @@ builder.Services.AddHybridCache(options =>
 builder.Services.AddStackExchangeRedisCache(options =>
 {
 	options.Configuration = "localhost:6379";
-	options.InstanceName = "hybrid_cache_demo";
+	options.InstanceName = "hybrid-cache-demo";
 });
 ```
 

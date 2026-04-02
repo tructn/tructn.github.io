@@ -89,10 +89,27 @@ export default async function Blog({ params }) {
           <h1 className="title font-bold text-3xl sm:text-4xl tracking-tight mb-4">
             {post.metadata.title}
           </h1>
-          <div className="flex items-center text-sm opacity-60">
+          <div className="flex items-center gap-4 text-sm opacity-60 flex-wrap">
+            {post.metadata.language && (
+              <span className="text-base" title={post.metadata.language}>
+                {post.metadata.language === "vietnamese" ? "🇻🇳" : "🇬🇧"}
+              </span>
+            )}
             <time dateTime={post.metadata.publishedAt}>
               {formatDate(post.metadata.publishedAt)}
             </time>
+            {post.metadata.tags && (
+              <div className="flex flex-wrap gap-1.5">
+                {post.metadata.tags.split(",").map((tag) => (
+                  <span
+                    key={tag.trim()}
+                    className="px-2 py-0.5 text-xs rounded-full border border-black/30 text-black/60 opacity-100"
+                  >
+                    {tag.trim()}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
         </header>
 

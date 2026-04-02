@@ -62,7 +62,7 @@ export default function RootLayout({
               </a>
             </h1>
             <p className="text-base text-gray-600 italic">
-              Fast, quirky, and occasionally buggy: where tech meets sticky
+              fast, quirky, and occasionally buggy: where tech meets sticky
               notes!
             </p>
           </header>

@@ -2,6 +2,8 @@
 title: "use ValueTask<T> in .NET"
 publishedAt: 2026-04-02
 summary: a quick note on when and why to use ValueTask<T> instead of Task<T> in .NET for high-throughput, cache-friendly async APIs.
+language: english
+tags: tech, c#, dotnet, async
 ---
 
 use `ValueTask<T>` when your async method often returns a result synchronously — it avoids unnecessary heap allocations and is faster under load.

@@ -2,6 +2,8 @@
 title: "hybrid cache with in-memory redis database"
 publishedAt: 2026-04-01
 summary: a quick note on setting up hybrid caching in .NET — combining in-memory (L1) and Redis (L2) for fast, scalable APIs. includes config, load test results, and trade-offs.
+language: english
+tags: tech, c#, dotnet, caching, redis
 ---
 
 hybrid cache = in-memory (L1) + Redis (L2). reads hit L1 first (fast), then L2, then the data source. Redis keeps the cache consistent across multiple server instances.

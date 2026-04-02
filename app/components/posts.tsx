@@ -36,6 +36,18 @@ export function BlogPosts() {
                   {post.metadata.summary}
                 </p>
               )}
+              {post.metadata.tags && (
+                <div className="flex flex-wrap gap-1.5 mt-4">
+                  {post.metadata.tags.split(",").map((tag) => (
+                    <span
+                      key={tag.trim()}
+                      className="px-2 py-0.5 text-xs rounded-full border border-black/20 text-black/50"
+                    >
+                      {tag.trim()}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
           </Link>
         ))}

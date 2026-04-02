@@ -1,0 +1,60 @@
+---
+title: "decorator with Scrutor in .NET"
+publishedAt: 2026-04-02
+summary: A quick note on how to add caching (or any cross-cutting concern) to your services using the decorator pattern and Scrutor — without touching the original service.
+---
+
+Use [Scrutor](https://github.com/khellang/Scrutor) to wrap your existing service with a decorator that adds caching, logging, or any cross-cutting concern — without modifying the original service.
+
+---
+
+## Why the Decorator Pattern?
+
+Injecting cache logic directly into your service violates the Single Responsibility Principle. With a decorator, your `LookupService` only handles business logic. Caching is a separate concern.
+
+## Setup with Scrutor
+
+Register the real service first, then decorate it:
+
+```csharp
+builder.Services.AddScoped<ILookupService, LookupService>();
+builder.Services.Decorate<ILookupService, LookupCacheDecorator>();
+builder.Services.Decorate<ILookupService, LookupLoggingDecorator>();
+```
+
+That's it. Every time `ILookupService` is resolved, you get `LookupCacheDecorator` wrapping `LookupService`.
+
+## The Decorator
+
+```csharp
+public class LookupCacheDecorator(
+    ILookupService inner,
+    IHybridCache cache,
+    ILogger<LookupCacheDecorator> logger) : ILookupService
+{
+    public async ValueTask<IList<LookupModel>> GetCategoriesAsync()
+    {
+        var isCacheMissed = false;
+
+        var categories = await cache.GetOrCreateAsync("/categories", async (ct) =>
+        {
+            isCacheMissed = true;
+            logger.LogInformation("[CACHE MISS] Fetching from database...");
+            return await inner.GetCategoriesAsync();
+        });
+
+        if (!isCacheMissed)
+        {
+            logger.LogInformation("[CACHE HIT] Returned from cache.");
+        }
+
+        return categories;
+    }
+}
+```
+
+## Key Points
+
+- **`inner`** is the real `LookupService`, injected automatically by Scrutor.
+- The decorator is transparent to callers — they just use `ILookupService`.
+- You can stack multiple decorators (e.g., logging → caching → retry) — the **last** `.Decorate` call becomes the **outermost** layer, so it runs first.

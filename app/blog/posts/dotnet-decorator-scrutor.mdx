@@ -1,20 +1,20 @@
 ---
 title: "decorator with Scrutor in .NET"
 publishedAt: 2026-04-02
-summary: A quick note on how to add caching (or any cross-cutting concern) to your services using the decorator pattern and Scrutor — without touching the original service.
+summary: a quick note on how to add caching (or any cross-cutting concern) to your services using the decorator pattern and Scrutor — without touching the original service.
 ---
 
-Use [Scrutor](https://github.com/khellang/Scrutor) to wrap your existing service with a decorator that adds caching, logging, or any cross-cutting concern — without modifying the original service.
+use [Scrutor](https://github.com/khellang/Scrutor) to wrap your existing service with a decorator that adds caching, logging, or any cross-cutting concern — without modifying the original service.
 
 ---
 
-## Why the Decorator Pattern?
+## why the decorator pattern?
 
-Injecting cache logic directly into your service violates the Single Responsibility Principle. With a decorator, your `LookupService` only handles business logic. Caching is a separate concern.
+injecting cache logic directly into your service violates the single responsibility principle. with a decorator, your `LookupService` only handles business logic. caching is a separate concern.
 
-## Setup with Scrutor
+## setup with scrutor
 
-Register the real service first, then decorate it:
+register the real service first, then decorate it:
 
 ```csharp
 builder.Services.AddScoped<ILookupService, LookupService>();
@@ -23,9 +23,9 @@ builder.Services.Decorate<ILookupService, LookupCacheDecorator>();
 // builder.Services.Decorate<ILookupService, LookupLoggingDecorator>();
 ```
 
-That's it. Every time `ILookupService` is resolved, you get `LookupCacheDecorator` wrapping `LookupService`.
+that's it. every time `ILookupService` is resolved, you get `LookupCacheDecorator` wrapping `LookupService`.
 
-## The Decorator
+## the decorator
 
 ```csharp
 public class LookupCacheDecorator(
@@ -54,8 +54,8 @@ public class LookupCacheDecorator(
 }
 ```
 
-## Key Points
+## key points
 
 - **`inner`** is the real `LookupService`, injected automatically by Scrutor.
-- The decorator is transparent to callers — they just use `ILookupService`.
-- You can stack multiple decorators (e.g., logging → caching → retry) — the **last** `.Decorate` call becomes the **outermost** layer, so it runs first.
+- the decorator is transparent to callers — they just use `ILookupService`.
+- you can stack multiple decorators (e.g., logging → caching → retry) — the **last** `.Decorate` call becomes the **outermost** layer, so it runs first.

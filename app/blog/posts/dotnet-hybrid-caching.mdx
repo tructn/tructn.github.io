@@ -1,27 +1,27 @@
 ---
-title: "hybrid cache: in-memory? redis? database?"
+title: "hybrid cache with in-memory redis database"
 publishedAt: 2026-04-01
-summary: A quick note on setting up hybrid caching in .NET — combining in-memory (L1) and Redis (L2) for fast, scalable APIs. Includes config, load test results, and trade-offs.
+summary: a quick note on setting up hybrid caching in .NET — combining in-memory (L1) and Redis (L2) for fast, scalable APIs. includes config, load test results, and trade-offs.
 ---
 
-Hybrid cache = in-memory (L1) + Redis (L2). Reads hit L1 first (fast), then L2, then the data source. Redis keeps the cache consistent across multiple server instances.
+hybrid cache = in-memory (L1) + Redis (L2). reads hit L1 first (fast), then L2, then the data source. Redis keeps the cache consistent across multiple server instances.
 
 ---
 
-## How It Works
+## how it works
 
 ```
-Client → L1 (Memory) → L2 (Redis) → Data Source
+client → L1 (memory) → L2 (redis) → database
          ↑ cache hit   ↑ cache hit  ↑ cache miss
 ```
 
-- **L1 (In-Memory):** Fastest. Local to each server process.
-- **L2 (Redis):** Shared across all server instances. Survives restarts.
-- **Data Source:** DB or any backend. Only called on a full cache miss.
+- **L1 (in-memory):** fastest. local to each server process.
+- **L2 (redis):** shared across all server instances. survives restarts.
+- **database:** only called on a full cache miss.
 
-## Setup
+## setup
 
-Register hybrid cache with Redis as the distributed backend:
+register hybrid cache with Redis as the distributed backend:
 
 ```csharp
 builder.Services.AddHybridCache(options =>
@@ -40,9 +40,9 @@ builder.Services.AddStackExchangeRedisCache(options =>
 });
 ```
 
-Cache entries expire from both L1 and L2 after 5 minutes.
+cache entries expire from both L1 and L2 after 5 minutes.
 
-## Sample Endpoint
+## sample endpoint
 
 ```csharp
 app.MapGet("/v1/categories", async (ILookupService service) =>
@@ -52,9 +52,9 @@ app.MapGet("/v1/categories", async (ILookupService service) =>
 });
 ```
 
-## Load Test Results
+## load test results
 
-Using [bombardier](https://github.com/codesenberg/bombardier) — 10,000 requests, 125 concurrent connections:
+using [bombardier](https://github.com/codesenberg/bombardier) — 10,000 requests, 125 concurrent connections:
 
 ```
 Reqs/sec    6937 avg  (peak: 82,646)
@@ -63,9 +63,9 @@ HTTP 2xx    10,000 / 10,000
 Throughput  2.34 MB/s
 ```
 
-The p99 spike (1.36s) is expected — those are cache misses hitting the data source cold.
+the p99 spike (1.36s) is expected — those are cache misses hitting the data source cold.
 
-## Trade-offs
+## trade-offs
 - ✅ Fast reads: L1 hit returns in microseconds
 - ✅ Scalable: Redis shares cache across instances
 - ✅ Simple API: `GetOrCreateAsync` handles all layers
@@ -73,7 +73,7 @@ The p99 spike (1.36s) is expected — those are cache misses hitting the data so
 - ⚠️ Brief inconsistency: Each server has its own L1; may serve stale data until L1 expires
 - ⚠️ Cache invalidation: Not trivial — design expiry strategy upfront
 
-## References
+## references
 
 - [ASP.NET Core Hybrid Caching Docs](https://learn.microsoft.com/en-us/aspnet/core/performance/caching/hybrid?view=aspnetcore-10.0)
 - [Redis Docker Image](https://hub.docker.com/_/redis)

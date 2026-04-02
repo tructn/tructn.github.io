@@ -1,20 +1,20 @@
 ---
-title: "use ValueTask<T> in .NET ?"
+title: "use ValueTask<T> in .NET"
 publishedAt: 2026-04-02
-summary: A quick note on when and why to use ValueTask<T> instead of Task<T> in .NET for high-throughput, cache-friendly async APIs.
+summary: a quick note on when and why to use ValueTask<T> instead of Task<T> in .NET for high-throughput, cache-friendly async APIs.
 ---
 
-Use `ValueTask<T>` when your async method often returns a result synchronously — it avoids unnecessary heap allocations and is faster under load.
+use `ValueTask<T>` when your async method often returns a result synchronously — it avoids unnecessary heap allocations and is faster under load.
 
 ---
 
-## The Problem with `Task<T>`
+## the problem with `Task<T>`
 
-Every `Task<T>` is a heap-allocated object. For methods that resolve synchronously most of the time (e.g., cache hits), this creates a lot of garbage for no real benefit.
+every `Task<T>` is a heap-allocated object. for methods that resolve synchronously most of the time (e.g., cache hits), this creates a lot of garbage for no real benefit.
 
-## The Fix with `ValueTask<T>`
+## the fix with `ValueTask<T>`
 
-`ValueTask<T>` is a struct. When the result is already available, it returns inline — zero allocation.
+`ValueTask<T>` is a struct. when the result is already available, it returns inline — zero allocation.
 
 ```csharp
 internal interface ILookupService
@@ -23,7 +23,7 @@ internal interface ILookupService
 }
 ```
 
-## When to Use It
+## when to use it
 
 | Scenario                                                | Use             |
 | ------------------------------------------------------- | ----------------|
@@ -31,4 +31,4 @@ internal interface ILookupService
 | Always awaits I/O (DB, HTTP)                            | `Task<T>`       |
 | Called in loop that service mostly returns sync results | `ValueTask<T>`  |
 
-> Don't use `ValueTask<T>` everywhere — only where performance profiling shows benefit
+> don't use `ValueTask<T>` everywhere — only where performance profiling shows benefit

@@ -28,11 +28,8 @@ const stack = [
 export default function Page() {
   return (
     <section className="w-full mt-4 sm:mt-8 antialiased">
-      {/* Intro */}
       <div className="mb-10">
-        <h1 className="text-4xl font-bold tracking-tight mb-3">
-          ola, it&apos;s me again 👀
-        </h1>
+        <h1 className="text-4xl font-bold tracking-tight mb-3">about me 👀</h1>
         <p className="text-black/70 text-lg leading-relaxed max-w-xl">
           i&apos;m Truc. i write code, break things, fix them (sometimes), and
           occasionally write about it here. this blog is basically my second

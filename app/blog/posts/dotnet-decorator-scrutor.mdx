@@ -19,7 +19,8 @@ Register the real service first, then decorate it:
 ```csharp
 builder.Services.AddScoped<ILookupService, LookupService>();
 builder.Services.Decorate<ILookupService, LookupCacheDecorator>();
-builder.Services.Decorate<ILookupService, LookupLoggingDecorator>();
+// stack decorator
+// builder.Services.Decorate<ILookupService, LookupLoggingDecorator>();
 ```
 
 That's it. Every time `ILookupService` is resolved, you get `LookupCacheDecorator` wrapping `LookupService`.

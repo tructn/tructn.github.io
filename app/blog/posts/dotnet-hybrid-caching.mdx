@@ -12,7 +12,7 @@ Hybrid cache = in-memory (L1) + Redis (L2). Reads hit L1 first (fast), then L2, 
 
 ```
 Client → L1 (Memory) → L2 (Redis) → Data Source
-              ↑ cache hit          ↑ cache hit
+         ↑ cache hit   ↑ cache hit  ↑ cache miss
 ```
 
 - **L1 (In-Memory):** Fastest. Local to each server process.

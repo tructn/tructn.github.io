@@ -61,8 +61,30 @@ export default async function Blog({ params }) {
   }
 
   return (
-    <section className="w-full flex justify-center antialiased">
-      <div className="w-full">
+    <section className="w-full flex justify-center antialiased py-4">
+      <div className="paper-article w-full p-6 sm:p-8 md:p-10 relative">
+        {/* Notebook holes decoration */}
+        <div className="notebook-holes hidden sm:flex">
+          <div className="notebook-hole" />
+          <div className="notebook-hole" />
+          <div className="notebook-hole" />
+          <div className="notebook-hole" />
+          <div className="notebook-hole" />
+        </div>
+
+        {/* Red margin line */}
+        <div className="absolute left-10 sm:left-14 top-0 bottom-0 w-px bg-red-300/30 hidden sm:block" />
+
+        {/* Paper lines background */}
+        <div
+          className="absolute inset-0 pointer-events-none overflow-hidden rounded-sm hidden sm:block"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(transparent, transparent 27px, #e8e4d9 28px)",
+            backgroundPosition: "0 20px",
+          }}
+        />
+
         <script
           type="application/ld+json"
           suppressHydrationWarning
@@ -85,39 +107,50 @@ export default async function Blog({ params }) {
             }),
           }}
         />
-        <header className="mb-10">
-          <h1 className="title font-bold text-3xl sm:text-4xl tracking-tight mb-4">
-            {post.metadata.title}
-          </h1>
-          <div className="flex items-center gap-4 text-sm opacity-60 flex-wrap">
-            {post.metadata.language && (
-              <span className="text-base" title={post.metadata.language}>
-                {post.metadata.language === "vietnamese" ? "🇻🇳" : "🇬🇧"}
-              </span>
-            )}
-            <time dateTime={post.metadata.publishedAt}>
-              {formatDate(post.metadata.publishedAt)}
-            </time>
-            {post.metadata.tags && (
-              <div className="flex flex-wrap gap-1.5">
-                {post.metadata.tags.split(",").map((tag) => (
-                  <span
-                    key={tag.trim()}
-                    className="px-2 py-0.5 text-xs rounded-full border border-black/30 text-black/60 opacity-100"
-                  >
-                    {tag.trim()}
-                  </span>
-                ))}
-              </div>
-            )}
+
+        <div className="relative sm:pl-10">
+          <header className="mb-8">
+            <h1 className="title font-bold text-2xl sm:text-3xl tracking-tight mb-4 text-stone-800">
+              {post.metadata.title}
+            </h1>
+            <div className="flex items-center gap-3 text-sm text-stone-500 flex-wrap">
+              {post.metadata.language && (
+                <span className="text-base" title={post.metadata.language}>
+                  {post.metadata.language === "vietnamese" ? "🇻🇳" : "🇬🇧"}
+                </span>
+              )}
+              <time dateTime={post.metadata.publishedAt} className="italic">
+                {formatDate(post.metadata.publishedAt)}
+              </time>
+              {post.metadata.tags && (
+                <div className="flex flex-wrap gap-1.5">
+                  {post.metadata.tags.split(",").map((tag) => (
+                    <span
+                      key={tag.trim()}
+                      className="px-2 py-0.5 text-xs bg-amber-50 border border-amber-200/60 text-amber-700/70 rounded-sm"
+                    >
+                      {tag.trim()}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+          </header>
+
+          {/* Decorative divider */}
+          <div className="flex items-center gap-3 mb-8">
+            <div className="h-px flex-1 bg-amber-200/60" />
+            <span className="text-amber-300 text-xs">✦</span>
+            <div className="h-px flex-1 bg-amber-200/60" />
           </div>
-        </header>
 
-        <div className="h-px w-full bg-[var(--color-border)] mb-8 opacity-50" />
+          <article className="prose max-w-none prose-stone">
+            <CustomMDX source={post.content} />
+          </article>
 
-        <article className="prose max-w-none">
-          <CustomMDX source={post.content} />
-        </article>
+          {/* Paper fold corner */}
+          <div className="absolute -bottom-6 -right-6 sm:-bottom-8 sm:-right-8 w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-tl from-stone-200/50 to-transparent rounded-tl-lg" />
+        </div>
       </div>
     </section>
   );

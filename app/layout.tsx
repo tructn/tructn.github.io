@@ -1,11 +1,15 @@
 import "./global.css";
-import type { Metadata } from "next";
-import { Navbar } from "./components/nav";
+
+import { Elms_Sans } from "next/font/google";
+
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+
 import Footer from "./components/footer";
+import { Navbar } from "./components/nav";
 import { baseUrl } from "./sitemap";
-import { Elms_Sans } from "next/font/google";
+
+import type { Metadata } from "next";
 
 const sans = Elms_Sans({
   subsets: ["latin"],
@@ -16,15 +20,15 @@ const sans = Elms_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "the quick notes",
-    template: "%s | the quick notes",
+    default: "The Quick Notes",
+    template: "%s | The Quick Notes",
   },
-  description: "this is my personal notes.",
+  description: "This is my personal notes.",
   openGraph: {
-    title: "the quick notes",
-    description: "this is my personal notes.",
+    title: "The Quick Notes",
+    description: "This is my personal notes.",
     url: baseUrl,
-    siteName: "the quick notes",
+    siteName: "The Quick Notes",
     locale: "en_GB",
     type: "website",
   },
@@ -58,11 +62,11 @@ export default function RootLayout({
                 href="/"
                 className="hover:underline focus:underline outline-none"
               >
-                the quick notes
+                The Quick Notes
               </a>
             </h1>
             <p className="text-base text-gray-600 italic">
-              fast, quirky, and occasionally buggy: where tech meets sticky
+              Fast, quirky, and occasionally buggy: where tech meets sticky
               notes!
             </p>
           </header>

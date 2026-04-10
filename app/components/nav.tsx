@@ -1,15 +1,35 @@
-import Link from "next/link";
+"use client";
 
-const navItems = {
-  "/": {
-    name: "home",
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+const underlinePaths = [
+  "M 0 6 Q 15 3, 35 6 Q 55 9, 75 5 Q 90 3, 100 6",
+  "M 0 5 Q 20 2, 45 7 Q 70 10, 90 4 Q 96 2, 100 5",
+  "M 0 7 Q 25 3, 50 6 Q 75 9, 100 5",
+];
+
+const navItems = [
+  { path: "/", name: "Home", color: "#fde68a", strokeWidth: 3, pathIdx: 0 },
+  {
+    path: "/builds",
+    name: "Things I Built",
+    color: "#86efac",
+    strokeWidth: 2.5,
+    pathIdx: 1,
   },
-  "/about": {
-    name: "about me",
+  {
+    path: "/about",
+    name: "About Me",
+    color: "#93c5fd",
+    strokeWidth: 3.5,
+    pathIdx: 2,
   },
-};
+];
 
 export function Navbar() {
+  const pathname = usePathname();
+
   return (
     <aside className="-ml-[8px] mb-16 tracking-tight">
       <div className="lg:sticky lg:top-20">
@@ -18,14 +38,30 @@ export function Navbar() {
           id="nav"
         >
           <div className="flex flex-row space-x-0 pr-10">
-            {Object.entries(navItems).map(([path, { name }]) => {
+            {navItems.map(({ path, name, color, strokeWidth, pathIdx }) => {
+              const isActive = pathname === path;
               return (
                 <Link
                   key={path}
                   href={path}
-                  className="transition-colors flex align-middle relative py-1 px-3 m-1 rounded-md text-black hover:bg-black/10 hover:underline hover:underline-offset-4 hover:decoration-2 hover:decoration-black focus-visible:outline-black focus-visible:outline-2"
+                  className="group flex align-middle relative py-1 px-3 m-1 text-black focus-visible:outline-black focus-visible:outline-2"
                 >
                   {name}
+                  <svg
+                    aria-hidden="true"
+                    className={`absolute left-3 right-3 bottom-0 w-[calc(100%-1.5rem)] h-[10px] transition-opacity duration-200 overflow-visible pointer-events-none ${isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
+                    preserveAspectRatio="none"
+                    viewBox="0 0 100 10"
+                  >
+                    <path
+                      d={underlinePaths[pathIdx]}
+                      fill="none"
+                      stroke={color}
+                      strokeWidth={strokeWidth}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </Link>
               );
             })}

@@ -32,10 +32,10 @@ export default function Page() {
   return (
     <section className="w-full mt-4 sm:mt-8 antialiased">
       <div className="mb-10">
-        <h1 className="text-4xl font-bold tracking-tight mb-3">about me 👀</h1>
+        <h1 className="text-4xl font-bold tracking-tight mb-3">About Me 👀</h1>
         <p className="text-black/70 text-lg leading-relaxed max-w-xl">
-          i&apos;m Truc. i write code, break things, fix them (sometimes), and
-          occasionally write about it here. this blog is basically my second
+          I&apos;m Truc. I write code, break things, fix them (sometimes), and
+          occasionally write about it here. This blog is basically my second
           brain — except less organised and more chaotic.
         </p>
       </div>
@@ -43,7 +43,7 @@ export default function Page() {
       {/* Fun facts */}
       <div className="mb-10">
         <h2 className="text-xs font-semibold uppercase tracking-widest text-black/40 mb-4">
-          fun facts
+          Fun facts
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {facts.map((fact) => (
@@ -61,7 +61,7 @@ export default function Page() {
       {/* Stack */}
       <div className="mb-10">
         <h2 className="text-xs font-semibold uppercase tracking-widest text-black/40 mb-4">
-          things i work with
+          Things I work with
         </h2>
         <div className="flex flex-wrap gap-2">
           {stack.map((item) => (

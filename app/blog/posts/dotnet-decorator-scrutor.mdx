@@ -1,22 +1,22 @@
 ---
-title: "decorator with Scrutor in .NET"
+title: "Decorator with Scrutor in .NET"
 publishedAt: 2026-04-02
-summary: a quick note on how to add caching (or any cross-cutting concern) to your services using the decorator pattern and Scrutor — without touching the original service.
+summary: A quick note on how to add caching (or any cross-cutting concern) to your services using the decorator pattern and Scrutor — without touching the original service.
 language: english
 tags: tech, c#, dotnet, design patterns
 ---
 
-use [Scrutor](https://github.com/khellang/Scrutor) to wrap your existing service with a decorator that adds caching, logging, or any cross-cutting concern — without modifying the original service.
+Use [Scrutor](https://github.com/khellang/Scrutor) to wrap your existing service with a decorator that adds caching, logging, or any cross-cutting concern — without modifying the original service.
 
 ---
 
-## why the decorator pattern?
+## Why the decorator pattern?
 
-injecting cache logic directly into your service violates the single responsibility principle. with a decorator, your `LookupService` only handles business logic. caching is a separate concern.
+Injecting cache logic directly into your service violates the single responsibility principle. With a decorator, your `LookupService` only handles business logic. Caching is a separate concern.
 
-## setup with scrutor
+## Setup with Scrutor
 
-register the real service first, then decorate it:
+Register the real service first, then decorate it:
 
 ```csharp
 builder.Services.AddScoped<ILookupService, LookupService>();
@@ -25,9 +25,9 @@ builder.Services.Decorate<ILookupService, LookupCacheDecorator>();
 // builder.Services.Decorate<ILookupService, LookupLoggingDecorator>();
 ```
 
-that's it. every time `ILookupService` is resolved, you get `LookupCacheDecorator` wrapping `LookupService`.
+That's it. Every time `ILookupService` is resolved, you get `LookupCacheDecorator` wrapping `LookupService`.
 
-## the decorator
+## The decorator
 
 ```csharp
 public class LookupCacheDecorator(
@@ -56,7 +56,7 @@ public class LookupCacheDecorator(
 }
 ```
 
-## key points
+## Key points
 
 - **`inner`** is the real `LookupService`, injected automatically by Scrutor.
 - the decorator is transparent to callers — they just use `ILookupService`.

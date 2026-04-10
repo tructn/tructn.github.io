@@ -1,22 +1,22 @@
 ---
-title: "use ValueTask<T> in .NET"
+title: "Use ValueTask<T> in .NET"
 publishedAt: 2026-04-02
-summary: a quick note on when and why to use ValueTask<T> instead of Task<T> in .NET for high-throughput, cache-friendly async APIs.
+summary: A quick note on when and why to use ValueTask<T> instead of Task<T> in .NET for high-throughput, cache-friendly async APIs.
 language: english
 tags: tech, c#, dotnet, async
 ---
 
-use `ValueTask<T>` when your async method often returns a result synchronously — it avoids unnecessary heap allocations and is faster under load.
+Use `ValueTask<T>` when your async method often returns a result synchronously — it avoids unnecessary heap allocations and is faster under load.
 
 ---
 
-## the problem with `Task<T>`
+## The problem with `Task<T>`
 
-every `Task<T>` is a heap-allocated object. for methods that resolve synchronously most of the time (e.g., cache hits), this creates a lot of garbage for no real benefit.
+Every `Task<T>` is a heap-allocated object. For methods that resolve synchronously most of the time (e.g., cache hits), this creates a lot of garbage for no real benefit.
 
-## the fix with `ValueTask<T>`
+## The fix with `ValueTask<T>`
 
-`ValueTask<T>` is a struct. when the result is already available, it returns inline — zero allocation.
+`ValueTask<T>` is a struct. When the result is already available, it returns inline — zero allocation.
 
 ```csharp
 internal interface ILookupService
@@ -25,7 +25,7 @@ internal interface ILookupService
 }
 ```
 
-## when to use it
+## When to use it
 
 | Scenario                                                | Use             |
 | ------------------------------------------------------- | ----------------|
@@ -33,4 +33,4 @@ internal interface ILookupService
 | Always awaits I/O (DB, HTTP)                            | `Task<T>`       |
 | Called in loop that service mostly returns sync results | `ValueTask<T>`  |
 
-> don't use `ValueTask<T>` everywhere — only where performance profiling shows benefit
+> Don't use `ValueTask<T>` everywhere — only where performance profiling shows benefit

@@ -6,10 +6,6 @@ export const metadata = {
 const facts = [
   { emoji: "☕", text: "powered by coffee (and mild panic)" },
   { emoji: "🐛", text: "it works on my machine™" },
-  {
-    emoji: "🇻🇳🇬🇧",
-    text: "50% pho, 50% fish and chips",
-  },
   { emoji: "📝", text: "writes notes so future-me doesn't suffer" },
   { emoji: "📷", text: "loves photography, terrible at it" },
   { emoji: "🤷", text: "still googling basic stuff after years of coding" },
@@ -85,7 +81,7 @@ export default function Page() {
             rel="noopener noreferrer"
             className="underline underline-offset-4 text-black font-medium hover:opacity-70 transition-opacity"
           >
-            find me on github
+            Find me on GitHub
           </a>{" "}
           👋
         </p>

@@ -4,53 +4,81 @@ import { formatDate, getBlogPosts } from "app/blog/utils";
 export function BlogPosts() {
   const allBlogs = getBlogPosts();
 
+  const sorted = allBlogs.sort(
+    (a, b) =>
+      new Date(b.metadata.publishedAt).getTime() -
+      new Date(a.metadata.publishedAt).getTime(),
+  );
+
   return (
-    <div className="flex flex-col gap-8 w-full">
-      {allBlogs
-        .sort((a, b) => {
-          if (
-            new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)
-          ) {
-            return -1;
-          }
-          return 1;
-        })
-        .map((post) => (
-          <Link
-            key={post.slug}
-            href={`/blog/${post.slug}`}
-            className="group flex flex-col bg-white border border-black rounded-lg shadow hover:shadow-lg transition-all duration-300 overflow-hidden hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
-          >
-            <div className="h-1 w-full bg-black group-hover:bg-black transition-colors duration-300" />
-            <div className="flex flex-col flex-1 p-6">
-              <div className="flex flex-row items-center justify-between mb-3">
-                <h2 className="text-xl font-bold text-black group-hover:underline transition-colors duration-300 line-clamp-2">
-                  {post.metadata.title}
-                </h2>
-                <time className="text-xs text-black/60 tabular-nums font-medium ml-4 whitespace-nowrap">
-                  {formatDate(post.metadata.publishedAt, false)}
-                </time>
-              </div>
-              {post.metadata.summary && (
-                <p className="text-black/80 text-sm leading-relaxed mt-1 line-clamp-3">
-                  {post.metadata.summary}
-                </p>
-              )}
-              {post.metadata.tags && (
-                <div className="flex flex-wrap gap-1.5 mt-4">
-                  {post.metadata.tags.split(",").map((tag) => (
-                    <span
-                      key={tag.trim()}
-                      className="px-2 py-0.5 text-xs rounded-full border border-black/20 text-black/50"
-                    >
-                      {tag.trim()}
-                    </span>
-                  ))}
+    <div className="w-full">
+      {/* Proceedings header */}
+      <div className="border-t-2 border-b border-black/80 py-2 mb-6 flex items-baseline justify-between">
+        <span className="text-xs font-mono uppercase tracking-widest text-black/50">
+          Publications &amp; Notes
+        </span>
+        <span className="text-xs font-mono text-black/40">
+          {sorted.length} entr{sorted.length === 1 ? "y" : "ies"}
+        </span>
+      </div>
+
+      <ol className="flex flex-col divide-y divide-black/10">
+        {sorted.map((post, idx) => (
+          <li key={post.slug} className="py-5">
+            <Link
+              href={`/blog/${post.slug}`}
+              className="group block focus-visible:outline-none"
+            >
+              {/* Entry row */}
+              <div className="flex gap-4">
+                {/* Reference number */}
+                <span className="font-mono text-xs text-black/30 pt-0.5 w-6 shrink-0 text-right select-none">
+                  [{sorted.length - idx}]
+                </span>
+
+                <div className="flex-1 min-w-0">
+                  {/* Title */}
+                  <h2 className="font-serif text-base font-semibold text-black leading-snug group-hover:underline underline-offset-2 decoration-black/40 mb-1">
+                    {post.metadata.title}
+                  </h2>
+
+                  {/* Author · Date · Language */}
+                  <p className="font-mono text-xs text-black/50 mb-2">
+                    Truc Nguyen
+                    {post.metadata.language === "vietnamese" && " 🇻🇳"}
+                    <span className="mx-1.5">·</span>
+                    <time dateTime={post.metadata.publishedAt}>
+                      {formatDate(post.metadata.publishedAt, false)}
+                    </time>
+                  </p>
+
+                  {/* Abstract excerpt */}
+                  {post.metadata.summary && (
+                    <p className="text-sm text-black/60 leading-relaxed line-clamp-2 font-serif italic">
+                      {post.metadata.summary}
+                    </p>
+                  )}
+
+                  {/* Keywords */}
+                  {post.metadata.tags && (
+                    <p className="mt-2 font-mono text-xs text-black/40">
+                      <span className="not-italic font-semibold text-black/50">
+                        Keywords:{" "}
+                      </span>
+                      {post.metadata.tags
+                        .split(",")
+                        .map((t) => t.trim())
+                        .join(", ")}
+                    </p>
+                  )}
                 </div>
-              )}
-            </div>
-          </Link>
+              </div>
+            </Link>
+          </li>
         ))}
+      </ol>
+
+      <div className="border-t border-black/20 mt-2" />
     </div>
   );
 }

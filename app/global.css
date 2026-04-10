@@ -6,10 +6,10 @@
 }
 
 :root {
-  --color-bg: #f7f6f3;
+  --color-bg: #ffffff;
   --color-fg: #22223b;
-  --color-bg-soft: #f3efe6;
-  --color-border: #e2dfd2;
+  --color-bg-soft: #ffffff;
+  --color-border: #d9d9d9;
   --color-white: #fff;
   --sh-class: #2d5e9d;
   --sh-identifier: #354150;
@@ -31,6 +31,7 @@ html {
 body {
   background: var(--color-bg);
   color: var(--color-fg);
+  font-family: Georgia, "Times New Roman", serif;
 }
 
 .prose .anchor {
@@ -179,42 +180,120 @@ table {
   text-wrap: balance;
 }
 
-/* ─── Marker highlight effect ─────────────────────────────────── */
+/* ─── Research paper prose styles ─────────────────────────────── */
 
-/* Inline keyword marker — uses a slanted background strip */
-.marker {
-  display: inline;
-  background-image: linear-gradient(
-    var(--marker-angle, 104deg),
-    transparent 0.9%,
-    var(--marker-color, #fde68a) 2.4%,
-    var(--marker-color, #fde68a) calc(100% - var(--marker-end, 3%)),
-    transparent calc(100% - 0.9%)
-  );
-  background-size: 100% var(--marker-height, 45%);
-  background-repeat: no-repeat;
-  background-position: 0 var(--marker-offset, 65%);
+.prose-paper {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: #1a1a1a;
 }
 
-/* Nav link marker — pseudo-element revealed on hover */
-.nav-marker {
-  position: relative;
-  isolation: isolate;
+.prose-paper p {
+  margin-top: 0;
+  margin-bottom: 1em;
+  text-align: justify;
 }
 
-.nav-marker::after {
-  content: "";
-  position: absolute;
-  inset: var(--marker-inset, 3px) -1px;
-  background: var(--marker-color, #fde68a);
-  transform: rotate(var(--marker-rotate, -1deg))
-    skewX(var(--marker-skew, -1deg));
+.prose-paper h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 2em;
+  margin-bottom: 0.6em;
+  color: #111;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  padding-bottom: 0.25em;
+}
+
+.prose-paper h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-style: italic;
+  margin-top: 1.5em;
+  margin-bottom: 0.4em;
+  color: #222;
+}
+
+.prose-paper a {
+  color: #111;
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 0, 0, 0.35);
+  text-underline-offset: 2px;
+}
+
+.prose-paper a:hover {
+  text-decoration-color: #111;
+}
+
+.prose-paper blockquote {
+  border-left: 2px solid rgba(0, 0, 0, 0.2);
+  padding-left: 1rem;
+  margin-left: 0;
+  color: #555;
+  font-style: italic;
+}
+
+.prose-paper pre {
+  background: #f7f6f3;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  padding: 0.75rem 1rem;
+  overflow-x: auto;
+  margin: 1.25em 0;
+}
+
+.prose-paper code {
+  font-size: 0.82em;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 0.1em 0.3em;
   border-radius: 2px;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.18s ease;
 }
 
-.nav-marker:hover::after {
-  opacity: 0.7;
+.prose-paper pre code {
+  background: none;
+  padding: 0;
+}
+
+.prose-paper ul,
+.prose-paper ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1em;
+}
+
+.prose-paper li {
+  margin-bottom: 0.25em;
+}
+
+.prose-paper table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  margin: 1.25em 0;
+}
+
+.prose-paper th,
+.prose-paper td {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 0.4em 0.75em;
+  text-align: left;
+}
+
+.prose-paper th {
+  background: rgba(0, 0, 0, 0.04);
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.prose-paper hr {
+  border: none;
+  border-top: 1px dashed rgba(0, 0, 0, 0.2);
+  margin: 2em 0;
 }

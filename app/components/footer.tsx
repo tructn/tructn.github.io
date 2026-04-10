@@ -27,12 +27,12 @@ export default function Footer() {
             href="https://github.com/tructn"
           >
             <ArrowIcon />
-            <p className="ml-2 h-7">github</p>
+            <p className="ml-2 h-7">Git Hub</p>
           </a>
         </li>
       </ul>
       <p className="mt-8 text-black">
-        © {new Date().getFullYear()} truc nguyen
+        © {new Date().getFullYear()} Truc Nguyen. All rights reserved.
       </p>
     </footer>
   );

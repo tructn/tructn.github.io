@@ -53,21 +53,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={cx("text-black bg-[#f7f6f3]", sans.className)}>
-      <body className="antialiased max-w-3xl mx-4 mt-8 lg:mx-auto">
+    <html lang="en" className={cx("text-black bg-white", sans.className)}>
+      <body className="antialiased bg-white max-w-3xl mx-4 mt-8 lg:mx-auto">
         <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
-          <header className="mb-6 text-center">
-            <h1 className="text-3xl font-bold mb-2">
+          <header className="mb-6 text-center border-b-2 border-black pb-4">
+            <h1 className="font-serif text-4xl font-bold tracking-tight mb-2">
               <a
                 href="/"
-                className="hover:underline focus:underline outline-none"
+                className="hover:underline focus:underline outline-none underline-offset-4 decoration-black/30"
               >
                 The Quick Notes
               </a>
             </h1>
-            <p className="text-base text-gray-600 italic">
-              Fast, quirky, and occasionally buggy: where tech meets sticky
-              notes!
+            <p className="font-mono text-[11px] text-black/40 tracking-wide">
+              Built with caffeine, curiosity, and a suspicious number of tabs
             </p>
           </header>
           <Navbar />

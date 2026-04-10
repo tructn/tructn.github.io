@@ -61,7 +61,7 @@ export default async function Blog({ params }) {
   }
 
   return (
-    <section className="w-full flex justify-center antialiased">
+    <section className="w-full antialiased">
       <div className="w-full">
         <script
           type="application/ld+json"
@@ -85,37 +85,55 @@ export default async function Blog({ params }) {
             }),
           }}
         />
-        <header className="mb-10">
-          <h1 className="title font-bold text-3xl sm:text-4xl tracking-tight mb-4">
+
+        {/* Title block */}
+        <header className="text-center mb-8 border-b border-black/10 pb-8">
+          <h1 className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-black leading-tight mb-4">
             {post.metadata.title}
           </h1>
-          <div className="flex items-center gap-4 text-sm opacity-60 flex-wrap">
-            {post.metadata.language && (
-              <span className="text-base" title={post.metadata.language}>
-                {post.metadata.language === "vietnamese" ? "🇻🇳" : "🇬🇧"}
-              </span>
+
+          {/* Author + date */}
+          <p className="font-mono text-xs text-black/50 mb-1">
+            Truc Nguyen
+            {post.metadata.language === "vietnamese" && (
+              <span className="ml-1">🇻🇳</span>
             )}
-            <time dateTime={post.metadata.publishedAt}>
-              {formatDate(post.metadata.publishedAt)}
-            </time>
-            {post.metadata.tags && (
-              <div className="flex flex-wrap gap-1.5">
-                {post.metadata.tags.split(",").map((tag) => (
-                  <span
-                    key={tag.trim()}
-                    className="px-2 py-0.5 text-xs rounded-full border border-black/30 text-black/60 opacity-100"
-                  >
-                    {tag.trim()}
-                  </span>
-                ))}
-              </div>
-            )}
-          </div>
+          </p>
+          <time
+            dateTime={post.metadata.publishedAt}
+            className="font-mono text-xs text-black/40"
+          >
+            {formatDate(post.metadata.publishedAt)}
+          </time>
+
+          {/* Keywords */}
+          {post.metadata.tags && (
+            <p className="mt-3 font-mono text-xs text-black/40">
+              <span className="font-semibold text-black/50">Keywords: </span>
+              {post.metadata.tags
+                .split(",")
+                .map((t) => t.trim())
+                .join(", ")}
+            </p>
+          )}
         </header>
 
-        <div className="h-px w-full bg-[var(--color-border)] mb-8 opacity-50" />
+        {/* Abstract */}
+        {post.metadata.summary && (
+          <div className="mb-8">
+            <p className="font-mono text-xs font-semibold uppercase tracking-widest text-black/40 mb-2">
+              Abstract
+            </p>
+            <p className="text-sm font-serif italic text-black/70 leading-relaxed border-l-2 border-black/15 pl-4">
+              {post.metadata.summary}
+            </p>
+          </div>
+        )}
 
-        <article className="prose max-w-none">
+        <div className="border-t border-dashed border-black/15 mb-8" />
+
+        {/* Body */}
+        <article className="prose prose-paper max-w-none">
           <CustomMDX source={post.content} />
         </article>
       </div>

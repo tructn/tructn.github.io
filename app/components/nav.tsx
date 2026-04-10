@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { SearchBox } from "app/components/search-box";
 
 const navItems = [
   { path: "/", name: "Home" },
@@ -13,8 +14,8 @@ export function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="mb-10 border-b border-black/15 pb-2">
-      <ul className="flex flex-row gap-0 font-mono text-xs uppercase tracking-widest">
+    <nav className="mb-10 border-b border-black/15 pb-2 flex items-center">
+      <ul className="flex flex-row gap-0 font-mono text-xs uppercase tracking-widest flex-1">
         {navItems.map(({ path, name }) => {
           const isActive = pathname === path;
           return (
@@ -33,6 +34,7 @@ export function Navbar() {
           );
         })}
       </ul>
+      <SearchBox />
     </nav>
   );
 }

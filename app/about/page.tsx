@@ -26,9 +26,13 @@ const stack = [
 
 export default function Page() {
   return (
-    <section className="w-full mt-4 sm:mt-8 antialiased">
+    <section className="w-full antialiased">
+      <div className="border-t-2 border-b border-black/80 py-2 mb-6 flex items-baseline justify-between">
+        <span className="text-xs font-mono uppercase tracking-widest text-black/50">
+          About Me
+        </span>
+      </div>
       <div className="mb-10">
-        <h1 className="text-4xl font-bold tracking-tight mb-3">About Me 👀</h1>
         <p className="text-black/70 text-lg leading-relaxed max-w-xl">
           I&apos;m Truc. I write code, break things, fix them (sometimes), and
           occasionally write about it here. This blog is basically my second

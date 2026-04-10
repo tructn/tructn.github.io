@@ -12,10 +12,10 @@ export function BlogPosts() {
 
   return (
     <div className="w-full">
-      {/* Proceedings header */}
+      {/* Recent Posts header */}
       <div className="border-t-2 border-b border-black/80 py-2 mb-6 flex items-baseline justify-between">
         <span className="text-xs font-mono uppercase tracking-widest text-black/50">
-          Publications &amp; Notes
+          Recent Posts
         </span>
         <span className="text-xs font-mono text-black/40">
           {sorted.length} entr{sorted.length === 1 ? "y" : "ies"}

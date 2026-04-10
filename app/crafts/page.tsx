@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 export const metadata = {
-  title: "Things I Built",
+  title: "Crafts",
   description: "A showcase of things I've built.",
 };
 
@@ -42,13 +42,12 @@ const projects = [
 
 export default function Page() {
   return (
-    <section className="w-full mt-4 sm:mt-8 antialiased">
-      {/* Section header */}
-      <div className="border-t-2 border-b border-black/80 py-2 mb-8 flex items-baseline justify-between">
-        <span className="font-mono text-xs uppercase tracking-widest text-black/50">
+    <section className="w-full antialiased">
+      <div className="border-t-2 border-b border-black/80 py-2 mb-6 flex items-baseline justify-between">
+        <span className="text-xs font-mono uppercase tracking-widest text-black/50">
           Projects &amp; Implementations
         </span>
-        <span className="font-mono text-xs text-black/40">
+        <span className="text-xs font-mono text-black/40">
           {projects.length} project{projects.length !== 1 ? "s" : ""}
         </span>
       </div>

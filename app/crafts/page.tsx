@@ -21,7 +21,7 @@ const projects = [
       "MUI",
     ],
     url: "https://tryhumi.vercel.app",
-    thumbnail: "/thumbnails/humi.jpg",
+    thumbnail: "/thumbnails/humi.jpeg",
   },
   {
     name: "Racket",

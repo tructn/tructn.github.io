@@ -7,7 +7,7 @@ export const metadata = {
 
 const projects = [
   {
-    name: "clin HR",
+    name: "Humi",
     description:
       "A human resources management system with Next.js, supabase and drizzle-orm.",
     tags: [
@@ -20,8 +20,8 @@ const projects = [
       "Tailwindcss",
       "MUI",
     ],
-    url: "https://clinhr.vercel.app",
-    thumbnail: "/thumbnails/clinhr.png",
+    url: "https://tryhumi.vercel.app",
+    thumbnail: "/thumbnails/humi.jpg",
   },
   {
     name: "Racket",

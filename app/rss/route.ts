@@ -30,9 +30,9 @@ export async function GET() {
   const rssFeed = `<?xml version="1.0" encoding="UTF-8" ?>
   <rss version="2.0">
     <channel>
-        <title>TN Blog</title>
+        <title>The Scenic Route</title>
         <link>${baseUrl}</link>
-        <description>This is TN Blog RSS feed</description>
+        <description>Notes from the road: code, life, and the detours in between</description>
         ${itemsXml}
     </channel>
   </rss>`;

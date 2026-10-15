@@ -103,16 +103,16 @@ export function SearchBox() {
       <button
         onClick={openSearch}
         aria-label="Search posts (⌘K)"
-        className="flex items-center gap-1.5 font-mono text-xs text-black/40 hover:text-black transition-colors border border-black/15 hover:border-black/40 px-2.5 py-1"
+        className="pill toon-hover font-display text-[15px]"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="12"
-          height="12"
+          width="15"
+          height="15"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          strokeWidth="2"
+          strokeWidth="3"
           strokeLinecap="round"
           strokeLinejoin="round"
           aria-hidden="true"
@@ -121,20 +121,20 @@ export function SearchBox() {
           <path d="m21 21-4.3-4.3" />
         </svg>
         Search
-        <kbd className="hidden sm:inline font-mono text-[9px] bg-black/5 border border-black/10 px-1 rounded">
+        <kbd className="hidden sm:inline font-mono text-[10px] font-bold bg-[#fff1b8] border-2 border-[#1f1a2e] px-1 rounded-md leading-tight">
           ⌘K
         </kbd>
       </button>
 
       {/* Modal overlay */}
       {open && (
-        <div className="fixed inset-0 z-50 flex items-start justify-center pt-[15vh] px-4 bg-black/20">
+        <div className="fixed inset-0 z-50 flex items-start justify-center pt-[15vh] px-4 bg-[#1f1a2e4d] backdrop-blur-[2px]">
           <div
             ref={containerRef}
-            className="w-full max-w-xl bg-white border border-black/20 shadow-lg"
+            className="toon w-full max-w-xl overflow-hidden"
           >
             {/* Input */}
-            <div className="flex items-center gap-3 px-4 py-3 border-b border-black/10">
+            <div className="flex items-center gap-3 px-4 py-3 border-b-[3px] border-[#1f1a2e] bg-[#fff1b8]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="14"
@@ -145,7 +145,7 @@ export function SearchBox() {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="text-black/35 shrink-0"
+                className="shrink-0"
                 aria-hidden="true"
               >
                 <circle cx="11" cy="11" r="8" />
@@ -155,18 +155,18 @@ export function SearchBox() {
                 ref={inputRef}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search posts…"
-                className="flex-1 font-serif text-sm bg-transparent outline-none placeholder:text-black/30"
+                placeholder="Where to next?"
+                className="flex-1 font-display text-lg font-semibold bg-transparent outline-none placeholder:text-[#8a82a0]"
                 aria-label="Search posts"
               />
               {loading && (
-                <span className="font-mono text-[10px] text-black/30">
-                  Loading…
+                <span className="font-hand text-sm text-ink-soft">
+                  packing bags…
                 </span>
               )}
               <button
                 onClick={() => setOpen(false)}
-                className="font-mono text-[10px] text-black/30 hover:text-black transition-colors border border-black/10 px-1.5 py-0.5"
+                className="font-mono text-[10px] font-bold bg-white border-2 border-[#1f1a2e] rounded-md px-1.5 py-0.5 hover:bg-[#ffe0e0]"
               >
                 ESC
               </button>
@@ -174,28 +174,28 @@ export function SearchBox() {
 
             {/* Results */}
             {results.length > 0 && (
-              <ul className="max-h-80 overflow-y-auto divide-y divide-black/5">
+              <ul className="max-h-80 overflow-y-auto divide-y-2 divide-dashed divide-[#1f1a2e26]">
                 {results.map(({ item }) => (
                   <li key={item.slug}>
                     <Link
                       href={`/blog/${item.slug}`}
                       onClick={() => setOpen(false)}
-                      className="flex flex-col gap-1 px-4 py-3 hover:bg-black/[0.03] transition-colors"
+                      className="flex flex-col gap-1 px-4 py-3 hover:bg-[#d3f8ee] focus-visible:bg-[#d3f8ee] outline-none transition-colors"
                     >
-                      <span className="font-serif text-sm font-semibold text-black">
+                      <span className="font-display text-base font-bold leading-snug">
                         {item.title}
                       </span>
                       {item.summary && (
-                        <span className="font-serif text-xs italic text-black/50 line-clamp-1">
+                        <span className="text-sm text-ink-soft line-clamp-1">
                           {item.summary}
                         </span>
                       )}
                       {item.tags && (
-                        <span className="font-mono text-[10px] text-black/35">
+                        <span className="font-hand text-sm text-ink-faint">
                           {item.tags
                             .split(",")
-                            .map((t) => t.trim())
-                            .join(" · ")}
+                            .map((t) => `#${t.trim()}`)
+                            .join("  ")}
                         </span>
                       )}
                     </Link>
@@ -206,15 +206,15 @@ export function SearchBox() {
 
             {/* Empty state */}
             {query.trim().length >= 2 && results.length === 0 && !loading && (
-              <p className="px-4 py-5 font-mono text-xs text-black/35 text-center">
-                No posts found for &ldquo;{query}&rdquo;
+              <p className="px-4 py-6 font-hand text-lg text-ink-soft text-center">
+                🗺️ No roads lead to &ldquo;{query}&rdquo; (yet)
               </p>
             )}
 
             {/* Idle state */}
             {query.trim().length === 0 && (
-              <p className="px-4 py-4 font-mono text-[10px] text-black/25 text-center">
-                Type to search across all posts, tags, and content
+              <p className="px-4 py-5 font-hand text-lg text-ink-soft text-center">
+                Type to search every stop: titles, tags and words
               </p>
             )}
           </div>

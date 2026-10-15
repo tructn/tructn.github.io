@@ -1,3 +1,3 @@
-# The Quick Notes
+# The Scenic Route
 
 My random personal study notes, writing about lifes, works, anything happens on daily basis...

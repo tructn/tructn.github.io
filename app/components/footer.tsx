@@ -1,24 +1,34 @@
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaRss } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="mb-16">
-      <ul className="font-sm mt-8 flex flex-col space-x-0 space-y-2 text-black md:flex-row md:space-x-4 md:space-y-0">
-        <li>
+    <footer className="mt-16 mb-12">
+      <div
+        className="toon flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-5 py-4"
+        style={{ background: "var(--lilac-soft)" }}
+      >
+        <p className="font-hand text-lg leading-snug">
+          It&apos;s about the journey, not the destination.
+          <span className="block text-base text-ink-soft">
+            © {new Date().getFullYear()} Truc Nguyen · still walking
+          </span>
+        </p>
+        <div className="flex gap-2.5">
           <a
-            className="flex items-center transition-all hover:text-black"
+            className="pill toon-hover font-display text-sm"
             rel="noopener noreferrer"
             target="_blank"
             href="https://github.com/tructn"
           >
-            <FaGithub size={14} />
-            <p className="ml-2 h-7">Github</p>
+            <FaGithub size={15} aria-hidden="true" />
+            GitHub
           </a>
-        </li>
-      </ul>
-      <p className="mt-8 text-black">
-        © {new Date().getFullYear()} Truc Nguyen. All rights reserved.
-      </p>
+          <a className="pill toon-hover font-display text-sm" href="/rss">
+            <FaRss size={13} aria-hidden="true" />
+            RSS
+          </a>
+        </div>
+      </div>
     </footer>
   );
 }

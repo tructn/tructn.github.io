@@ -24,35 +24,59 @@ const stack = [
   "Go (learning... slowly)",
 ];
 
+const factColors = [
+  "var(--sun-soft)",
+  "var(--sky-soft)",
+  "var(--mint-soft)",
+  "var(--coral-soft)",
+  "var(--lilac-soft)",
+];
+
 export default function Page() {
   return (
-    <section className="w-full antialiased">
-      <div className="border-t-2 border-b border-black/80 py-2 mb-6 flex items-baseline justify-between">
-        <span className="text-xs font-mono uppercase tracking-widest text-black/50">
-          About Me
+    <section className="w-full">
+      <div className="toon p-6 sm:p-7 mb-10 flex flex-col sm:flex-row gap-5 sm:items-center">
+        <span
+          aria-hidden="true"
+          className="wiggle shrink-0 w-20 h-20 rounded-full border-[3px] border-[#1f1a2e] grid place-items-center text-4xl"
+          style={{ background: "var(--sun)", boxShadow: "3px 3px 0 var(--ink)" }}
+        >
+          🧑‍💻
         </span>
-      </div>
-      <div className="mb-10">
-        <p className="text-black/70 text-lg leading-relaxed max-w-xl">
-          I&apos;m Truc. I write code, break things, fix them (sometimes), and
-          occasionally write about it here. This blog is basically my second
-          brain — except less organised and more chaotic.
-        </p>
+        <div>
+          <h2 className="font-display text-3xl font-extrabold leading-none mb-2">
+            Hi, I&apos;m Truc!
+          </h2>
+          <p className="text-[17px] text-ink-soft leading-relaxed">
+            I write code, break things, fix them (sometimes), and occasionally
+            write about it here. This blog is basically my second brain, except
+            less organised and more chaotic. I&apos;m not sure where the road
+            ends, and that&apos;s kind of the point.
+          </p>
+        </div>
       </div>
 
       {/* Fun facts */}
       <div className="mb-10">
-        <h2 className="text-xs font-semibold uppercase tracking-widest text-black/40 mb-4">
+        <h3 className="font-display text-2xl font-extrabold mb-4">
           Fun facts
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {facts.map((fact) => (
+        </h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {facts.map((fact, i) => (
             <div
               key={fact.text}
-              className="flex items-center gap-3 border border-black/10 rounded-xl px-4 py-3 bg-white hover:border-black/30 transition-colors duration-200"
+              className="toon toon-hover flex items-center gap-3 px-4 py-3"
+              style={{
+                background: factColors[i % factColors.length],
+                rotate: i % 2 ? "0.6deg" : "-0.6deg",
+              }}
             >
-              <span className="text-2xl">{fact.emoji}</span>
-              <span className="text-sm text-black/70">{fact.text}</span>
+              <span className="text-3xl" aria-hidden="true">
+                {fact.emoji}
+              </span>
+              <span className="font-hand text-lg leading-snug">
+                {fact.text}
+              </span>
             </div>
           ))}
         </div>
@@ -60,14 +84,15 @@ export default function Page() {
 
       {/* Stack */}
       <div className="mb-10">
-        <h2 className="text-xs font-semibold uppercase tracking-widest text-black/40 mb-4">
-          Things I work with
-        </h2>
-        <div className="flex flex-wrap gap-2">
-          {stack.map((item) => (
+        <h3 className="font-display text-2xl font-extrabold mb-4">
+          Things in my backpack
+        </h3>
+        <div className="flex flex-wrap gap-2.5">
+          {stack.map((item, i) => (
             <span
               key={item}
-              className="px-3 py-1 rounded-full border border-black text-sm font-medium bg-black text-white"
+              className="sticker text-sm"
+              style={{ background: factColors[i % factColors.length] }}
             >
               {item}
             </span>
@@ -76,19 +101,18 @@ export default function Page() {
       </div>
 
       {/* CTA */}
-      <div className="border-t border-black/10 pt-8">
-        <p className="text-black/60 text-sm">
-          wanna chat? found something useful here? or just bored?{" "}
-          <a
-            href="https://github.com/tructn"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline underline-offset-4 text-black font-medium hover:opacity-70 transition-opacity"
-          >
-            Find me on GitHub
-          </a>{" "}
-          👋
+      <div className="border-t-[3px] border-dashed border-[#1f1a2e4d] pt-6 flex flex-wrap items-center gap-4">
+        <p className="font-hand text-xl text-ink-soft">
+          wanna chat? found something useful? or just bored?
         </p>
+        <a
+          href="https://github.com/tructn"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="pill pill-filled toon-hover font-display"
+        >
+          👋 Find me on GitHub
+        </a>
       </div>
     </section>
   );

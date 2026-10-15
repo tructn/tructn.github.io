@@ -1,34 +1,52 @@
 import "./global.css";
 
-import { Elms_Sans } from "next/font/google";
+import { Baloo_2, Nunito, Patrick_Hand } from "next/font/google";
 
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import Footer from "./components/footer";
+import { Hero } from "./components/hero";
 import { Navbar } from "./components/nav";
 import { baseUrl } from "./sitemap";
 
 import type { Metadata } from "next";
 
-const sans = Elms_Sans({
+// All three ship a Vietnamese subset; `subsets` only picks what to preload, and
+// unicode-range still pulls Vietnamese glyphs in on pages that need them
+const display = Baloo_2({
   subsets: ["latin"],
-  variable: "--font-sans",
-  weight: ["400", "700"],
+  variable: "--font-display",
+  weight: ["600", "700", "800"],
 });
+
+const body = Nunito({
+  subsets: ["latin"],
+  variable: "--font-body",
+});
+
+const hand = Patrick_Hand({
+  subsets: ["latin"],
+  variable: "--font-hand",
+  weight: "400",
+});
+
+const SITE_NAME = "The Scenic Route";
+const SITE_DESCRIPTION =
+  "Notes from the road: code, life, and the detours in between. No finish line in sight.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "The Quick Notes",
-    template: "%s | The Quick Notes",
+    default: SITE_NAME,
+    template: `%s | ${SITE_NAME}`,
   },
-  description: "This is my personal notes.",
+  description: SITE_DESCRIPTION,
   openGraph: {
-    title: "The Quick Notes",
-    description: "This is my personal notes.",
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
     url: baseUrl,
-    siteName: "The Quick Notes",
+    siteName: SITE_NAME,
     locale: "en_GB",
     type: "website",
   },
@@ -53,22 +71,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={cx("text-black bg-white", sans.className)}>
-      <body className="antialiased bg-white max-w-3xl mx-4 mt-8 lg:mx-auto">
-        <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
-          <header className="mb-6 text-center border-b-2 border-black pb-4">
-            <h1 className="font-serif text-4xl font-bold tracking-tight mb-2">
-              <a
-                href="/"
-                className="hover:underline focus:underline outline-none underline-offset-4 decoration-black/30"
-              >
-                The Quick Notes
-              </a>
-            </h1>
-            <p className="font-mono text-[11px] text-black/40 tracking-wide">
-              Built with caffeine, curiosity, and a suspicious number of tabs
-            </p>
-          </header>
+    <html
+      lang="en"
+      className={cx(display.variable, body.variable, hand.variable)}
+    >
+      <body className="antialiased max-w-3xl mx-4 mt-6 sm:mt-10 lg:mx-auto">
+        <main className="flex-auto min-w-0 flex flex-col px-1 sm:px-0">
+          <Hero />
           <Navbar />
           {children}
           <Footer />

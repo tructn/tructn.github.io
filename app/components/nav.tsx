@@ -5,29 +5,31 @@ import { usePathname } from "next/navigation";
 import { SearchBox } from "app/components/search-box";
 
 const navItems = [
-  { path: "/", name: "Home" },
-  { path: "/crafts", name: "Crafts" },
-  { path: "/about", name: "About Me" },
+  { path: "/", name: "The Trail", emoji: "🥾", color: "var(--sun)" },
+  { path: "/crafts", name: "Crafts", emoji: "🛠️", color: "var(--coral)" },
+  { path: "/about", name: "About Me", emoji: "👋", color: "var(--lilac)" },
 ];
 
 export function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="mb-10 border-b border-black/15 pb-2 flex items-center">
-      <ul className="flex flex-row gap-0 font-mono text-xs uppercase tracking-widest flex-1">
-        {navItems.map(({ path, name }) => {
-          const isActive = pathname === path;
+    <nav className="mb-10 flex flex-wrap items-center gap-3">
+      <ul className="flex flex-row flex-wrap gap-2.5 flex-1">
+        {navItems.map(({ path, name, emoji, color }) => {
+          const isActive =
+            path === "/"
+              ? pathname === "/" || pathname.startsWith("/blog")
+              : pathname.startsWith(path);
           return (
             <li key={path}>
               <Link
                 href={path}
-                className={`inline-block px-3 py-1 mr-1 transition-colors focus-visible:outline-none focus-visible:underline ${
-                  isActive
-                    ? "font-bold text-black border-b-2 border-black"
-                    : "text-black/50 hover:text-black"
-                }`}
+                aria-current={isActive ? "page" : undefined}
+                className="pill toon-hover font-display text-[15px]"
+                style={{ "--pill-color": color } as React.CSSProperties}
               >
+                <span aria-hidden="true">{emoji}</span>
                 {name}
               </Link>
             </li>

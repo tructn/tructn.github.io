@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CustomMDX } from "app/components/mdx";
 import { formatDate, getBlogPosts } from "app/blog/utils";
@@ -80,62 +81,90 @@ export default async function Blog({ params }) {
               url: `${baseUrl}/blog/${post.slug}`,
               author: {
                 "@type": "Person",
-                name: "TN Blog",
+                name: "Truc Nguyen",
               },
             }),
           }}
         />
 
-        {/* Title block */}
-        <header className="text-center mb-8 border-b border-black/10 pb-8">
-          <h1 className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-black leading-tight mb-4">
+        <Link
+          href="/"
+          className="pill toon-hover font-display text-sm mb-6"
+        >
+          ← back to the trail
+        </Link>
+
+        {/* Title card */}
+        <header
+          className="toon p-6 sm:p-8 mb-8"
+          style={{ background: "var(--sun-soft)", rotate: "-0.4deg" }}
+        >
+          <p className="font-hand text-lg text-ink-soft mb-2">
+            <time dateTime={post.metadata.publishedAt}>
+              {formatDate(post.metadata.publishedAt)}
+            </time>
+            {" · "}Truc Nguyen
+            {post.metadata.language === "vietnamese" && " · 🇻🇳"}
+          </p>
+          <h1 className="title font-display text-3xl sm:text-4xl font-extrabold leading-tight">
             {post.metadata.title}
           </h1>
 
-          {/* Author + date */}
-          <p className="font-mono text-xs text-black/50 mb-1">
-            Truc Nguyen
-            {post.metadata.language === "vietnamese" && (
-              <span className="ml-1">🇻🇳</span>
-            )}
-          </p>
-          <time
-            dateTime={post.metadata.publishedAt}
-            className="font-mono text-xs text-black/40"
-          >
-            {formatDate(post.metadata.publishedAt)}
-          </time>
-
-          {/* Keywords */}
           {post.metadata.tags && (
-            <p className="mt-3 font-mono text-xs text-black/40">
-              <span className="font-semibold text-black/50">Keywords: </span>
-              {post.metadata.tags
-                .split(",")
-                .map((t) => t.trim())
-                .join(", ")}
-            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {post.metadata.tags.split(",").map((t) => (
+                <span key={t} className="sticker" style={{ background: "#fff" }}>
+                  #{t.trim()}
+                </span>
+              ))}
+            </div>
           )}
         </header>
 
-        {/* Abstract */}
+        {/* TL;DR speech bubble */}
         {post.metadata.summary && (
-          <div className="mb-8">
-            <p className="font-mono text-xs font-semibold uppercase tracking-widest text-black/40 mb-2">
-              Abstract
-            </p>
-            <p className="text-sm font-serif italic text-black/70 leading-relaxed border-l-2 border-black/15 pl-4">
-              {post.metadata.summary}
-            </p>
+          <div className="relative mb-10 ml-2 sm:ml-6">
+            <div
+              className="toon px-5 py-4"
+              style={{ background: "var(--mint-soft)" }}
+            >
+              <span className="font-display font-extrabold mr-2">TL;DR</span>
+              <span className="text-ink-soft leading-relaxed">
+                {post.metadata.summary}
+              </span>
+            </div>
+            {/* bubble tail */}
+            <svg
+              aria-hidden="true"
+              width="34"
+              height="22"
+              viewBox="0 0 34 22"
+              className="absolute -bottom-[17px] left-8"
+            >
+              <path
+                d="M2 0 L14 19 L28 0"
+                fill="var(--mint-soft)"
+                stroke="var(--ink)"
+                strokeWidth="3"
+                strokeLinejoin="round"
+              />
+            </svg>
           </div>
         )}
 
-        <div className="border-t border-dashed border-black/15 mb-8" />
-
         {/* Body */}
-        <article className="prose prose-paper max-w-none">
+        <article className="prose prose-toon max-w-none">
           <CustomMDX source={post.content} />
         </article>
+
+        <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t-[3px] border-dashed border-[#1f1a2e4d] pt-6">
+          <p className="font-hand text-xl text-ink-soft">
+            That&apos;s this stop. On to the next one!
+          </p>
+          <Link href="/" className="pill pill-filled toon-hover font-display">
+            🥾 Back to the trail
+          </Link>
+        </div>
       </div>
     </section>
   );

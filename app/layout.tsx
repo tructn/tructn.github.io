@@ -31,9 +31,9 @@ const hand = Patrick_Hand({
   weight: "400",
 });
 
-const SITE_NAME = "The Scenic Route";
+const SITE_NAME = "Side Quests";
 const SITE_DESCRIPTION =
-  "Notes from the road: code, life, and the detours in between. No finish line in sight.";
+  "Code, life, and the side quests in between, written down so future me doesn't have to redo them.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),

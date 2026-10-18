@@ -1,3 +1,3 @@
-# The Scenic Route
+# Side Quests
 
 My random personal study notes, writing about lifes, works, anything happens on daily basis...

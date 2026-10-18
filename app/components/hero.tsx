@@ -150,11 +150,11 @@ export function Hero() {
     <header className="toon overflow-hidden mb-6" style={{ background: "var(--sky-soft)" }}>
       <div className="px-5 pt-5 sm:px-7 sm:pt-6">
         <p className="font-hand text-base sm:text-lg text-ink-soft -rotate-1 mb-1">
-          notes from the road, no finish line in sight
+          code, life &amp; whatever I wandered into today
         </p>
         <h1 className="font-display text-4xl sm:text-5xl font-extrabold tracking-tight leading-none">
           <Link href="/" className="wiggle inline-block outline-none focus-visible:underline">
-            The Scenic Route
+            Side Quests
           </Link>
         </h1>
       </div>

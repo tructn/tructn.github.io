@@ -10,7 +10,7 @@ export default function NotFound() {
         404: Took a wrong turn
       </h1>
       <p className="font-hand text-xl text-ink-soft mb-6">
-        This road doesn&apos;t go anywhere. Scenic, though.
+        This road doesn&apos;t go anywhere. No quest here, just a dead end.
       </p>
       <Link href="/" className="pill pill-filled toon-hover font-display">
         🥾 Back to the trail

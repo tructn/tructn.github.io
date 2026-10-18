@@ -1,0 +1,45 @@
+{
+  "name": "KUI",
+  "order": 1,
+  "tagline": "A simple desktop app for Apache Kafka.",
+  "description": "See your topics, read and send messages, and check how far behind your consumers are, without a single CLI flag. Built in Rust with Tauri, so it starts fast, needs no JVM or server, and keeps your connection settings on your computer.",
+  "features": [
+    "List, search (⌘K), create and delete topics",
+    "Read newest or oldest messages, or watch them arrive live",
+    "Send your own messages or generate test data",
+    "See which consumer groups are caught up and which are behind",
+    "SSL and SASL clusters work too"
+  ],
+  "platform": "macOS · Windows",
+  "color": "coral",
+  "logo": "logo.svg",
+  "repo": "https://github.com/tructn/kui",
+  "download": {
+    "label": "Download for macOS & Windows",
+    "url": "https://github.com/tructn/kui/releases/latest"
+  },
+  "stack": ["Rust", "Tauri", "React", "TypeScript", "Kafka", "librdkafka"],
+  "screenshots": [
+    { "file": "topics.webp", "alt": "KUI showing the topics of a Kafka cluster" },
+    {
+      "file": "messages.webp",
+      "alt": "Messages of a topic, with partition, offset, timestamp, key and value",
+      "caption": "Newest, oldest, or Live"
+    },
+    {
+      "file": "consumers.webp",
+      "alt": "A consumer group's progress and lag on each partition",
+      "caption": "Spot the stuck consumer in seconds"
+    },
+    {
+      "file": "add-cluster.webp",
+      "alt": "The Add cluster dialog",
+      "caption": "Add a cluster, test it, save it"
+    },
+    {
+      "file": "settings.webp",
+      "alt": "The Settings window with theme and font options",
+      "caption": "Light or dark, your fonts"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "name": "Framelet",
+  "order": 2,
+  "tagline": "Your photos. Your videos. A little more order.",
+  "description": "A simple Mac app for going through folders of photos and videos and clearing out the ones you don't want. There's nothing to import: it works right on your folders, and all the analysis happens on your Mac. It never goes online.",
+  "features": [
+    "Many folders, one grid, with a sidebar to view one at a time",
+    "Press D to mark, then trash them all in one safe step",
+    "Search by what's in a photo: \"beach\", \"people in a car\"",
+    "Find exact copies, near-identical shots and similar photos",
+    "Lift the subject off its background and save it as a PNG"
+  ],
+  "platform": "macOS 14+",
+  "color": "sky",
+  "logo": "icon.png",
+  "repo": "https://github.com/tructn/Framelet",
+  "download": {
+    "label": "Download for macOS",
+    "url": "https://github.com/tructn/Framelet/releases/latest"
+  },
+  "stack": ["Swift", "SwiftUI", "AppKit", "Vision", "Core ML", "AVFoundation"],
+  "screenshots": [
+    {
+      "file": "home.webp",
+      "alt": "Framelet showing photos from two folders in one grid, with several marked for deletion and the inspector open"
+    },
+    {
+      "file": "ai-search.webp",
+      "alt": "Searching for \"car\" finds every photo with a car in it",
+      "caption": "Search \"car\", get cars, not file names"
+    },
+    {
+      "file": "ai-find-dups.webp",
+      "alt": "The Duplicates & Similar Photos sheet, with the best copy kept and extra copies marked for deletion",
+      "caption": "Keeps the best copy, marks the rest"
+    },
+    {
+      "file": "ai-extract.webp",
+      "alt": "The Extract Subject window showing a car cut out from a photo on a transparent background",
+      "caption": "Cut the subject out in one click"
+    }
+  ]
+}

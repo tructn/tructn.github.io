@@ -35,7 +35,6 @@ export type Screenshot = {
   caption?: string;
   width: number;
   height: number;
-  color: string;
 };
 
 export type Craft = Omit<CraftFile, 'logo' | 'color' | 'screenshots'> & {
@@ -93,10 +92,8 @@ function toCraft(slug: string, data: CraftFile, index: number): Craft {
   };
 
   let color = data.color ?? PALETTE[index % PALETTE.length];
-  // Shot backgrounds cycle through the palette, skipping the project's own color
-  let shotColors = PALETTE.filter((c) => c !== color);
 
-  let [hero, ...shots] = data.screenshots.map((shot, i) => {
+  let [hero, ...shots] = data.screenshots.map((shot) => {
     let src = asset(shot.file);
     let { width, height } = imageSize(path.join(PUBLIC_DIR, src), fail);
     return {
@@ -105,7 +102,6 @@ function toCraft(slug: string, data: CraftFile, index: number): Craft {
       caption: shot.caption,
       width,
       height,
-      color: `var(--${shotColors[i % shotColors.length]}-soft)`,
     };
   });
 

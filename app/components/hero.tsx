@@ -162,7 +162,7 @@ function Sheet() {
 export function Hero() {
   const year = toRoman(new Date().getFullYear());
   return (
-    <header className="folio overflow-hidden mb-8 px-5 pt-6 pb-3 sm:px-8 sm:pt-7">
+    <header className="folio mb-8 px-5 pt-6 pb-3 sm:px-8 sm:pt-7">
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="font-hand text-base sm:text-lg text-ink-soft mb-1">

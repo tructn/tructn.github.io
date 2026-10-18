@@ -121,7 +121,7 @@ export function SearchBox() {
           <path d="m21 21-4.3-4.3" />
         </svg>
         Search
-        <kbd className="hidden sm:inline font-sans text-[10px] not-italic border border-[var(--ink-line)] px-1 rounded-sm leading-tight text-ink-faint">
+        <kbd className="hidden sm:inline font-sans text-[10px] not-italic border border-[var(--ink-line)] px-1 rounded-[var(--hand-radius)] leading-tight text-ink-faint">
           ⌘K
         </kbd>
       </button>
@@ -166,7 +166,7 @@ export function SearchBox() {
               )}
               <button
                 onClick={() => setOpen(false)}
-                className="font-sans text-[10px] border border-[var(--ink-line)] rounded-sm px-1.5 py-0.5 text-ink-faint hover:text-[var(--sanguine)]"
+                className="font-sans text-[10px] border border-[var(--ink-line)] rounded-[var(--hand-radius)] px-1.5 py-0.5 text-ink-faint hover:text-[var(--sanguine)]"
               >
                 ESC
               </button>

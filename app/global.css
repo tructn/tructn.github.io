@@ -31,6 +31,8 @@
   --peach-soft: #eed5b0;
 
   --radius: 3px;
+  /* Boxes ruled by hand: no two corners quite alike */
+  --hand-radius: 3px 8px 4px 9px / 9px 4px 8px 3px;
 
   --sh-class: #3d5878;
   --sh-identifier: #2e2014;
@@ -96,48 +98,128 @@ body {
 
 /* ─── Notebook primitives ───────────────────────────────────────── */
 
-/* A leaf of paper: hairline frame with an inner ruled border and a soft,
-   uneven shadow, as if lying on a desk */
+/* An old loose leaf: no ruled frame, just a sheet with deckled edges,
+   browned margins and a few foxing spots. The paper lives on ::before so
+   clip-path can rough up its edges while drop-shadow (on the parent)
+   follows that ragged outline instead of a clean rectangle. */
 .folio {
   position: relative;
-  background-color: var(--card);
-  background-image: radial-gradient(
-    ellipse at 50% 40%,
-    transparent 60%,
-    rgba(140, 95, 40, 0.13) 100%
-  );
-  border: 1px solid var(--ink-line);
-  border-radius: var(--radius);
-  outline: 1px solid var(--ink-hair);
-  outline-offset: -6px;
-  box-shadow:
-    0 1px 0 rgba(255, 250, 235, 0.6) inset,
-    0 2px 3px rgba(60, 35, 10, 0.12),
-    0 14px 28px -18px rgba(60, 35, 10, 0.55);
+  isolation: isolate;
+  filter: drop-shadow(0 1px 1px rgba(60, 35, 10, 0.18))
+    drop-shadow(0 10px 14px rgba(60, 35, 10, 0.16));
 }
 
 .folio-hover {
   transition:
     transform 260ms cubic-bezier(0.2, 0.7, 0.2, 1),
-    box-shadow 260ms ease;
+    filter 260ms ease;
+}
+
+.folio::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: #efe0bf;
+  background-image:
+    /* foxing: small rust-coloured age spots */
+    radial-gradient(circle at 88% 22%, rgba(150, 95, 40, 0.16) 0 3px, transparent 7px),
+    radial-gradient(circle at 92% 30%, rgba(150, 95, 40, 0.1) 0 2px, transparent 5px),
+    radial-gradient(circle at 7% 78%, rgba(150, 95, 40, 0.12) 0 4px, transparent 10px),
+    /* a faint water stain in one corner */
+    radial-gradient(ellipse 34% 60% at 100% 100%, rgba(140, 92, 38, 0.14), transparent 70%),
+    /* fibre grain */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.24 0 0 0 0 0.1 0 0 0 0.16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  /* margins browned by a century of handling */
+  box-shadow:
+    inset 0 0 22px rgba(125, 80, 30, 0.28),
+    inset 0 0 3px rgba(110, 70, 25, 0.35);
+  clip-path: polygon(
+    0.6% 3px, 9% 0, 21% 2px, 34% 0.5px, 47% 2.5px, 61% 0, 73% 1.5px, 86% 0, 100% 2px,
+    calc(100% - 2px) 22%, 100% 41%, calc(100% - 1.5px) 63%, 100% 82%, calc(100% - 3px) 100%,
+    88% calc(100% - 1px), 74% 100%, 59% calc(100% - 2.5px), 45% 100%, 30% calc(100% - 1.5px), 16% 100%, 2% calc(100% - 2px),
+    0 84%, 2px 66%, 0 47%, 1.5px 28%, 0 12%
+  );
+}
+
+/* Vary the tear and the stains so neighbouring leaves don't match */
+li:nth-child(3n + 2) > .folio::before,
+.folio:nth-child(3n + 2)::before {
+  background-position: -60px 20px, -40px 30px, 50px -40px, 0 0, 30px 70px;
+  clip-path: polygon(
+    0 1px, 13% 2.5px, 27% 0, 40% 1.5px, 55% 0, 68% 3px, 81% 0.5px, 93% 2px, 100% 0,
+    calc(100% - 1px) 15%, calc(100% - 3px) 37%, 100% 58%, calc(100% - 2px) 79%, 100% 100%,
+    90% calc(100% - 3px), 77% 100%, 64% calc(100% - 1px), 50% calc(100% - 2.5px), 36% 100%, 22% calc(100% - 2px), 8% 100%, 0 calc(100% - 1px),
+    2.5px 76%, 0 55%, 2px 34%, 0.5px 16%
+  );
+}
+
+li:nth-child(3n) > .folio::before,
+.folio:nth-child(3n)::before {
+  background-position: -120px -10px, -110px 0, 260px -60px, 0 0, -50px 10px;
+  clip-path: polygon(
+    1.5px 0, 15% 2px, 29% 0.5px, 44% 3px, 58% 0, 71% 2px, 85% 0, 99% 2.5px,
+    100% 18%, calc(100% - 2.5px) 36%, 100% 55%, calc(100% - 1px) 74%, calc(100% - 2px) 99%,
+    85% 100%, 70% calc(100% - 2px), 56% 100%, 42% calc(100% - 3px), 27% 100%, 12% calc(100% - 1.5px), 0 100%,
+    1.5px 81%, 0 62%, 3px 44%, 0 25%, 2px 9%
+  );
 }
 
 .folio-hover:hover,
 .folio-hover:focus-visible {
   transform: translateY(-3px);
-  box-shadow:
-    0 1px 0 rgba(255, 250, 235, 0.6) inset,
-    0 4px 6px rgba(60, 35, 10, 0.14),
-    0 22px 34px -18px rgba(60, 35, 10, 0.6);
+  filter: drop-shadow(0 2px 2px rgba(60, 35, 10, 0.2))
+    drop-shadow(0 16px 18px rgba(60, 35, 10, 0.2));
 }
 
 .folio-hover:focus-visible {
-  outline: 2px solid var(--sanguine);
-  outline-offset: 3px;
+  outline: 2px dashed var(--sanguine);
+  outline-offset: 4px;
 }
 
 .folio-hover:active {
   transform: translateY(0);
+}
+
+/* A picture laid straight on the page: no frame, softly toned to match */
+.photo {
+  border-radius: var(--hand-radius);
+  filter: sepia(0.1);
+}
+
+.photo-hover {
+  transition:
+    transform 260ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    filter 260ms ease;
+}
+
+.group:hover .photo-hover,
+.group:focus-visible .photo-hover {
+  transform: translateY(-3px);
+  filter: sepia(0);
+}
+
+/* Spotlight: a plate held up to the lamp in a darkened study */
+.spotlight {
+  background: radial-gradient(
+    ellipse at 50% 45%,
+    rgba(58, 40, 22, 0.88),
+    rgba(22, 14, 6, 0.96) 75%
+  );
+  backdrop-filter: blur(3px);
+  animation: fade-in 220ms ease both;
+}
+
+.spotlight-plate {
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.7);
+  animation: plate-in 320ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes plate-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
 }
 
 /* A short inscription in red chalk: tags, platforms, counts */
@@ -154,7 +236,7 @@ body {
   line-height: 1.7;
   color: var(--sanguine);
   border: 1px solid rgba(163, 64, 42, 0.45);
-  border-radius: 2px;
+  border-radius: var(--hand-radius);
   background: rgba(244, 232, 205, 0.7);
   white-space: nowrap;
 }
@@ -172,7 +254,7 @@ body {
   color: var(--ink);
   background: var(--card);
   border: 1px solid var(--ink-line);
-  border-radius: 2px;
+  border-radius: var(--hand-radius);
   box-shadow:
     0 0 0 3px var(--card),
     0 0 0 4px var(--ink-hair),
@@ -332,11 +414,15 @@ body {
   }
   .turn,
   .turn-back,
-  .ink-in {
+  .ink-in,
+  .spotlight,
+  .spotlight-plate {
     animation: none;
   }
   .folio-hover,
-  .folio-hover:hover {
+  .folio-hover:hover,
+  .photo-hover,
+  .group:hover .photo-hover {
     transition: none;
     transform: none;
   }
@@ -479,13 +565,11 @@ body {
   margin-bottom: 0;
 }
 
+/* Code is simply written on the page: a faint darker wash, no frame */
 .prose-codex pre {
-  background: rgba(244, 232, 205, 0.75);
-  border: 1px solid var(--ink-line);
-  border-radius: var(--radius);
-  outline: 1px solid var(--ink-hair);
-  outline-offset: -5px;
-  box-shadow: inset 0 0 30px rgba(140, 95, 40, 0.12);
+  background: rgba(200, 165, 105, 0.16);
+  border: 0;
+  border-radius: var(--hand-radius);
   font-size: 0.82rem;
   line-height: 1.65;
   padding: 1rem 1.2rem;
@@ -497,7 +581,7 @@ body {
   font-size: 0.82em;
   background: rgba(224, 202, 160, 0.55);
   padding: 0.05em 0.3em;
-  border-radius: 2px;
+  border-radius: var(--hand-radius);
 }
 
 .prose-codex pre code {
@@ -547,15 +631,11 @@ body {
   margin-bottom: 0.3em;
 }
 
-/* Images are mounted like plates: a thin frame on a paper margin */
+/* Pictures in posts are laid straight on the page, like .photo */
 .prose-codex img {
   margin: 1.5em 0;
-  padding: 6px;
-  background: var(--card);
-  border: 1px solid var(--ink-line);
-  border-radius: var(--radius);
-  box-shadow: 0 12px 24px -16px rgba(60, 35, 10, 0.55);
-  filter: sepia(0.12);
+  border-radius: var(--hand-radius);
+  filter: sepia(0.1);
 }
 
 .prose-codex table {

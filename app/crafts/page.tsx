@@ -40,7 +40,7 @@ export default function Page() {
             href="https://github.com/tructn"
             target="_blank"
             rel="noopener noreferrer"
-            className="folio-hover flex flex-col items-center justify-center gap-2 text-center p-6 h-full min-h-[14rem] rounded-[3px] border border-dashed border-[var(--ink-line)]"
+            className="folio-hover flex flex-col items-center justify-center gap-2 text-center p-6 h-full min-h-[14rem] rounded-[var(--hand-radius)] border border-dashed border-[var(--ink-line)]"
             style={{ rotate: "0.3deg" }}
           >
             <svg viewBox="0 0 60 60" width="56" height="56" aria-hidden="true" className="turn">

@@ -87,82 +87,63 @@ export default async function Blog({ params }) {
           }}
         />
 
-        <Link
-          href="/"
-          className="pill toon-hover font-display text-sm mb-6"
-        >
-          ← back to the trail
+        <Link href="/" className="pill text-sm mb-7">
+          ← back to the notebooks
         </Link>
 
         {/* Title card */}
-        <header
-          className="toon p-6 sm:p-8 mb-8"
-          style={{ background: "var(--sun-soft)", rotate: "-0.4deg" }}
-        >
-          <p className="font-hand text-lg text-ink-soft mb-2">
+        <header className="mt-6 mb-8 text-center">
+          <p className="font-display small-caps text-ink-faint mb-3">
             <time dateTime={post.metadata.publishedAt}>
               {formatDate(post.metadata.publishedAt)}
             </time>
             {" · "}Truc Nguyen
-            {post.metadata.language === "vietnamese" && " · 🇻🇳"}
+            {post.metadata.language === "vietnamese" && " · in Vietnamese"}
           </p>
-          <h1 className="title font-display text-3xl sm:text-4xl font-extrabold leading-tight">
+          <h1 className="title font-display italic text-4xl sm:text-5xl font-semibold leading-[1.05]">
             {post.metadata.title}
           </h1>
 
           {post.metadata.tags && (
-            <div className="mt-4 flex flex-wrap gap-2">
+            <div className="mt-5 flex flex-wrap justify-center gap-2">
               {post.metadata.tags.split(",").map((t) => (
-                <span key={t} className="sticker" style={{ background: "#fff" }}>
-                  #{t.trim()}
+                <span key={t} className="rubric">
+                  {t.trim()}
                 </span>
               ))}
             </div>
           )}
+          <p className="ornament mt-7" aria-hidden="true">
+            ❦
+          </p>
         </header>
 
-        {/* TL;DR speech bubble */}
+        {/* The argument: what this leaf is about, set apart before the text */}
         {post.metadata.summary && (
-          <div className="relative mb-10 ml-2 sm:ml-6">
-            <div
-              className="toon px-5 py-4"
-              style={{ background: "var(--mint-soft)" }}
-            >
-              <span className="font-display font-extrabold mr-2">TL;DR</span>
-              <span className="text-ink-soft leading-relaxed">
-                {post.metadata.summary}
-              </span>
-            </div>
-            {/* bubble tail */}
-            <svg
-              aria-hidden="true"
-              width="34"
-              height="22"
-              viewBox="0 0 34 22"
-              className="absolute -bottom-[17px] left-8"
-            >
-              <path
-                d="M2 0 L14 19 L28 0"
-                fill="var(--mint-soft)"
-                stroke="var(--ink)"
-                strokeWidth="3"
-                strokeLinejoin="round"
-              />
-            </svg>
+          <div className="folio mb-10 px-6 py-4 sm:mx-6">
+            <span className="font-display small-caps font-semibold text-sanguine mr-2">
+              In brief.
+            </span>
+            <span className="font-display italic text-lg text-ink-soft leading-snug">
+              {post.metadata.summary}
+            </span>
           </div>
         )}
 
         {/* Body */}
-        <article className="prose prose-toon max-w-none">
+        <article className="prose prose-codex max-w-none">
           <CustomMDX source={post.content} />
         </article>
 
-        <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t-[3px] border-dashed border-[#1f1a2e4d] pt-6">
+        <p className="ornament mt-14 text-lg" aria-hidden="true">
+          ⁂
+        </p>
+        <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
           <p className="font-hand text-xl text-ink-soft">
-            That&apos;s this stop. On to the next one!
+            Here ends this leaf. On to the next.
           </p>
-          <Link href="/" className="pill pill-filled toon-hover font-display">
-            🥾 Back to the trail
+          <Link href="/" className="pill pill-filled">
+            Back to the notebooks
           </Link>
         </div>
       </div>

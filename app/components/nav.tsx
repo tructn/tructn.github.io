@@ -5,18 +5,18 @@ import { usePathname } from "next/navigation";
 import { SearchBox } from "app/components/search-box";
 
 const navItems = [
-  { path: "/", name: "The Trail", emoji: "🥾", color: "var(--sun)" },
-  { path: "/crafts", name: "Crafts", emoji: "🛠️", color: "var(--coral)" },
-  { path: "/about", name: "About Me", emoji: "👋", color: "var(--lilac)" },
+  { path: "/", name: "Notebooks" },
+  { path: "/crafts", name: "Inventions" },
+  { path: "/about", name: "The Author" },
 ];
 
 export function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="mb-10 flex flex-wrap items-center gap-3">
-      <ul className="flex flex-row flex-wrap gap-2.5 flex-1">
-        {navItems.map(({ path, name, emoji, color }) => {
+    <nav className="mb-12 flex flex-wrap items-center gap-x-6 gap-y-3 border-b border-[var(--ink-hair)] pb-3">
+      <ul className="flex flex-row flex-wrap gap-x-6 gap-y-1 flex-1">
+        {navItems.map(({ path, name }) => {
           const isActive =
             path === "/"
               ? pathname === "/" || pathname.startsWith("/blog")
@@ -26,10 +26,8 @@ export function Navbar() {
               <Link
                 href={path}
                 aria-current={isActive ? "page" : undefined}
-                className="pill toon-hover font-display text-[15px]"
-                style={{ "--pill-color": color } as React.CSSProperties}
+                className="tab"
               >
-                <span aria-hidden="true">{emoji}</span>
                 {name}
               </Link>
             </li>

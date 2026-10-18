@@ -1,7 +1,7 @@
 import { BlogPosts } from "app/components/posts";
 
 export const metadata = {
-  title: "The Trail",
+  title: "The Notebooks",
   description: "Every quest so far, finished or not.",
 };
 

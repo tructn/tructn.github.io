@@ -2,18 +2,18 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <section className="toon p-8 text-center" style={{ background: "var(--peach-soft)" }}>
-      <p className="text-6xl mb-3 bob inline-block" aria-hidden="true">
-        🧭
+    <section className="folio px-8 py-10 text-center">
+      <p className="font-display italic text-7xl font-semibold text-sanguine mb-1">
+        CDIV
       </p>
-      <h1 className="font-display text-4xl font-extrabold mb-2">
-        404: Took a wrong turn
+      <h1 className="font-display italic text-4xl font-semibold mb-2">
+        A leaf torn from the codex
       </h1>
-      <p className="font-hand text-xl text-ink-soft mb-6">
-        This road doesn&apos;t go anywhere. No quest here, just a dead end.
+      <p className="font-hand text-xl text-ink-soft mb-7">
+        Whatever was written here is lost, like so many of the master&apos;s pages.
       </p>
-      <Link href="/" className="pill pill-filled toon-hover font-display">
-        🥾 Back to the trail
+      <Link href="/" className="pill pill-filled">
+        Back to the notebooks
       </Link>
     </section>
   );

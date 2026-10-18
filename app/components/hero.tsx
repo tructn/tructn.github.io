@@ -1,144 +1,158 @@
 import Link from "next/link";
+import { toRoman } from "app/components/roman";
 
 const INK = "var(--ink)";
+const FAINT = "var(--ink-faint)";
+const CHALK = "var(--sanguine)";
 
-function Cloud({ x, y, scale = 1 }: { x: number; y: number; scale?: number }) {
+// Every stroke is drawn in with the .sketch animation; pathLength=1 lets one
+// dasharray work for lines of any length
+const pen = (delay: number) => ({
+  className: "sketch",
+  pathLength: 1,
+  style: { "--delay": `${delay}s` } as React.CSSProperties,
+});
+
+const ink = (delay: number) => ({
+  className: "ink-in",
+  style: { "--delay": `${delay}s` } as React.CSSProperties,
+});
+
+/* Outline of a toothed wheel, as a closed path */
+export function gearPath(cx: number, cy: number, r: number, teeth: number, depth = 6) {
+  const step = (Math.PI * 2) / teeth;
+  const at = (a: number, radius: number) =>
+    `${(cx + Math.cos(a) * radius).toFixed(1)} ${(cy + Math.sin(a) * radius).toFixed(1)}`;
+  const points: string[] = [];
+  for (let i = 0; i < teeth; i++) {
+    const a = i * step;
+    points.push(
+      at(a, r - depth),
+      at(a + step * 0.15, r),
+      at(a + step * 0.45, r),
+      at(a + step * 0.6, r - depth),
+    );
+  }
+  return `M${points.join(" L")} Z`;
+}
+
+function Gear({
+  cx,
+  cy,
+  r,
+  teeth,
+  spokes,
+  delay,
+  className,
+}: {
+  cx: number;
+  cy: number;
+  r: number;
+  teeth: number;
+  spokes: number;
+  delay: number;
+  className: string;
+}) {
   return (
-    <g transform={`translate(${x} ${y}) scale(${scale})`}>
-      <g className="drift">
-        <path
-          d="M10 30 Q0 30 2 21 Q4 12 15 14 Q19 2 33 5 Q45 0 50 12 Q62 10 63 21 Q64 30 54 30 Z"
-          fill="#fff"
-          stroke={INK}
-          strokeWidth="3"
-          strokeLinejoin="round"
-        />
-      </g>
+    <g className={className}>
+      <path d={gearPath(cx, cy, r, teeth)} fill="none" stroke={INK} strokeWidth="1.3" strokeLinejoin="round" {...pen(delay)} />
+      <circle cx={cx} cy={cy} r={r - 12} fill="none" stroke={INK} strokeWidth="0.8" {...pen(delay + 0.3)} />
+      <circle cx={cx} cy={cy} r={r * 0.22} fill="url(#hatch)" stroke={INK} strokeWidth="1.1" {...pen(delay + 0.5)} />
+      {Array.from({ length: spokes }).map((_, i) => {
+        const a = (i * Math.PI * 2) / spokes;
+        return (
+          <line
+            key={i}
+            x1={(cx + Math.cos(a) * r * 0.22).toFixed(1)}
+            y1={(cy + Math.sin(a) * r * 0.22).toFixed(1)}
+            x2={(cx + Math.cos(a) * (r - 12)).toFixed(1)}
+            y2={(cy + Math.sin(a) * (r - 12)).toFixed(1)}
+            stroke={INK}
+            strokeWidth="1"
+            {...pen(delay + 0.6 + i * 0.05)}
+          />
+        );
+      })}
     </g>
   );
 }
 
-/** Hand-drawn landscape: the road winds off toward a flag marked "?" */
-function Scene() {
+/** A notebook sheet: golden spiral, a pair of gears and the circle-and-square */
+function Sheet() {
+  // Golden rectangle 233 × 144, split into squares of 144, 89, 55, 34, 21, 13
+  const squares = [
+    "M40 30 H184 V174 H40 Z",
+    "M184 30 H273 V119 H184 Z",
+    "M218 119 H273 V174 H218 Z",
+    "M184 140 H218 V174 H184 Z",
+    "M184 119 H205 V140 H184 Z",
+  ];
+  const spiral =
+    "M40 174 A144 144 0 0 1 184 30 A89 89 0 0 1 273 119 A55 55 0 0 1 218 174 A34 34 0 0 1 184 140 A21 21 0 0 1 205 119 A13 13 0 0 1 218 132";
+
+  // Bottom edge of the square, marked off in ten equal parts
+  const ticks = Array.from({ length: 11 }, (_, i) => 485 + i * 15);
+
   return (
     <svg
-      viewBox="0 0 720 190"
+      viewBox="0 0 720 214"
       className="block w-full h-auto"
       role="img"
-      aria-label="A cartoon traveller walking a winding road toward a far-off flag marked with a question mark"
+      aria-label="Notebook studies in ink and red chalk: a golden spiral, two meshing gears, and a figure's circle and square, with mirror-written notes"
     >
-      {/* Sun */}
-      <g className="bob" style={{ transformOrigin: "640px 46px" }}>
-        {Array.from({ length: 8 }).map((_, i) => {
-          const a = (i * Math.PI) / 4;
-          return (
-            <line
-              key={i}
-              x1={640 + Math.cos(a) * 34}
-              y1={46 + Math.sin(a) * 34}
-              x2={640 + Math.cos(a) * 44}
-              y2={46 + Math.sin(a) * 44}
-              stroke={INK}
-              strokeWidth="3"
-              strokeLinecap="round"
-            />
-          );
-        })}
-        <circle cx="640" cy="46" r="25" fill="var(--sun)" stroke={INK} strokeWidth="3" />
-        <circle cx="632" cy="43" r="2.6" fill={INK} />
-        <circle cx="648" cy="43" r="2.6" fill={INK} />
-        <path d="M631 52 Q640 59 649 52" fill="none" stroke={INK} strokeWidth="2.5" strokeLinecap="round" />
+      <defs>
+        <pattern id="hatch" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(-40)">
+          <line x1="0" y1="0" x2="0" y2="4" stroke={INK} strokeWidth="0.7" opacity="0.7" />
+        </pattern>
+      </defs>
+
+      {/* Construction lines running across the sheet */}
+      <line x1="10" y1="174" x2="710" y2="174" stroke={FAINT} strokeWidth="0.6" strokeDasharray="3 5" opacity="0.7" {...ink(0)} />
+      <line x1="40" y1="174" x2="560" y2="98" stroke={FAINT} strokeWidth="0.6" opacity="0.6" {...pen(1.8)} />
+
+      {/* Fig. I: golden rectangle and spiral */}
+      {squares.map((d, i) => (
+        <path key={d} d={d} fill="none" stroke={FAINT} strokeWidth="0.8" {...pen(0.1 + i * 0.15)} />
+      ))}
+      <path d={spiral} fill="none" stroke={INK} strokeWidth="1.6" strokeLinecap="round" {...pen(0.6)} />
+      <path d="M40 30 L273 174" stroke={FAINT} strokeWidth="0.5" opacity="0.7" {...pen(1.2)} />
+
+      <g {...ink(1.6)} style={{ fontFamily: "var(--font-hand), serif", fontStyle: "italic" }}>
+        <text x="40" y="22" fontSize="13" fill={CHALK}>fig. I</text>
+        <text x="96" y="110" fontSize="12" fill={INK}>a</text>
+        <text x="225" y="78" fontSize="12" fill={INK}>b</text>
+        <text x="113" y="196" fontSize="13" fill={INK} textAnchor="middle">a : b  =  (a+b) : a</text>
       </g>
+      <path d="M40 186 H273 M40 182 V190 M273 182 V190" stroke={INK} strokeWidth="0.8" fill="none" {...pen(1.4)} />
 
-      <Cloud x={70} y={14} scale={0.9} />
-      <Cloud x={430} y={30} scale={0.7} />
-
-      {/* Back hills */}
-      <path
-        d="M-10 120 Q90 62 200 104 Q300 140 380 92 Q470 40 560 92 Q640 136 730 96 L730 200 L-10 200 Z"
-        fill="var(--mint-soft)"
-        stroke={INK}
-        strokeWidth="3"
-        strokeLinejoin="round"
-      />
-
-      {/* Front hills */}
-      <path
-        d="M-10 160 Q120 112 250 146 Q360 172 470 132 Q590 92 730 140 L730 200 L-10 200 Z"
-        fill="var(--mint)"
-        stroke={INK}
-        strokeWidth="3"
-        strokeLinejoin="round"
-      />
-
-      {/* Winding road: ink outline, sandy fill, dashed centre line */}
-      {[
-        { stroke: INK, width: 30, dash: undefined },
-        { stroke: "var(--peach-soft)", width: 24, dash: undefined },
-        { stroke: INK, width: 2.5, dash: "8 9" },
-      ].map((layer, i) => (
-        <path
-          key={i}
-          d="M40 205 Q120 170 230 172 Q360 176 400 140 Q430 112 520 108"
-          fill="none"
-          stroke={layer.stroke}
-          strokeWidth={layer.width}
-          strokeDasharray={layer.dash}
-          strokeLinecap={layer.dash ? "round" : "butt"}
-        />
-      ))}
-
-      {/* Little trees */}
-      {[
-        { x: 120, y: 136, c: "var(--mint)" },
-        { x: 318, y: 120, c: "var(--lilac)" },
-        { x: 600, y: 112, c: "var(--mint)" },
-      ].map((t) => (
-        <g key={t.x} transform={`translate(${t.x} ${t.y})`}>
-          <line x1="0" y1="0" x2="0" y2="16" stroke={INK} strokeWidth="3" strokeLinecap="round" />
-          <circle cx="0" cy="-6" r="12" fill={t.c} stroke={INK} strokeWidth="3" />
-        </g>
-      ))}
-
-      {/* Destination flag, deliberately a mystery */}
-      <g transform="translate(526 70)">
-        <line x1="0" y1="0" x2="0" y2="40" stroke={INK} strokeWidth="3" strokeLinecap="round" />
-        <path d="M0 2 L28 9 L0 18 Z" fill="var(--coral)" stroke={INK} strokeWidth="2.5" strokeLinejoin="round" />
-        <text x="9" y="14.5" fontSize="10" fontWeight="800" fill="#fff" fontFamily="sans-serif">
-          ?
+      {/* Fig. II: gears; tooth counts set the speed ratio of their turning */}
+      <g>
+        <ellipse cx="392" cy="182" rx="78" ry="6" fill="url(#hatch)" opacity="0.35" {...ink(2)} />
+        <Gear cx={370} cy={98} r={42} teeth={14} spokes={6} delay={0.8} className="turn" />
+        <Gear cx={414} cy={140} r={24} teeth={8} spokes={4} delay={1.2} className="turn-back" />
+        <text x="318" y="22" fontSize="13" fill={CHALK} {...ink(1.8)} style={{ fontFamily: "var(--font-hand), serif", fontStyle: "italic" }}>
+          fig. II
         </text>
       </g>
 
-      {/* The traveller */}
-      <g transform="translate(226 140)">
-        <g className="bob">
-          {/* backpack */}
-          <rect x="-20" y="-6" width="12" height="18" rx="4" fill="var(--sky)" stroke={INK} strokeWidth="2.5" />
-          {/* body */}
-          <ellipse cx="0" cy="4" rx="15" ry="17" fill="var(--sun)" stroke={INK} strokeWidth="3" />
-          {/* eyes + smile */}
-          <circle cx="4" cy="0" r="2.4" fill={INK} />
-          <circle cx="11" cy="0" r="2.4" fill={INK} />
-          <path d="M4 8 Q8 12 12 8" fill="none" stroke={INK} strokeWidth="2" strokeLinecap="round" />
-          {/* hat */}
-          <path d="M-12 -9 Q0 -24 13 -9 Z" fill="var(--coral)" stroke={INK} strokeWidth="2.5" strokeLinejoin="round" />
-          {/* legs */}
-          <path d="M-5 20 L-8 28 M5 20 L9 27" stroke={INK} strokeWidth="3" strokeLinecap="round" />
-        </g>
+      {/* Fig. III: the circle and the square of a well-proportioned man */}
+      <rect x="485" y="30" width="150" height="150" fill="none" stroke={INK} strokeWidth="1.3" {...pen(1)} />
+      <circle cx="560" cy="98" r="82" fill="none" stroke={INK} strokeWidth="1.3" {...pen(1.3)} />
+      <path d="M485 30 L635 180 M635 30 L485 180 M560 16 V180 M478 105 H642" stroke={FAINT} strokeWidth="0.6" fill="none" {...pen(1.7)} />
+      <path d="M560 30 L495 160 H625 Z" fill="none" stroke={CHALK} strokeWidth="1" strokeLinejoin="round" opacity="0.8" {...pen(2.1)} />
+      <circle cx="560" cy="98" r="2.4" fill={CHALK} {...ink(2.4)} />
+      {ticks.map((x, i) => (
+        <line key={x} x1={x} y1="180" x2={x} y2={i % 5 === 0 ? 189 : 185} stroke={INK} strokeWidth="0.8" {...pen(2 + i * 0.04)} />
+      ))}
+      <g {...ink(2.2)} style={{ fontFamily: "var(--font-hand), serif", fontStyle: "italic" }}>
+        <text x="650" y="22" fontSize="13" fill={CHALK} textAnchor="end">fig. III</text>
+        <text x="560" y="203" fontSize="12" fill={INK} textAnchor="middle">ad circulum et quadratum</text>
       </g>
 
-      {/* Signpost */}
-      <g transform="translate(60 120)">
-        <line x1="0" y1="-6" x2="0" y2="40" stroke={INK} strokeWidth="3" strokeLinecap="round" />
-        <path
-          d="M-4 -14 L52 -14 L62 -4 L52 6 L-4 6 Z"
-          fill="#fff"
-          stroke={INK}
-          strokeWidth="2.5"
-          strokeLinejoin="round"
-        />
-        <text x="2" y="0" fontSize="11" fill={INK} style={{ fontFamily: "var(--font-hand), cursive" }}>
-          this way-ish
+      {/* Mirror writing, as Leonardo kept his notes */}
+      <g transform="scale(-1 1)" {...ink(2.6)}>
+        <text x="-468" y="206" fontSize="11" fill={CHALK} opacity="0.85" style={{ fontFamily: "var(--font-hand), serif", fontStyle: "italic" }}>
+          studia la scienza dell&apos;arte
         </text>
       </g>
     </svg>
@@ -146,19 +160,28 @@ function Scene() {
 }
 
 export function Hero() {
+  const year = toRoman(new Date().getFullYear());
   return (
-    <header className="toon overflow-hidden mb-6" style={{ background: "var(--sky-soft)" }}>
-      <div className="px-5 pt-5 sm:px-7 sm:pt-6">
-        <p className="font-hand text-base sm:text-lg text-ink-soft -rotate-1 mb-1">
-          code, life &amp; whatever I wandered into today
+    <header className="folio overflow-hidden mb-8 px-5 pt-6 pb-3 sm:px-8 sm:pt-7">
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <p className="font-hand text-base sm:text-lg text-ink-soft mb-1">
+            notes on code, life &amp; whatever I wandered into today
+          </p>
+          <h1 className="font-display italic text-5xl sm:text-6xl font-semibold tracking-tight leading-[0.95]">
+            <Link href="/" className="outline-none focus-visible:text-[var(--sanguine)]">
+              Side Quests
+            </Link>
+          </h1>
+        </div>
+        <p className="font-display small-caps text-sanguine text-sm sm:text-base text-right leading-tight shrink-0 pt-1">
+          Codex
+          <span className="block text-ink-faint">{year}</span>
         </p>
-        <h1 className="font-display text-4xl sm:text-5xl font-extrabold tracking-tight leading-none">
-          <Link href="/" className="wiggle inline-block outline-none focus-visible:underline">
-            Side Quests
-          </Link>
-        </h1>
       </div>
-      <Scene />
+      <div className="mt-3 -mx-2 sm:mx-0">
+        <Sheet />
+      </div>
     </header>
   );
 }

@@ -103,7 +103,7 @@ export function SearchBox() {
       <button
         onClick={openSearch}
         aria-label="Search posts (⌘K)"
-        className="pill toon-hover font-display text-[15px]"
+        className="pill text-[15px]"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -112,7 +112,7 @@ export function SearchBox() {
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          strokeWidth="3"
+          strokeWidth="2.2"
           strokeLinecap="round"
           strokeLinejoin="round"
           aria-hidden="true"
@@ -121,20 +121,20 @@ export function SearchBox() {
           <path d="m21 21-4.3-4.3" />
         </svg>
         Search
-        <kbd className="hidden sm:inline font-mono text-[10px] font-bold bg-[#fff1b8] border-2 border-[#1f1a2e] px-1 rounded-md leading-tight">
+        <kbd className="hidden sm:inline font-sans text-[10px] not-italic border border-[var(--ink-line)] px-1 rounded-sm leading-tight text-ink-faint">
           ⌘K
         </kbd>
       </button>
 
       {/* Modal overlay */}
       {open && (
-        <div className="fixed inset-0 z-50 flex items-start justify-center pt-[15vh] px-4 bg-[#1f1a2e4d] backdrop-blur-[2px]">
+        <div className="fixed inset-0 z-50 flex items-start justify-center pt-[15vh] px-4 bg-[rgba(46,32,20,0.3)] backdrop-blur-[2px]">
           <div
             ref={containerRef}
-            className="toon w-full max-w-xl overflow-hidden"
+            className="folio w-full max-w-xl overflow-hidden"
           >
             {/* Input */}
-            <div className="flex items-center gap-3 px-4 py-3 border-b-[3px] border-[#1f1a2e] bg-[#fff1b8]">
+            <div className="flex items-center gap-3 px-4 py-3 border-b border-[var(--ink-line)]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="14"
@@ -155,18 +155,18 @@ export function SearchBox() {
                 ref={inputRef}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Where to next?"
-                className="flex-1 font-display text-lg font-semibold bg-transparent outline-none placeholder:text-[#8a82a0]"
+                placeholder="Seek among the notebooks…"
+                className="flex-1 font-display italic text-xl bg-transparent outline-none placeholder:text-[var(--ink-faint)]"
                 aria-label="Search posts"
               />
               {loading && (
                 <span className="font-hand text-sm text-ink-soft">
-                  packing bags…
+                  sharpening the quill…
                 </span>
               )}
               <button
                 onClick={() => setOpen(false)}
-                className="font-mono text-[10px] font-bold bg-white border-2 border-[#1f1a2e] rounded-md px-1.5 py-0.5 hover:bg-[#ffe0e0]"
+                className="font-sans text-[10px] border border-[var(--ink-line)] rounded-sm px-1.5 py-0.5 text-ink-faint hover:text-[var(--sanguine)]"
               >
                 ESC
               </button>
@@ -174,15 +174,15 @@ export function SearchBox() {
 
             {/* Results */}
             {results.length > 0 && (
-              <ul className="max-h-80 overflow-y-auto divide-y-2 divide-dashed divide-[#1f1a2e26]">
+              <ul className="max-h-80 overflow-y-auto divide-y divide-[var(--ink-hair)]">
                 {results.map(({ item }) => (
                   <li key={item.slug}>
                     <Link
                       href={`/blog/${item.slug}`}
                       onClick={() => setOpen(false)}
-                      className="flex flex-col gap-1 px-4 py-3 hover:bg-[#d3f8ee] focus-visible:bg-[#d3f8ee] outline-none transition-colors"
+                      className="flex flex-col gap-1 px-4 py-3 hover:bg-[var(--paper-deep)] focus-visible:bg-[var(--paper-deep)] outline-none transition-colors"
                     >
-                      <span className="font-display text-base font-bold leading-snug">
+                      <span className="font-display text-lg font-semibold leading-snug">
                         {item.title}
                       </span>
                       {item.summary && (
@@ -194,8 +194,8 @@ export function SearchBox() {
                         <span className="font-hand text-sm text-ink-faint">
                           {item.tags
                             .split(",")
-                            .map((t) => `#${t.trim()}`)
-                            .join("  ")}
+                            .map((t) => t.trim())
+                            .join(" · ")}
                         </span>
                       )}
                     </Link>
@@ -207,14 +207,14 @@ export function SearchBox() {
             {/* Empty state */}
             {query.trim().length >= 2 && results.length === 0 && !loading && (
               <p className="px-4 py-6 font-hand text-lg text-ink-soft text-center">
-                🗺️ No roads lead to &ldquo;{query}&rdquo; (yet)
+                Nothing yet written on &ldquo;{query}&rdquo;
               </p>
             )}
 
             {/* Idle state */}
             {query.trim().length === 0 && (
               <p className="px-4 py-5 font-hand text-lg text-ink-soft text-center">
-                Type to search every stop: titles, tags and words
+                Search every leaf: titles, tags and words
               </p>
             )}
           </div>

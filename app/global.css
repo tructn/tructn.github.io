@@ -1,69 +1,85 @@
 @import "tailwindcss";
 
-/* ─── Design tokens: "Side Quests" cartoon palette ─────────── */
+/* ─── Design tokens: "Side Quests" as a Leonardo notebook ──────────
+   Parchment, iron-gall ink and red chalk. The palette names (coral, sky…)
+   are kept because craft JSON files refer to them, but each now holds a
+   Renaissance pigment: sanguine, lapis, verdigris, ochre, umber, sienna. */
 
 :root {
-  --paper: #fff7e8;
-  --paper-dot: #f1e3c8;
-  --ink: #1f1a2e;
-  --ink-soft: #4a4360;
-  --ink-faint: #8a82a0;
-  --card: #ffffff;
+  --paper: #ecdcba;
+  --paper-deep: #e0caa0;
+  --card: #f4e8cd;
+  --ink: #2e2014;
+  --ink-soft: #57432d;
+  --ink-faint: #8a7354;
+  --ink-line: rgba(46, 32, 20, 0.55);
+  --ink-hair: rgba(46, 32, 20, 0.22);
+  --sanguine: #a3402a;
 
-  --sun: #ffd23f;
-  --coral: #ff6b6b;
-  --mint: #3ddbb4;
-  --sky: #74b9ff;
-  --lilac: #b197fc;
-  --peach: #ffa94d;
+  --sun: #b8862e; /* yellow ochre */
+  --coral: #a3402a; /* sanguine (red chalk) */
+  --mint: #5f7a52; /* verdigris */
+  --sky: #4c6683; /* faded lapis */
+  --lilac: #6e5068; /* caput mortuum */
+  --peach: #a9662d; /* burnt sienna */
 
-  --sun-soft: #fff1b8;
-  --coral-soft: #ffe0e0;
-  --mint-soft: #d3f8ee;
-  --sky-soft: #dcecff;
-  --lilac-soft: #ece4ff;
-  --peach-soft: #ffe8d1;
+  --sun-soft: #efdcab;
+  --coral-soft: #ecd0b6;
+  --mint-soft: #dfe0bf;
+  --sky-soft: #dcdccb;
+  --lilac-soft: #e5d3c4;
+  --peach-soft: #eed5b0;
 
-  --line: 3px;
-  --radius: 18px;
-  --pop: 5px;
+  --radius: 3px;
 
-  --sh-class: #2b6cb0;
-  --sh-identifier: #2d2640;
-  --sh-sign: #8a82a0;
-  --sh-string: #0f8a6c;
-  --sh-keyword: #d6336c;
-  --sh-comment: #9a91a8;
-  --sh-jsxliterals: #6741d9;
-  --sh-property: #e8590c;
-  --sh-entity: #e8590c;
+  --sh-class: #3d5878;
+  --sh-identifier: #2e2014;
+  --sh-sign: #8a7354;
+  --sh-string: #4e6b45;
+  --sh-keyword: #a3402a;
+  --sh-comment: #9a8565;
+  --sh-jsxliterals: #6e5068;
+  --sh-property: #96561f;
+  --sh-entity: #96561f;
 }
 
 ::selection {
-  background-color: var(--sun);
+  background-color: var(--coral-soft);
   color: var(--ink);
 }
 
+/* Vellum: fine fibre noise over a warm sheet that darkens toward the edges.
+   Painted on html, since body is only as wide as the text column */
 html {
   min-width: 360px;
-  background: var(--paper);
+  min-height: 100%;
+  background-color: var(--paper);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.24 0 0 0 0 0.1 0 0 0 0.1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at 50% 30%, rgba(255, 248, 228, 0.55), transparent 65%),
+    radial-gradient(ellipse at 50% 50%, transparent 55%, rgba(120, 78, 30, 0.22) 100%);
   color: var(--ink);
 }
 
 body {
-  background-color: var(--paper);
-  background-image: radial-gradient(var(--paper-dot) 1.6px, transparent 1.6px);
-  background-size: 22px 22px;
   color: var(--ink);
-  font-family: var(--font-body), system-ui, sans-serif;
+  font-family: var(--font-body), Georgia, serif;
+  font-size: 1.06rem;
 }
 
 .font-display {
-  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-family: var(--font-display), var(--font-body), Georgia, serif;
 }
 
+/* Marginal notes: always italic, like annotations beside a drawing */
 .font-hand {
-  font-family: var(--font-hand), var(--font-body), cursive;
+  font-family: var(--font-hand), var(--font-body), Georgia, serif;
+  font-style: italic;
+}
+
+.small-caps {
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
 }
 
 .text-ink-soft {
@@ -74,138 +90,255 @@ body {
   color: var(--ink-faint);
 }
 
-/* ─── Cartoon primitives ────────────────────────────────────────── */
+.text-sanguine {
+  color: var(--sanguine);
+}
 
-/* Chunky outlined card with a hard offset "sticker" shadow */
-.toon {
-  background: var(--card);
-  border: var(--line) solid var(--ink);
+/* ─── Notebook primitives ───────────────────────────────────────── */
+
+/* A leaf of paper: hairline frame with an inner ruled border and a soft,
+   uneven shadow, as if lying on a desk */
+.folio {
+  position: relative;
+  background-color: var(--card);
+  background-image: radial-gradient(
+    ellipse at 50% 40%,
+    transparent 60%,
+    rgba(140, 95, 40, 0.13) 100%
+  );
+  border: 1px solid var(--ink-line);
   border-radius: var(--radius);
-  box-shadow: var(--pop) var(--pop) 0 var(--ink);
+  outline: 1px solid var(--ink-hair);
+  outline-offset: -6px;
+  box-shadow:
+    0 1px 0 rgba(255, 250, 235, 0.6) inset,
+    0 2px 3px rgba(60, 35, 10, 0.12),
+    0 14px 28px -18px rgba(60, 35, 10, 0.55);
 }
 
-.toon-hover {
+.folio-hover {
   transition:
-    transform 160ms cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow 160ms ease;
+    transform 260ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 260ms ease;
 }
 
-.toon-hover:hover,
-.toon-hover:focus-visible {
-  transform: translate(-3px, -3px) rotate(-0.4deg);
-  box-shadow: calc(var(--pop) + 3px) calc(var(--pop) + 3px) 0 var(--ink);
-  outline: none;
+.folio-hover:hover,
+.folio-hover:focus-visible {
+  transform: translateY(-3px);
+  box-shadow:
+    0 1px 0 rgba(255, 250, 235, 0.6) inset,
+    0 4px 6px rgba(60, 35, 10, 0.14),
+    0 22px 34px -18px rgba(60, 35, 10, 0.6);
 }
 
-.toon-hover:active {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 var(--ink);
+.folio-hover:focus-visible {
+  outline: 2px solid var(--sanguine);
+  outline-offset: 3px;
 }
 
-/* Small rounded label, like a sticker slapped on a suitcase */
-.sticker {
+.folio-hover:active {
+  transform: translateY(0);
+}
+
+/* A short inscription in red chalk: tags, platforms, counts */
+.rubric {
   display: inline-flex;
   align-items: center;
-  gap: 0.3em;
-  border: 2px solid var(--ink);
-  border-radius: 999px;
-  padding: 0.1em 0.7em;
-  font-size: 0.78rem;
-  font-weight: 700;
-  line-height: 1.6;
-  color: var(--ink);
-  background: var(--sun-soft);
-  box-shadow: 2px 2px 0 var(--ink);
+  gap: 0.35em;
+  padding: 0 0.55em;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 0.86rem;
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+  line-height: 1.7;
+  color: var(--sanguine);
+  border: 1px solid rgba(163, 64, 42, 0.45);
+  border-radius: 2px;
+  background: rgba(244, 232, 205, 0.7);
   white-space: nowrap;
 }
 
-/* Chunky nav / action button; set --pill-color for its fill */
+/* Engraved-plate button; .pill-filled is a red chalk wash */
 .pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.25rem 0.9rem;
-  font-weight: 700;
+  gap: 0.45rem;
+  padding: 0.2rem 0.95rem;
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
   color: var(--ink);
   background: var(--card);
-  border: var(--line) solid var(--ink);
-  border-radius: 999px;
-  box-shadow: 3px 3px 0 var(--ink);
+  border: 1px solid var(--ink-line);
+  border-radius: 2px;
+  box-shadow:
+    0 0 0 3px var(--card),
+    0 0 0 4px var(--ink-hair),
+    0 6px 12px -8px rgba(60, 35, 10, 0.5);
+  transition:
+    background 200ms ease,
+    color 200ms ease,
+    transform 200ms ease;
 }
 
-.pill[aria-current="page"],
+.pill:hover,
+.pill:focus-visible {
+  background: var(--paper-deep);
+  outline: none;
+}
+
 .pill-filled {
-  background: var(--pill-color, var(--sun));
+  color: #f6ead0;
+  background: var(--sanguine);
+  border-color: #6e2414;
+  box-shadow:
+    0 0 0 3px var(--card),
+    0 0 0 4px rgba(163, 64, 42, 0.45),
+    0 6px 12px -8px rgba(60, 35, 10, 0.5);
 }
 
-/* Highlighter that swipes across a title when its card is hovered */
+.pill-filled:hover,
+.pill-filled:focus-visible {
+  background: #8a3320;
+}
+
+/* Nav entries: small caps with a red-chalk stroke under the current page */
+.tab {
+  position: relative;
+  display: inline-block;
+  padding: 0.15rem 0.1rem;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.07em;
+  color: var(--ink-soft);
+  transition: color 200ms ease;
+}
+
+.tab::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 6px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 6' preserveAspectRatio='none'%3E%3Cpath d='M1 4 Q30 1.5 55 3.5 T99 2.5' fill='none' stroke='%23a3402a' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E")
+    no-repeat center / 100% 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 300ms ease;
+}
+
+.tab:hover,
+.tab:focus-visible,
+.tab[aria-current="page"] {
+  color: var(--ink);
+  outline: none;
+}
+
+.tab:hover::after,
+.tab:focus-visible::after,
+.tab[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+/* A chalk line drawn under a title when its card is hovered */
 .swipe {
   background-image: linear-gradient(var(--swipe), var(--swipe));
   background-repeat: no-repeat;
-  background-position: 0 88%;
-  background-size: 0% 40%;
-  transition: background-size 300ms ease;
+  background-position: 0 100%;
+  background-size: 0% 1.5px;
+  transition: background-size 400ms ease;
 }
 
 .group:hover .swipe,
 .group:focus-visible .swipe {
-  background-size: 100% 40%;
+  background-size: 100% 1.5px;
 }
 
-/* Wiggle on hover: used on the mascot and small decorations */
-@keyframes wiggle {
-  0%,
-  100% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(-6deg);
-  }
-  75% {
-    transform: rotate(6deg);
-  }
+/* Ornamental rule: hairlines either side of a small fleuron */
+.ornament {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  color: var(--sanguine);
+  font-family: var(--font-display), Georgia, serif;
 }
 
-@keyframes bob {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-4px);
-  }
+.ornament::before,
+.ornament::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ink-line), transparent);
 }
 
-@keyframes drift {
+/* ─── Drawing animation ─────────────────────────────────────────── */
+
+/* Strokes are drawn in, as if by a pen; each element sets pathLength="1" */
+@keyframes draw {
   from {
-    transform: translateX(0);
+    stroke-dashoffset: 1;
   }
   to {
-    transform: translateX(26px);
+    stroke-dashoffset: 0;
   }
 }
 
-.wiggle:hover {
-  animation: wiggle 400ms ease-in-out;
+.sketch {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 2.4s cubic-bezier(0.45, 0.1, 0.3, 1) forwards;
+  animation-delay: var(--delay, 0s);
 }
 
-.bob {
-  animation: bob 2.4s ease-in-out infinite;
+@keyframes turn {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-.drift {
-  animation: drift 6s ease-in-out infinite alternate;
+.turn {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: turn 42s linear infinite;
+}
+
+/* 14 teeth driving 8: the small wheel turns 14/8 as fast */
+.turn-back {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: turn 24s linear infinite reverse;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.ink-in {
+  animation: fade-in 1.6s ease both;
+  animation-delay: var(--delay, 0s);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .bob,
-  .drift,
-  .wiggle:hover {
+  .sketch {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .turn,
+  .turn-back,
+  .ink-in {
     animation: none;
   }
-  .toon-hover,
-  .toon-hover:hover {
+  .folio-hover,
+  .folio-hover:hover {
     transition: none;
+    transform: none;
   }
 }
 
@@ -226,229 +359,242 @@ body {
 }
 
 .prose .anchor:after {
-  color: var(--ink-faint);
-  content: "#";
+  color: var(--sanguine);
+  content: "§";
 }
 
 .prose *:hover > .anchor {
   @apply visible;
 }
 
-.prose-toon {
-  font-size: 1.05rem;
-  line-height: 1.8;
+.prose-codex {
+  font-size: 1.14rem;
+  line-height: 1.75;
   color: var(--ink);
+  hyphens: auto;
 }
 
-.prose-toon > :first-child {
+.prose-codex > :first-child {
   margin-top: 0 !important;
 }
 
-.prose-toon p {
-  margin: 0 0 1.1em;
+.prose-codex p {
+  margin: 0 0 1.05em;
 }
 
-.prose-toon h1,
-.prose-toon h2,
-.prose-toon h3,
-.prose-toon h4 {
-  font-family: var(--font-display), var(--font-body), sans-serif;
-  font-weight: 700;
-  line-height: 1.25;
+/* Illuminated initial on the opening paragraph */
+.prose-codex > p:first-of-type::first-letter {
+  float: left;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 3.9em;
+  font-weight: 600;
+  line-height: 0.8;
+  padding: 0.08em 0.1em 0 0;
+  color: var(--sanguine);
+}
+
+.prose-codex h1,
+.prose-codex h2,
+.prose-codex h3,
+.prose-codex h4 {
+  font-family: var(--font-display), var(--font-body), Georgia, serif;
+  font-weight: 600;
+  line-height: 1.2;
   color: var(--ink);
   position: relative;
 }
 
-.prose-toon h1 {
-  font-size: 2rem;
+.prose-codex h1 {
+  font-size: 2.2rem;
   margin: 1.6em 0 0.5em;
 }
 
-/* Section headings sit on a highlighter swipe */
-.prose-toon h2 {
-  display: inline-block;
-  font-size: 1.55rem;
-  margin: 1.8em 0 0.6em;
-  padding: 0 0.3em;
-  background: linear-gradient(
-    100deg,
-    transparent 2%,
-    var(--sun) 3%,
-    var(--sun) 96%,
-    transparent 97%
-  );
-  background-size: 100% 45%;
-  background-position: 0 85%;
-  background-repeat: no-repeat;
+/* Section headings: italic, with a hairline running off to the margin */
+.prose-codex h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  font-size: 1.85rem;
+  font-style: italic;
+  margin: 1.8em 0 0.55em;
 }
 
-.prose-toon h3 {
-  font-size: 1.25rem;
+.prose-codex h2::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--ink-line), transparent);
+}
+
+.prose-codex h3 {
+  font-size: 1.4rem;
+  font-variant: small-caps;
+  letter-spacing: 0.04em;
   margin: 1.5em 0 0.4em;
 }
 
-.prose-toon h4 {
-  font-size: 1.1rem;
+.prose-codex h4 {
+  font-size: 1.2rem;
+  font-style: italic;
   margin: 1.4em 0 0.4em;
 }
 
-.prose-toon a {
+.prose-codex a {
   color: var(--ink);
-  font-weight: 700;
   text-decoration: underline;
-  text-decoration-color: var(--coral);
-  text-decoration-thickness: 3px;
+  text-decoration-color: rgba(163, 64, 42, 0.6);
+  text-decoration-thickness: 1px;
   text-underline-offset: 3px;
-  transition: background 120ms ease;
+  transition: color 150ms ease;
 }
 
-.prose-toon a:hover {
-  background: var(--coral-soft);
+.prose-codex a:hover {
+  color: var(--sanguine);
+  text-decoration-color: var(--sanguine);
 }
 
-.prose-toon h1 a,
-.prose-toon h2 a,
-.prose-toon h3 a,
-.prose-toon h4 a {
+.prose-codex h1 a,
+.prose-codex h2 a,
+.prose-codex h3 a,
+.prose-codex h4 a {
   text-decoration: none;
-  background: none;
 }
 
-.prose-toon strong {
-  font-weight: 800;
+.prose-codex strong {
+  font-weight: 700;
 }
 
-.prose-toon blockquote {
-  position: relative;
-  margin: 1.5em 0;
-  padding: 0.9em 1.2em;
-  background: var(--lilac-soft);
-  border: var(--line) solid var(--ink);
-  border-radius: var(--radius);
-  box-shadow: 4px 4px 0 var(--ink);
-  font-family: var(--font-hand), var(--font-body), cursive;
-  font-size: 1.15rem;
+/* Quotations sit in the margin column, set off by a red chalk rule */
+.prose-codex blockquote {
+  margin: 1.6em 0;
+  padding: 0.2em 0 0.2em 1.3em;
+  border-left: 2px solid var(--sanguine);
+  font-family: var(--font-display), Georgia, serif;
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--ink-soft);
 }
 
-.prose-toon blockquote p:last-child {
+.prose-codex blockquote p:last-child {
   margin-bottom: 0;
 }
 
-.prose-toon pre {
-  background: #fffdf7;
-  border: var(--line) solid var(--ink);
-  border-radius: 14px;
-  box-shadow: 4px 4px 0 var(--ink);
-  font-size: 0.85rem;
+.prose-codex pre {
+  background: rgba(244, 232, 205, 0.75);
+  border: 1px solid var(--ink-line);
+  border-radius: var(--radius);
+  outline: 1px solid var(--ink-hair);
+  outline-offset: -5px;
+  box-shadow: inset 0 0 30px rgba(140, 95, 40, 0.12);
+  font-size: 0.82rem;
   line-height: 1.65;
-  padding: 0.9rem 1.1rem;
+  padding: 1rem 1.2rem;
   overflow-x: auto;
   margin: 1.5em 0;
 }
 
-.prose-toon code {
-  font-size: 0.86em;
-  background: var(--sky-soft);
-  border: 1.5px solid var(--ink);
-  padding: 0.05em 0.35em;
-  border-radius: 6px;
+.prose-codex code {
+  font-size: 0.82em;
+  background: rgba(224, 202, 160, 0.55);
+  padding: 0.05em 0.3em;
+  border-radius: 2px;
 }
 
-.prose-toon pre code {
+.prose-codex pre code {
   background: none;
-  border: none;
   padding: 0;
   font-size: 1em;
 }
 
-.prose-toon code span {
+.prose-codex code span {
   font-weight: 500;
 }
 
-.prose-toon ul,
-.prose-toon ol {
+.prose-codex ul,
+.prose-codex ol {
   padding-left: 1.6rem;
-  margin-bottom: 1.1em;
+  margin-bottom: 1.05em;
 }
 
-.prose-toon ul {
+.prose-codex ul {
   list-style: none;
 }
 
-.prose-toon ul > li {
+.prose-codex ul > li {
   position: relative;
 }
 
-.prose-toon ul > li::before {
-  content: "";
+.prose-codex ul > li::before {
+  content: "❧";
   position: absolute;
-  left: -1.15rem;
-  top: 0.62em;
-  width: 0.55rem;
-  height: 0.55rem;
-  border: 2px solid var(--ink);
-  border-radius: 999px;
-  background: var(--mint);
+  left: -1.35rem;
+  top: 0.05em;
+  font-size: 0.95em;
+  color: var(--sanguine);
 }
 
-.prose-toon ol {
-  list-style: decimal;
+.prose-codex ol {
+  list-style: upper-roman;
 }
 
-.prose-toon ol > li::marker {
-  font-family: var(--font-display), sans-serif;
-  font-weight: 700;
-  color: var(--coral);
+.prose-codex ol > li::marker {
+  font-family: var(--font-display), serif;
+  font-weight: 600;
+  color: var(--sanguine);
 }
 
-.prose-toon li {
-  margin-bottom: 0.35em;
+.prose-codex li {
+  margin-bottom: 0.3em;
 }
 
-.prose-toon img {
+/* Images are mounted like plates: a thin frame on a paper margin */
+.prose-codex img {
   margin: 1.5em 0;
-  border: var(--line) solid var(--ink);
-  border-radius: var(--radius);
-  box-shadow: var(--pop) var(--pop) 0 var(--ink);
+  padding: 6px;
   background: var(--card);
+  border: 1px solid var(--ink-line);
+  border-radius: var(--radius);
+  box-shadow: 0 12px 24px -16px rgba(60, 35, 10, 0.55);
+  filter: sepia(0.12);
 }
 
-.prose-toon table {
+.prose-codex table {
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  font-size: 0.9rem;
-  border: var(--line) solid var(--ink);
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 4px 4px 0 var(--ink);
-}
-
-.prose-toon th,
-.prose-toon td {
-  padding: 0.5em 0.85em;
-  text-align: left;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  border-top: 1.5px solid var(--ink);
   border-bottom: 1.5px solid var(--ink);
 }
 
-.prose-toon tr:last-child td {
-  border-bottom: none;
+.prose-codex th,
+.prose-codex td {
+  padding: 0.45em 0.85em;
+  text-align: left;
+  border-bottom: 1px solid var(--ink-hair);
 }
 
-.prose-toon th {
-  background: var(--sun-soft);
-  font-family: var(--font-display), sans-serif;
-  font-weight: 700;
+.prose-codex th {
+  font-family: var(--font-display), serif;
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--ink-line);
 }
 
-/* A hand-drawn wavy divider in place of a flat rule */
-.prose-toon hr {
+/* Section break: a centred fleuron between hairlines */
+.prose-codex hr {
   border: none;
-  height: 14px;
-  margin: 2.2em 0;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='14' viewBox='0 0 40 14'%3E%3Cpath d='M0 7 Q10 0 20 7 T40 7' fill='none' stroke='%231f1a2e' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E")
-    repeat-x center;
-  opacity: 0.35;
+  margin: 2.4em auto;
+  text-align: center;
+  overflow: visible;
+  height: 1em;
+}
+
+.prose-codex hr::before {
+  content: "⁂";
+  color: var(--sanguine);
+  font-size: 1.2rem;
+  letter-spacing: 0.4em;
 }
 
 pre::-webkit-scrollbar {

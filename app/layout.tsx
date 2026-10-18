@@ -1,6 +1,6 @@
 import "./global.css";
 
-import { Baloo_2, Nunito, Patrick_Hand } from "next/font/google";
+import { Cormorant_Garamond, EB_Garamond, IM_Fell_English } from "next/font/google";
 
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -12,23 +12,27 @@ import { baseUrl } from "./sitemap";
 
 import type { Metadata } from "next";
 
-// All three ship a Vietnamese subset; `subsets` only picks what to preload, and
-// unicode-range still pulls Vietnamese glyphs in on pages that need them
-const display = Baloo_2({
+// Cormorant and EB Garamond ship a Vietnamese subset; `subsets` only picks what
+// to preload, and unicode-range still pulls Vietnamese glyphs in on pages that
+// need them. IM Fell is Latin-only, so it is kept to short marginal notes.
+const display = Cormorant_Garamond({
   subsets: ["latin"],
   variable: "--font-display",
-  weight: ["600", "700", "800"],
+  weight: ["500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
-const body = Nunito({
+const body = EB_Garamond({
   subsets: ["latin"],
   variable: "--font-body",
+  style: ["normal", "italic"],
 });
 
-const hand = Patrick_Hand({
+const hand = IM_Fell_English({
   subsets: ["latin"],
   variable: "--font-hand",
   weight: "400",
+  style: "italic",
 });
 
 const SITE_NAME = "Side Quests";

@@ -98,28 +98,12 @@ let components = {
   a: CustomLink,
   code: Code,
   Table,
+  // Rules come from .prose-paper's booktabs styles
   table: (props) => (
     <div className="overflow-x-auto my-6">
-      <table className="w-full text-sm border-collapse" {...props} />
+      <table {...props} />
     </div>
   ),
-  thead: (props) => (
-    <thead
-      className="border-b border-neutral-300 dark:border-neutral-700"
-      {...props}
-    />
-  ),
-  tbody: (props) => <tbody {...props} />,
-  tr: (props) => (
-    <tr
-      className="border-b border-neutral-200 dark:border-neutral-800"
-      {...props}
-    />
-  ),
-  th: (props) => (
-    <th className="py-2 px-4 text-left font-semibold" {...props} />
-  ),
-  td: (props) => <td className="py-2 px-4" {...props} />,
 };
 
 export function CustomMDX(props) {

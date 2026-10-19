@@ -1,6 +1,6 @@
 import "./global.css";
 
-import { Cormorant_Garamond, EB_Garamond, IM_Fell_English } from "next/font/google";
+import { STIX_Two_Text, Source_Code_Pro } from "next/font/google";
 
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -12,30 +12,21 @@ import { baseUrl } from "./sitemap";
 
 import type { Metadata } from "next";
 
-// Cormorant and EB Garamond ship a Vietnamese subset; `subsets` only picks what
-// to preload, and unicode-range still pulls Vietnamese glyphs in on pages that
-// need them. IM Fell is Latin-only, so it is kept to short marginal notes.
-const display = Cormorant_Garamond({
+// STIX Two is the face many journals set their papers in. It ships a
+// Vietnamese subset; `subsets` only picks what to preload, and unicode-range
+// still pulls Vietnamese glyphs in on pages that need them.
+const serif = STIX_Two_Text({
   subsets: ["latin"],
-  variable: "--font-display",
-  weight: ["500", "600", "700"],
+  variable: "--font-serif",
   style: ["normal", "italic"],
 });
 
-const body = EB_Garamond({
+const mono = Source_Code_Pro({
   subsets: ["latin"],
-  variable: "--font-body",
-  style: ["normal", "italic"],
+  variable: "--font-mono",
 });
 
-const hand = IM_Fell_English({
-  subsets: ["latin"],
-  variable: "--font-hand",
-  weight: "400",
-  style: "italic",
-});
-
-const SITE_NAME = "Side Quests";
+const SITE_NAME = "Truc's Notes";
 const SITE_DESCRIPTION =
   "Code, life, and the side quests in between, written down so future me doesn't have to redo them.";
 
@@ -77,10 +68,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cx(display.variable, body.variable, hand.variable)}
+      className={cx(serif.variable, mono.variable)}
     >
-      <body className="antialiased max-w-3xl mx-4 mt-6 sm:mt-10 lg:mx-auto">
-        <main className="flex-auto min-w-0 flex flex-col px-1 sm:px-0">
+      <body className="antialiased sm:py-10">
+        <main className="sheet mx-auto max-w-[50rem] min-w-0 flex flex-col px-4 py-6 sm:px-14 sm:py-10">
           <Hero />
           <Navbar />
           {children}

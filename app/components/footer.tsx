@@ -1,35 +1,36 @@
 import { FaGithub, FaRss } from "react-icons/fa";
-import { toRoman } from "app/components/roman";
 
+/* Set like the footnote block at the foot of a paper's first page */
 export default function Footer() {
   return (
-    <footer className="mt-20 mb-12">
-      <p className="ornament text-lg mb-6" aria-hidden="true">
-        ❦
+    <footer className="mt-16 text-[0.85rem] leading-snug text-ink-soft">
+      <div className="footnote-rule mb-2" />
+      <p>
+        <sup className="mr-1">*</sup>
+        © Truc Nguyen,{" "}
+        <span className="lining">{new Date().getFullYear()}</span>.
       </p>
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 px-1">
-        <p className="font-hand text-lg leading-snug">
-          It&apos;s about the journey, not the destination.
-          <span className="block font-display not-italic small-caps text-base text-ink-faint">
-            Truc Nguyen · {toRoman(new Date().getFullYear())} · still sketching
-          </span>
-        </p>
-        <div className="flex gap-2.5">
+      <p className="mt-1 flex flex-wrap gap-x-4 gap-y-1">
+        <span>
+          <sup className="mr-1">†</sup>
           <a
-            className="pill text-sm"
+            className="ref inline-flex items-center gap-1"
             rel="noopener noreferrer"
             target="_blank"
             href="https://github.com/tructn"
           >
-            <FaGithub size={15} aria-hidden="true" />
-            GitHub
+            <FaGithub size={12} aria-hidden="true" />
+            github.com/tructn
           </a>
-          <a className="pill text-sm" href="/rss">
-            <FaRss size={13} aria-hidden="true" />
-            RSS
+        </span>
+        <span>
+          <sup className="mr-1">‡</sup>
+          <a className="ref inline-flex items-center gap-1" href="/rss">
+            <FaRss size={11} aria-hidden="true" />
+            RSS feed
           </a>
-        </div>
-      </div>
+        </span>
+      </p>
     </footer>
   );
 }

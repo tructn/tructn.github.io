@@ -103,7 +103,7 @@ export function SearchBox() {
       <button
         onClick={openSearch}
         aria-label="Search posts (⌘K)"
-        className="pill text-[15px]"
+        className="btn text-[0.88rem] py-0.5"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -121,20 +121,20 @@ export function SearchBox() {
           <path d="m21 21-4.3-4.3" />
         </svg>
         Search
-        <kbd className="hidden sm:inline font-sans text-[10px] not-italic border border-[var(--ink-line)] px-1 rounded-[var(--hand-radius)] leading-tight text-ink-faint">
+        <kbd className="hidden sm:inline font-mono text-[10px] border border-[var(--hair)] px-1 leading-tight text-ink-faint">
           ⌘K
         </kbd>
       </button>
 
       {/* Modal overlay */}
       {open && (
-        <div className="fixed inset-0 z-50 flex items-start justify-center pt-[15vh] px-4 bg-[rgba(46,32,20,0.3)] backdrop-blur-[2px]">
+        <div className="fixed inset-0 z-50 flex items-start justify-center pt-[15vh] px-4 bg-[rgba(20,20,20,0.35)]">
           <div
             ref={containerRef}
-            className="folio w-full max-w-xl overflow-hidden"
+            className="sheet w-full max-w-xl overflow-hidden border border-[var(--hair)]"
           >
             {/* Input */}
-            <div className="flex items-center gap-3 px-4 py-3 border-b border-[var(--ink-line)]">
+            <div className="flex items-center gap-3 px-4 py-3 border-b border-[var(--rule)]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="14"
@@ -155,18 +155,18 @@ export function SearchBox() {
                 ref={inputRef}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Seek among the notebooks…"
-                className="flex-1 font-display italic text-xl bg-transparent outline-none placeholder:text-[var(--ink-faint)]"
+                placeholder="Search…"
+                className="flex-1 text-lg bg-transparent outline-none placeholder:italic placeholder:text-[var(--ink-faint)]"
                 aria-label="Search posts"
               />
               {loading && (
-                <span className="font-hand text-sm text-ink-soft">
-                  sharpening the quill…
+                <span className="italic text-sm text-ink-soft">
+                  loading index…
                 </span>
               )}
               <button
                 onClick={() => setOpen(false)}
-                className="font-sans text-[10px] border border-[var(--ink-line)] rounded-[var(--hand-radius)] px-1.5 py-0.5 text-ink-faint hover:text-[var(--sanguine)]"
+                className="font-mono text-[10px] border border-[var(--hair)] px-1.5 py-0.5 text-ink-faint hover:text-[var(--ink)]"
               >
                 ESC
               </button>
@@ -174,15 +174,15 @@ export function SearchBox() {
 
             {/* Results */}
             {results.length > 0 && (
-              <ul className="max-h-80 overflow-y-auto divide-y divide-[var(--ink-hair)]">
+              <ul className="max-h-80 overflow-y-auto divide-y divide-[var(--hair)]">
                 {results.map(({ item }) => (
                   <li key={item.slug}>
                     <Link
                       href={`/blog/${item.slug}`}
                       onClick={() => setOpen(false)}
-                      className="flex flex-col gap-1 px-4 py-3 hover:bg-[var(--paper-deep)] focus-visible:bg-[var(--paper-deep)] outline-none transition-colors"
+                      className="flex flex-col gap-1 px-4 py-3 hover:bg-[var(--wash)] focus-visible:bg-[var(--wash)] outline-none transition-colors"
                     >
-                      <span className="font-display text-lg font-semibold leading-snug">
+                      <span className="font-bold leading-snug">
                         {item.title}
                       </span>
                       {item.summary && (
@@ -191,11 +191,12 @@ export function SearchBox() {
                         </span>
                       )}
                       {item.tags && (
-                        <span className="font-hand text-sm text-ink-faint">
+                        <span className="text-sm italic text-ink-faint">
+                          <b className="font-bold">Keywords:</b>{" "}
                           {item.tags
                             .split(",")
                             .map((t) => t.trim())
-                            .join(" · ")}
+                            .join(", ")}
                         </span>
                       )}
                     </Link>
@@ -206,15 +207,15 @@ export function SearchBox() {
 
             {/* Empty state */}
             {query.trim().length >= 2 && results.length === 0 && !loading && (
-              <p className="px-4 py-6 font-hand text-lg text-ink-soft text-center">
-                Nothing yet written on &ldquo;{query}&rdquo;
+              <p className="px-4 py-6 italic text-ink-soft text-center">
+                No results for &ldquo;{query}&rdquo;.
               </p>
             )}
 
             {/* Idle state */}
             {query.trim().length === 0 && (
-              <p className="px-4 py-5 font-hand text-lg text-ink-soft text-center">
-                Search every leaf: titles, tags and words
+              <p className="px-4 py-5 italic text-ink-soft text-center">
+                Type to search.
               </p>
             )}
           </div>

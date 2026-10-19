@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { toRoman } from "app/components/roman";
 
 type Plate = { src: string; alt: string; caption: string };
 
@@ -93,7 +92,7 @@ export function Spotlight({ children }: { children: React.ReactNode }) {
             <button
               ref={closeRef}
               onClick={close}
-              className="pill absolute top-4 right-4"
+              className="btn absolute top-4 right-4"
               aria-label="Close"
             >
               Close ✕
@@ -104,25 +103,25 @@ export function Spotlight({ children }: { children: React.ReactNode }) {
               key={plate.src}
               src={plate.src}
               alt={plate.alt}
-              className="spotlight-plate photo max-w-full max-h-[78vh] w-auto h-auto object-contain"
+              className="spotlight-plate max-w-full max-h-[78vh] w-auto h-auto object-contain"
             />
 
-            <div className="flex items-center gap-4 text-[#f3e6c8]">
+            <div className="flex items-center gap-4 text-white">
               {count > 1 && (
-                <button onClick={() => step(-1)} className="pill" aria-label="Previous">
+                <button onClick={() => step(-1)} className="btn" aria-label="Previous">
                   ←
                 </button>
               )}
-              <p className="font-hand text-lg text-center leading-snug">
+              <p className="caption text-white text-center">
                 {count > 1 && (
-                  <span className="font-display not-italic small-caps mr-2 text-[#e4a48f]">
-                    {toRoman(index! + 1)} of {toRoman(count)}.
-                  </span>
+                  <b className="lining">
+                    Figure {index! + 1} of {count}:
+                  </b>
                 )}
                 {plate.caption}
               </p>
               {count > 1 && (
-                <button onClick={() => step(1)} className="pill" aria-label="Next">
+                <button onClick={() => step(1)} className="btn" aria-label="Next">
                   →
                 </button>
               )}

@@ -49,32 +49,31 @@ export default async function Page({ params }) {
 
   return (
     <section className="w-full">
-      <Link href="/crafts" className="pill text-sm mb-7">
-        ← all inventions
-      </Link>
-
       <CraftDetail craft={craft} />
 
       {others.length > 0 && (
-        <div className="mt-14">
-          <p className="ornament mb-8 text-lg" aria-hidden="true">
-            ❦
-          </p>
-          <h2 className="font-display italic text-3xl font-semibold mb-1">
-            Other inventions
-          </h2>
-          <p className="font-hand text-lg text-ink-soft mb-6">
-            side quests that turned into machines
-          </p>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-7">
+        <div className="mt-6">
+          <h2 className="section-heading">More</h2>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-10">
             {others.map((other, i) => (
               <li key={other.slug}>
-                <CraftCard craft={other} index={i + 1} />
+                <CraftCard
+                  craft={other}
+                  index={i + 1}
+                  // Numbering runs on from the hero and screenshots above
+                  figure={craft.shots.length + 2 + i}
+                />
               </li>
             ))}
           </ul>
         </div>
       )}
+
+      <p className="mt-10">
+        <Link href="/crafts" className="ref">
+          ← All software
+        </Link>
+      </p>
     </section>
   );
 }

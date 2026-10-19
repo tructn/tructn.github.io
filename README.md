@@ -1,3 +1,3 @@
-# Side Quests
+# Truc's Notes
 
 My random personal study notes, writing about lifes, works, anything happens on daily basis...

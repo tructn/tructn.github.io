@@ -53,6 +53,21 @@ export async function generateMetadata({ params }) {
   };
 }
 
+/* A BibTeX entry, the way a paper asks to be cited */
+function bibtex(slug: string, title: string, publishedAt: string) {
+  let year = publishedAt.slice(0, 4);
+  let key = `nguyen${year}:${slug}`;
+  return [
+    `@misc{${key},`,
+    `  author = {Nguyen, Truc},`,
+    `  title  = {${title}},`,
+    `  year   = {${year}},`,
+    `  url    = {${baseUrl}/blog/${slug}},`,
+    `  note   = {Truc's Notes}`,
+    `}`,
+  ].join("\n");
+}
+
 export default async function Blog({ params }) {
   const { slug } = await params;
   let post = getBlogPosts().find((post) => post.slug === slug);
@@ -87,65 +102,55 @@ export default async function Blog({ params }) {
           }}
         />
 
-        <Link href="/" className="pill text-sm mb-7">
-          ← back to the notebooks
-        </Link>
-
-        {/* Title card */}
-        <header className="mt-6 mb-8 text-center">
-          <p className="font-display small-caps text-ink-faint mb-3">
+        {/* \maketitle */}
+        <header>
+          <h1 className="paper-title">{post.metadata.title}</h1>
+          <p className="paper-authors">
+            Truc Nguyen<sup>*</sup>
+          </p>
+          <p className="paper-affil lining">
             <time dateTime={post.metadata.publishedAt}>
               {formatDate(post.metadata.publishedAt)}
             </time>
-            {" · "}Truc Nguyen
             {post.metadata.language === "vietnamese" && " · in Vietnamese"}
-          </p>
-          <h1 className="title font-display italic text-4xl sm:text-5xl font-semibold leading-[1.05]">
-            {post.metadata.title}
-          </h1>
-
-          {post.metadata.tags && (
-            <div className="mt-5 flex flex-wrap justify-center gap-2">
-              {post.metadata.tags.split(",").map((t) => (
-                <span key={t} className="rubric">
-                  {t.trim()}
-                </span>
-              ))}
-            </div>
-          )}
-          <p className="ornament mt-7" aria-hidden="true">
-            ❦
           </p>
         </header>
 
-        {/* The argument: what this leaf is about, set apart before the text */}
-        {post.metadata.summary && (
-          <div className="folio mb-10 px-6 py-4 sm:mx-6">
-            <span className="font-display small-caps font-semibold text-sanguine mr-2">
-              In brief.
-            </span>
-            <span className="font-display italic text-lg text-ink-soft leading-snug">
-              {post.metadata.summary}
-            </span>
+        {(post.metadata.summary || post.metadata.tags) && (
+          <div className="abstract mb-10">
+            {post.metadata.summary && (
+              <>
+                <span className="abstract-heading">Abstract</span>
+                {post.metadata.summary}
+              </>
+            )}
+            {post.metadata.tags && (
+              <p className="keywords">
+                <b>Keywords:</b>
+                {post.metadata.tags
+                  .split(",")
+                  .map((t) => t.trim())
+                  .join(" · ")}
+              </p>
+            )}
           </div>
         )}
 
-        {/* Body */}
-        <article className="prose prose-codex max-w-none">
+        {/* Body: h2 and h3 are numbered by CSS counters */}
+        <article className="prose prose-paper max-w-none">
           <CustomMDX source={post.content} />
         </article>
 
-        <p className="ornament mt-14 text-lg" aria-hidden="true">
-          ⁂
-        </p>
-        <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
-          <p className="font-hand text-xl text-ink-soft">
-            Here ends this leaf. On to the next.
-          </p>
-          <Link href="/" className="pill pill-filled">
-            Back to the notebooks
+        <h2 className="section-heading">Cite</h2>
+        <pre className="font-mono text-[0.78rem] leading-relaxed bg-[#fafaf8] border-y border-[var(--rule)] px-4 py-3 overflow-x-auto">
+          {bibtex(post.slug, post.metadata.title, post.metadata.publishedAt)}
+        </pre>
+
+        <p className="mt-8">
+          <Link href="/" className="ref">
+            ← All articles
           </Link>
-        </div>
+        </p>
       </div>
     </section>
   );

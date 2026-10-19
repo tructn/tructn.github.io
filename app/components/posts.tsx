@@ -1,9 +1,5 @@
 import Link from "next/link";
 import { formatDate, getBlogPosts } from "app/blog/utils";
-import { toRoman } from "app/components/roman";
-
-// Leaves lie a touch askew, like sheets gathered loose into a codex
-const tilts = ["-0.35deg", "0.3deg", "-0.2deg", "0.4deg"];
 
 export function BlogPosts() {
   const allBlogs = getBlogPosts();
@@ -16,90 +12,53 @@ export function BlogPosts() {
 
   return (
     <div className="w-full">
-      <div className="flex items-end justify-between gap-4 mb-8">
-        <div>
-          <h2 className="font-display italic text-4xl font-semibold leading-none">
-            The Notebooks
-          </h2>
-          <p className="font-hand text-lg text-ink-soft mt-1.5">
-            every leaf so far, the newest on top
-          </p>
-        </div>
-        <span className="rubric shrink-0">
-          {toRoman(sorted.length)} folio{sorted.length === 1 ? "" : "s"}
-        </span>
-      </div>
+      {/* \maketitle */}
+      <h1 className="paper-title">Truc&apos;s Notes</h1>
+      <p className="paper-affil mt-2">On code and life</p>
+      <p className="paper-authors">
+        Truc Nguyen<sup>*</sup>
+      </p>
 
-      <ol className="relative">
-        {/* The ruled margin the folio numbers sit in */}
-        <span
-          aria-hidden="true"
-          className="absolute left-[46px] top-0 bottom-0 border-l border-[rgba(163,64,42,0.35)]"
-        />
+      <h2 className="section-heading">Contents</h2>
 
-        {sorted.map((post, idx) => {
-          const folio = sorted.length - idx;
-          return (
-            <li key={post.slug} className="relative pl-16 pb-8 last:pb-2">
-              <span
-                aria-hidden="true"
-                className="font-display italic absolute left-0 top-5 w-[40px] text-right text-xl font-semibold text-sanguine"
-              >
-                {toRoman(folio)}
-              </span>
+      <ol className="space-y-4">
+        {sorted.map((post, idx) => (
+          <li key={post.slug}>
+            <Link href={`/blog/${post.slug}`} className="group block outline-none">
+              <div className="toc-row">
+                <span className="font-bold lining w-6 shrink-0">{idx + 1}</span>
+                <span className="font-bold leading-snug group-hover:text-[var(--link)] group-focus-visible:text-[var(--link)] group-hover:underline underline-offset-2">
+                  {post.metadata.title}
+                </span>
+                <span aria-hidden="true" className="toc-leader" />
+                <time
+                  dateTime={post.metadata.publishedAt}
+                  className="lining text-[0.9rem] shrink-0"
+                >
+                  {formatDate(post.metadata.publishedAt, false)}
+                </time>
+              </div>
 
-              <Link
-                href={`/blog/${post.slug}`}
-                className="folio folio-hover group block px-6 py-5"
-                style={{ rotate: tilts[idx % tilts.length] }}
-              >
-                <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-1.5 font-display small-caps text-[15px] text-ink-faint">
-                  <span>Folio {toRoman(folio)}</span>
-                  <span aria-hidden="true">·</span>
-                  <time dateTime={post.metadata.publishedAt}>
-                    {formatDate(post.metadata.publishedAt, false)}
-                  </time>
-                  {post.metadata.language === "vietnamese" && (
-                    <>
-                      <span aria-hidden="true">·</span>
-                      <span>in Vietnamese</span>
-                    </>
-                  )}
-                </div>
-
-                <h3 className="font-display text-2xl sm:text-[1.75rem] font-semibold leading-tight mb-2">
-                  <span
-                    className="swipe"
-                    style={{ "--swipe": "var(--sanguine)" } as React.CSSProperties}
-                  >
-                    {post.metadata.title}
-                  </span>
-                </h3>
-
+              <div className="pl-8 text-[0.92rem] leading-snug text-ink-soft">
                 {post.metadata.summary && (
-                  <p className="text-ink-soft leading-relaxed line-clamp-2">
-                    {post.metadata.summary}
+                  <p className="mt-1 line-clamp-2">{post.metadata.summary}</p>
+                )}
+                {(post.metadata.tags || post.metadata.language === "vietnamese") && (
+                  <p className="mt-0.5 italic text-ink-faint">
+                    {post.metadata.tags &&
+                      post.metadata.tags
+                        .split(",")
+                        .map((t) => t.trim())
+                        .join(", ")}
+                    {post.metadata.language === "vietnamese" &&
+                      `${post.metadata.tags ? " · " : ""}in Vietnamese`}
                   </p>
                 )}
-
-                {post.metadata.tags && (
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {post.metadata.tags.split(",").map((t) => (
-                      <span key={t} className="rubric">
-                        {t.trim()}
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </Link>
-            </li>
-          );
-        })}
+              </div>
+            </Link>
+          </li>
+        ))}
       </ol>
-
-      <p className="font-hand text-lg text-ink-soft pl-16 mt-1">
-        …and more leaves yet to be written
-      </p>
     </div>
   );
 }

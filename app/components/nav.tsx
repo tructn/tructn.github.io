@@ -5,16 +5,16 @@ import { usePathname } from "next/navigation";
 import { SearchBox } from "app/components/search-box";
 
 const navItems = [
-  { path: "/", name: "Notebooks" },
-  { path: "/crafts", name: "Inventions" },
-  { path: "/about", name: "The Author" },
+  { path: "/", name: "Articles" },
+  { path: "/crafts", name: "Software" },
+  { path: "/about", name: "Author" },
 ];
 
 export function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="mb-12 flex flex-wrap items-center gap-x-6 gap-y-3 border-b border-[var(--ink-hair)] pb-3">
+    <nav className="mb-10 flex flex-wrap items-center gap-x-6 gap-y-3">
       <ul className="flex flex-row flex-wrap gap-x-6 gap-y-1 flex-1">
         {navItems.map(({ path, name }) => {
           const isActive =

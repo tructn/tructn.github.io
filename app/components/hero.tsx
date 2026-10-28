@@ -9,8 +9,11 @@ export function Hero() {
   const volume = year - FIRST_YEAR + 1;
   return (
     <header className="running-head mb-3">
-      <Link href="/" className="hover:text-[var(--ink)] focus-visible:text-[var(--ink)] outline-none">
-        Truc&apos;s Notes
+      <Link
+        href="/"
+        className="hover:text-[var(--ink)] focus-visible:text-[var(--ink)] outline-none"
+      >
+        My quick notes
       </Link>
       <span className="shrink-0 lining">
         Vol. {volume} ({year})

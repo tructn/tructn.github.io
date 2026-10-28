@@ -1,3 +1,3 @@
-# Truc's Notes
+# My quick notes
 
 My random personal study notes, writing about lifes, works, anything happens on daily basis...

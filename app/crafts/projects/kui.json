@@ -2,7 +2,7 @@
   "name": "KUI",
   "order": 1,
   "tagline": "A simple desktop app for Apache Kafka.",
-  "description": "See your topics, read and send messages, and check how far behind your consumers are, without a single CLI flag. Built in Rust with Tauri, so it starts fast, needs no JVM or server, and keeps your connection settings on your computer.",
+  "description": "Most Kafka tools are either command-line scripts or web dashboards you have to deploy and keep running. KUI is neither. It's a desktop app: download it, add your cluster, and you're looking at your data",
   "features": [
     "List, search (⌘K), create and delete topics",
     "Read newest or oldest messages, or watch them arrive live",
@@ -20,26 +20,29 @@
   },
   "stack": ["Rust", "Tauri", "React", "TypeScript", "Kafka", "librdkafka"],
   "screenshots": [
-    { "file": "topics.webp", "alt": "KUI showing the topics of a Kafka cluster" },
     {
-      "file": "messages.webp",
-      "alt": "Messages of a topic, with partition, offset, timestamp, key and value",
-      "caption": "Newest, oldest, or Live"
+      "file": "00_cluster.png",
+      "alt": "Setup cluster"
     },
     {
-      "file": "consumers.webp",
-      "alt": "A consumer group's progress and lag on each partition",
-      "caption": "Spot the stuck consumer in seconds"
+      "file": "01_topics.png",
+      "alt": "View topics",
+      "caption": "View your topics, search with regex supported"
     },
     {
-      "file": "add-cluster.webp",
-      "alt": "The Add cluster dialog",
-      "caption": "Add a cluster, test it, save it"
+      "file": "02_messages.png",
+      "alt": "View topic messages, expandable row, or click into row to view right pane details",
+      "caption": "View topic messages, expandable row, or click into row to view right pane details"
     },
     {
-      "file": "settings.webp",
-      "alt": "The Settings window with theme and font options",
-      "caption": "Light or dark, your fonts"
+      "file": "03_consumers.png",
+      "alt": "View consumer lag",
+      "caption": "View consumer lag"
+    },
+    {
+      "file": "04_settings.png",
+      "alt": "Settings, theme, fonts...",
+      "caption": "Settings, theme, fonts..."
     }
   ]
 }

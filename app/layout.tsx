@@ -26,7 +26,7 @@ const mono = Source_Code_Pro({
   variable: "--font-mono",
 });
 
-const SITE_NAME = "Truc's Notes";
+const SITE_NAME = "My quick notes";
 const SITE_DESCRIPTION =
   "Code, life, and the side quests in between, written down so future me doesn't have to redo them.";
 
@@ -66,10 +66,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={cx(serif.variable, mono.variable)}
-    >
+    <html lang="en" className={cx(serif.variable, mono.variable)}>
       <body className="antialiased sm:py-10">
         <main className="sheet mx-auto max-w-[50rem] min-w-0 flex flex-col px-4 py-6 sm:px-14 sm:py-10">
           <Hero />

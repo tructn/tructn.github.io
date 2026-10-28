@@ -13,8 +13,8 @@ export function BlogPosts() {
   return (
     <div className="w-full">
       {/* \maketitle */}
-      <h1 className="paper-title">Truc&apos;s Notes</h1>
-      <p className="paper-affil mt-2">On code and life</p>
+      <h1 className="paper-title">My quick notes</h1>
+      <p className="paper-affil mt-2">quick notes on everything</p>
       <p className="paper-authors">
         Truc Nguyen<sup>*</sup>
       </p>
@@ -24,7 +24,10 @@ export function BlogPosts() {
       <ol className="space-y-4">
         {sorted.map((post, idx) => (
           <li key={post.slug}>
-            <Link href={`/blog/${post.slug}`} className="group block outline-none">
+            <Link
+              href={`/blog/${post.slug}`}
+              className="group block outline-none"
+            >
               <div className="toc-row">
                 <span className="font-bold lining w-6 shrink-0">{idx + 1}</span>
                 <span className="font-bold leading-snug group-hover:text-[var(--link)] group-focus-visible:text-[var(--link)] group-hover:underline underline-offset-2">
@@ -43,7 +46,8 @@ export function BlogPosts() {
                 {post.metadata.summary && (
                   <p className="mt-1 line-clamp-2">{post.metadata.summary}</p>
                 )}
-                {(post.metadata.tags || post.metadata.language === "vietnamese") && (
+                {(post.metadata.tags ||
+                  post.metadata.language === "vietnamese") && (
                   <p className="mt-0.5 italic text-ink-faint">
                     {post.metadata.tags &&
                       post.metadata.tags

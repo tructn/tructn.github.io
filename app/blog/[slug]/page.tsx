@@ -63,7 +63,7 @@ function bibtex(slug: string, title: string, publishedAt: string) {
     `  title  = {${title}},`,
     `  year   = {${year}},`,
     `  url    = {${baseUrl}/blog/${slug}},`,
-    `  note   = {Truc's Notes}`,
+    `  note   = {My quick notes}`,
     `}`,
   ].join("\n");
 }

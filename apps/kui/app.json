@@ -1,0 +1,63 @@
+{
+  "name": "KUI",
+  "order": 2,
+  "subtitle": "A simple desktop app for Kafka",
+  "tagline": "Your Kafka cluster, at a glance",
+  "summary": "Most Kafka tools are command-line scripts or web dashboards you have to deploy. KUI is a desktop app: download it, add your cluster, and you’re looking at your data.",
+  "description": [
+    "Most Kafka tools are either command-line scripts or web dashboards you have to deploy and keep running. KUI is neither.",
+    "It’s a desktop app: download it, add your cluster, and you’re looking at your data."
+  ],
+  "icon": "logo.svg",
+  "theme": { "from": "#4a0f1f", "to": "#8f1d3a", "accent": "#fb7185" },
+  "category": "Developer Tools",
+  "price": "Free",
+  "platform": "Mac · Windows",
+  "requires": "macOS or Windows",
+  "languages": "English",
+  "repo": "https://github.com/tructn/kui",
+  "get": {
+    "label": "Download",
+    "url": "https://github.com/tructn/kui/releases/latest"
+  },
+  "screenshots": [
+    {
+      "file": "01_topics.webp",
+      "title": "Every topic, searchable",
+      "subtitle": "List, search with regex, create and delete topics.",
+      "alt": "The topic list with a search field"
+    },
+    {
+      "file": "02_messages.webp",
+      "title": "Read messages your way",
+      "subtitle": "Expand a row, or open it in the side pane.",
+      "alt": "Topic messages with one row expanded and details in the right pane"
+    },
+    {
+      "file": "03_consumers.webp",
+      "title": "See who’s falling behind",
+      "subtitle": "Consumer groups and their lag, at a glance.",
+      "alt": "Consumer groups with their lag per partition"
+    },
+    {
+      "file": "00_cluster.webp",
+      "title": "Add a cluster in seconds",
+      "subtitle": "SSL and SASL clusters work too.",
+      "alt": "The add cluster form"
+    },
+    {
+      "file": "04_settings.webp",
+      "title": "Make it yours",
+      "subtitle": "Theme, fonts and more.",
+      "alt": "Settings with theme and font options"
+    }
+  ],
+  "features": [
+    { "title": "Topics", "text": "List, search (⌘K), create and delete topics." },
+    { "title": "Messages", "text": "Read the newest or oldest messages, or watch them arrive live." },
+    { "title": "Produce", "text": "Send your own messages or generate test data." },
+    { "title": "Consumer lag", "text": "See which consumer groups are caught up and which are behind." },
+    { "title": "Secure clusters", "text": "SSL and SASL clusters work too." }
+  ],
+  "stack": ["Rust", "Tauri", "React", "TypeScript", "librdkafka"]
+}

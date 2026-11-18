@@ -1,17 +1,14 @@
 import Link from "next/link";
 
-/* What LaTeX prints for a \ref it cannot resolve */
 export default function NotFound() {
   return (
-    <section className="py-10 text-center">
-      <p className="text-6xl font-bold mb-3">[??]</p>
-      <h1 className="paper-title">Page not found</h1>
-      <p className="mt-4 italic text-ink-soft">
-        Nothing here.
-      </p>
+    <section className="wrap py-24 text-center">
+      <p className="eyebrow">404</p>
+      <h1 className="display mt-2">Page not found</h1>
+      <p className="mt-4 text-soft">This page has moved, or never existed.</p>
       <p className="mt-8">
-        <Link href="/" className="btn btn-solid">
-          Back home
+        <Link href="/" className="get">
+          See all apps
         </Link>
       </p>
     </section>

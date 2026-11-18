@@ -1,0 +1,136 @@
+{
+  "name": "Framelet",
+  "order": 1,
+  "subtitle": "Sort, clean up & search photos",
+  "tagline": "See more in every moment",
+  "summary": "A fast, private way to go through folders of photos and videos on your Mac, keep the best and clear out the rest. Everything runs on your Mac.",
+  "description": [
+    "Framelet is a Mac app for your folders of photos and videos: browse them, relive your trips on a map, enhance and decorate your shots, pull stills and subjects out of them, and clear out what you don’t need.",
+    "There’s nothing to import. Framelet works directly with your folders, and all analysis runs on your Mac, using the Neural Engine on Apple silicon."
+  ],
+  "icon": "icon.png",
+  "theme": { "from": "#1b2556", "to": "#3a1d5c", "accent": "#7c8cff" },
+  "category": "Photography",
+  "price": "Free",
+  "purchases": "Offers In-App Purchases",
+  "platform": "Mac",
+  "requires": "macOS 15 Sequoia or later",
+  "version": "1.0.0",
+  "languages": "English",
+  "age": "4+",
+  "get": {
+    "label": "Mac App Store",
+    "note": "Search “Framelet” on the Mac App Store"
+  },
+  "screenshots": [
+    {
+      "file": "01-browse.webp",
+      "title": "All your photos, beautifully laid out",
+      "subtitle": "Browse every folder together. Nothing to import.",
+      "alt": "Framelet showing a grid of photos with categories in the sidebar and the inspector open"
+    },
+    {
+      "file": "02-map.webp",
+      "title": "Relive the trip on a map",
+      "subtitle": "Every stop in order, with a colorful route and a 3D globe.",
+      "alt": "Photos pinned on a globe, joined by a numbered, colorful trip route"
+    },
+    {
+      "file": "03-enhance.webp",
+      "title": "One-click enhancements",
+      "subtitle": "Suggestions picked for each photo, saved as a new copy.",
+      "alt": "Enhance Photo with suggested looks and a before and after slider"
+    },
+    {
+      "file": "04-holiday-looks.webp",
+      "title": "Looks for every holiday",
+      "subtitle": "Christmas, Halloween, Valentine’s, Diwali and more.",
+      "alt": "Enhance Photo applying the Valentine’s holiday look with floating hearts"
+    },
+    {
+      "file": "05-extract-subject.webp",
+      "title": "Lift the subject off the photo",
+      "subtitle": "Copy it, or save it as a PNG or sticker.",
+      "alt": "Extract Subject cutting a subject out of a photo with the sticker style"
+    },
+    {
+      "file": "06-duplicates.webp",
+      "title": "Find duplicates, keep the best",
+      "subtitle": "Exact copies, look-alikes and similar shots, sorted for you.",
+      "alt": "The Duplicates and Similar Photos sheet suggesting which copy to keep"
+    },
+    {
+      "file": "07-clean-up.webp",
+      "title": "Clean up with two keys",
+      "subtitle": "Press f to favorite and d to mark. Undo anything.",
+      "alt": "The photo grid with one photo favorited and another marked for deletion"
+    },
+    {
+      "file": "08-space-freed.webp",
+      "title": "Free up space, safely",
+      "subtitle": "Marked photos go to the Trash only when you confirm.",
+      "alt": "A banner showing how much space was freed after emptying the Trash"
+    }
+  ],
+  "features": [
+    {
+      "title": "All your folders in one place",
+      "text": "Add as many as you like and browse them together, as a grid or on a map."
+    },
+    {
+      "title": "Relive the trip",
+      "text": "A colorful route with a numbered pin at every stop, along the real roads if you like. Tilt to see the land in 3D."
+    },
+    {
+      "title": "Quick preview",
+      "text": "Press Space to open any photo or play any video, with a filmstrip to jump between them."
+    },
+    {
+      "title": "Clean up safely",
+      "text": "Marked items go to the Trash together, only when you confirm, and every decision can be undone."
+    },
+    {
+      "title": "Find duplicates, free",
+      "text": "Exact copies and near-identical shots, with the best one suggested and the rest marked for you."
+    },
+    {
+      "title": "Organize in place",
+      "text": "Rename, move and label files. Favorites and labels are Finder tags, so they show up in Finder too."
+    },
+    {
+      "title": "Extract frames",
+      "text": "Save sharp stills from any video as JPEG copies beside it."
+    },
+    {
+      "title": "Set as wallpaper",
+      "text": "Put any photo on your desktop in one step."
+    }
+  ],
+  "pro": {
+    "name": "Framelet Pro",
+    "kind": "One-time purchase",
+    "text": "Unlocks Framelet Intelligence, all on device. Bought it before? It unlocks on its own on any Mac signed in with the same App Store account.",
+    "features": [
+      {
+        "title": "Search by content",
+        "text": "Type “dog at the beach” and find it. Framelet reads scenes, objects and text."
+      },
+      {
+        "title": "Categories",
+        "text": "People, Animals, Food & Drink, Landscapes, Documents and more, sorted for you."
+      },
+      {
+        "title": "Enhance Photo",
+        "text": "One-click fixes for light, color and a level horizon, plus holiday looks and cartoon stickers."
+      },
+      {
+        "title": "Extract Subject",
+        "text": "Lift the subject off its background and save it as a PNG or a sticker."
+      }
+    ]
+  },
+  "privacy": {
+    "label": "Data Not Collected",
+    "text": "Framelet has no accounts, no analytics and no tracking. Your photos never leave your Mac."
+  }
+}

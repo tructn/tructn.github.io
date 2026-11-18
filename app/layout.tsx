@@ -1,40 +1,29 @@
 import "./global.css";
 
-import { STIX_Two_Text, Source_Code_Pro } from "next/font/google";
-
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Inter } from "next/font/google";
 
 import Footer from "./components/footer";
-import { Hero } from "./components/hero";
 import { Navbar } from "./components/nav";
 import { baseUrl } from "./sitemap";
 
 import type { Metadata } from "next";
 
-// STIX Two is the face many journals set their papers in. It ships a
-// Vietnamese subset; `subsets` only picks what to preload, and unicode-range
-// still pulls Vietnamese glyphs in on pages that need them.
-const serif = STIX_Two_Text({
+// Apple devices get San Francisco from the system stack; Inter stands in
+// everywhere else, so it's only loaded where the stack falls through to it.
+const sans = Inter({
   subsets: ["latin"],
-  variable: "--font-serif",
-  style: ["normal", "italic"],
+  variable: "--font-sans",
 });
 
-const mono = Source_Code_Pro({
-  subsets: ["latin"],
-  variable: "--font-mono",
-});
-
-const SITE_NAME = "My quick notes";
+const SITE_NAME = "Truc Nguyen Apps";
 const SITE_DESCRIPTION =
-  "Code, life, and the side quests in between, written down so future me doesn't have to redo them.";
+  "Small, careful apps for the Mac and the desktop, by Truc Nguyen.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
     default: SITE_NAME,
-    template: `%s | ${SITE_NAME}`,
+    template: `%s · ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
   openGraph: {
@@ -48,17 +37,8 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 };
-
-const cx = (...classes) => classes.filter(Boolean).join(" ");
 
 export default function RootLayout({
   children,
@@ -66,16 +46,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={cx(serif.variable, mono.variable)}>
-      <body className="antialiased sm:py-10">
-        <main className="sheet mx-auto max-w-[50rem] min-w-0 flex flex-col px-4 py-6 sm:px-14 sm:py-10">
-          <Hero />
-          <Navbar />
-          {children}
-          <Footer />
-          <Analytics />
-          <SpeedInsights />
-        </main>
+    <html lang="en" className={sans.variable}>
+      <body className="min-h-dvh flex flex-col">
+        <Navbar />
+        <main className="flex-1">{children}</main>
+        <Footer />
       </body>
     </html>
   );

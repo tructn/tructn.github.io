@@ -1,24 +1,17 @@
-import { getBlogPosts } from 'app/blog/utils';
-import { getCrafts } from 'app/crafts/utils';
+import { getApps } from 'app/apps';
 export const dynamic = "force-static";
-export const revalidate = 3600; // optional ISR
 export const baseUrl = 'https://tructn.github.io';
 
 export default async function sitemap() {
-  let blogs = getBlogPosts().map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: post.metadata.publishedAt,
-  }));
+  let today = new Date().toISOString().split('T')[0];
 
-  let crafts = getCrafts().map((craft) => ({
-    url: `${baseUrl}/crafts/${craft.slug}`,
-    lastModified: new Date().toISOString().split('T')[0],
-  }));
+  let pages = getApps().flatMap((app) => [
+    app.href,
+    ...app.docs.map((kind) => `${app.href}${kind}/`),
+  ]);
 
-  let routes = ['', '/blog', '/crafts', '/about'].map((route) => ({
+  return ['/', ...pages].map((route) => ({
     url: `${baseUrl}${route}`,
-    lastModified: new Date().toISOString().split('T')[0],
+    lastModified: today,
   }));
-
-  return [...routes, ...blogs, ...crafts];
 }

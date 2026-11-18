@@ -18,6 +18,12 @@ const nextConfig: NextConfig = {
     basePath: isGithubActions ? "/tructn.github.io" : "",
 
     /**
+     * Write /framelet-app/privacy/index.html rather than privacy.html, so
+     * the URLs with a trailing slash given to App Store Connect resolve.
+     */
+    trailingSlash: true,
+
+    /**
      * Disable server-based image optimization. Next.js does not support
      * dynamic features with static exports.
      *

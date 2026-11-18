@@ -1,6 +1,6 @@
 # Apps
 
-Each folder here is one app. The folder name is the URL: `apps/framelet-app/` is served at `/framelet-app/`.
+Each folder here is one app. The folder name is the URL: `apps/framelet-studio/` is served at `/framelet-studio/`.
 
 ```
 apps/<slug>/

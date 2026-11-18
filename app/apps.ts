@@ -4,8 +4,8 @@ import type { CSSProperties } from 'react';
 
 /**
  * Apps are loaded from apps/<slug>/app.json, with their images in
- * public/apps/<slug>/. The slug is the URL: apps/framelet-app shows up at
- * /framelet-app/. An optional privacy.md or support.md next to app.json
+ * public/apps/<slug>/. The slug is the URL: apps/framelet-studio shows up at
+ * /framelet-studio/. An optional privacy.md or support.md next to app.json
  * becomes /<slug>/privacy/ or /<slug>/support/. See apps/README.md.
  */
 

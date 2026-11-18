@@ -82,4 +82,4 @@ them and lets you clear them at any time.
 
 No. All analysis runs on your Mac: on the Neural Engine on Apple silicon, and on the CPU and GPU on
 Intel. Framelet Studio collects no data, has no accounts and never uploads your photos. See the
-[Privacy Policy](/framelet-app/privacy/).
+[Privacy Policy](/framelet-studio/privacy/).

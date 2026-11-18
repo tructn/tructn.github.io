@@ -11,8 +11,8 @@ const nextConfig: NextConfig = {
     /**
      * No basePath: this is the user site, served from the domain root.
      *
-     * Write /framelet-app/privacy/index.html rather than privacy.html, so
-     * the URLs with a trailing slash given to App Store Connect resolve.
+     * Write /framelet-studio/privacy/index.html rather than privacy.html, so
+     * URLs with a trailing slash resolve.
      */
     trailingSlash: true,
 

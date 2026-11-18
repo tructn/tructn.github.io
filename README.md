@@ -2,11 +2,11 @@
 
 The storefront for my apps at <https://tructn.github.io>. Each app gets a product page, and a privacy policy and support page when it needs them, e.g. Framelet Studio:
 
-- <https://tructn.github.io/framelet-app/>
-- <https://tructn.github.io/framelet-app/privacy/>
-- <https://tructn.github.io/framelet-app/support/>
+- <https://tructn.github.io/framelet-studio/>
+- <https://tructn.github.io/framelet-studio/privacy/>
+- <https://tructn.github.io/framelet-studio/support/>
 
-The privacy and support URLs are given to App Store Connect, so don't rename an app's folder once it's listed.
+Framelet Studio's App Store Connect URLs (`/framelet-app/privacy/` and `/framelet-app/support/`) are served by the [framelet-app](https://github.com/tructn/framelet-app) repo's own Pages site, which takes over `/framelet-app/` here. Don't use that slug for an app folder, and keep those pages in step with `apps/framelet-studio/`.
 
 ```bash
 bun install

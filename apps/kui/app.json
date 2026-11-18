@@ -9,11 +9,12 @@
     "It’s a desktop app: download it, add your cluster, and you’re looking at your data."
   ],
   "icon": "logo.svg",
-  "theme": { "from": "#4a0f1f", "to": "#8f1d3a", "accent": "#fb7185" },
+  "theme": { "from": "#030712", "to": "#115e59", "accent": "#2dd4bf" },
   "category": "Developer Tools",
   "price": "Free",
   "platform": "Mac · Windows",
   "requires": "macOS or Windows",
+  "version": "0.2.0",
   "languages": "English",
   "repo": "https://github.com/tructn/kui",
   "get": {
@@ -22,42 +23,61 @@
   },
   "screenshots": [
     {
-      "file": "01_topics.webp",
+      "file": "01-topics.webp",
       "title": "Every topic, searchable",
-      "subtitle": "List, search with regex, create and delete topics.",
-      "alt": "The topic list with a search field"
+      "subtitle": "Filter by regex, create and delete topics.",
+      "alt": "The topic list with a regex filter and partition and replica counts"
     },
     {
-      "file": "02_messages.webp",
+      "file": "02-search.webp",
+      "title": "Jump anywhere with ⌘K",
+      "subtitle": "Find a topic by name and see how many messages it holds.",
+      "alt": "The ⌘K topic search listing topics with their message counts"
+    },
+    {
+      "file": "03-messages.webp",
       "title": "Read messages your way",
-      "subtitle": "Expand a row, or open it in the side pane.",
-      "alt": "Topic messages with one row expanded and details in the right pane"
+      "subtitle": "Expand a row to see its key, headers and a JSON tree.",
+      "alt": "Topic messages with one row expanded into a JSON tree"
     },
     {
-      "file": "03_consumers.webp",
+      "file": "04-message-pane.webp",
+      "title": "Every byte, one click away",
+      "subtitle": "View a value as JSON, a tree or Base64.",
+      "alt": "The message side pane showing the value as Base64"
+    },
+    {
+      "file": "05-copy-to-topic.webp",
+      "title": "Replay a message",
+      "subtitle": "Copy it to any topic and partition.",
+      "alt": "The copy message to topic dialog with a topic picker"
+    },
+    {
+      "file": "06-consumer-lag.webp",
       "title": "See who’s falling behind",
-      "subtitle": "Consumer groups and their lag, at a glance.",
-      "alt": "Consumer groups with their lag per partition"
+      "subtitle": "Lag per partition, and reset offsets when you need to.",
+      "alt": "A consumer group with consumed and remaining messages per partition"
     },
     {
-      "file": "00_cluster.webp",
+      "file": "07-cluster.webp",
       "title": "Add a cluster in seconds",
-      "subtitle": "SSL and SASL clusters work too.",
-      "alt": "The add cluster form"
+      "subtitle": "SSL and SASL work too; secrets stay in your keychain.",
+      "alt": "The edit cluster form showing a connected cluster"
     },
     {
-      "file": "04_settings.webp",
+      "file": "08-settings.webp",
       "title": "Make it yours",
-      "subtitle": "Theme, fonts and more.",
-      "alt": "Settings with theme and font options"
+      "subtitle": "Theme, accent colour, fonts and ligatures.",
+      "alt": "Appearance settings with theme, accent colour and font options"
     }
   ],
   "features": [
-    { "title": "Topics", "text": "List, search (⌘K), create and delete topics." },
-    { "title": "Messages", "text": "Read the newest or oldest messages, or watch them arrive live." },
-    { "title": "Produce", "text": "Send your own messages or generate test data." },
-    { "title": "Consumer lag", "text": "See which consumer groups are caught up and which are behind." },
-    { "title": "Secure clusters", "text": "SSL and SASL clusters work too." }
+    { "title": "Topics", "text": "List, filter by regex, create and delete topics. Jump to any topic with ⌘K." },
+    { "title": "Messages", "text": "Read the newest or oldest messages, or watch them arrive live. View values as JSON, a tree or Base64, and export them." },
+    { "title": "Filters", "text": "Query messages by value and headers, e.g. value.status = 'shipped' AND headers.x-source IN ('web', 'ios')." },
+    { "title": "Produce", "text": "Send your own messages, generate test data, or copy a message to another topic." },
+    { "title": "Consumer lag", "text": "See which consumer groups are caught up and which are behind, and reset their offsets." },
+    { "title": "Secure clusters", "text": "SSL and SASL clusters work too. Secrets are kept in the system keychain." }
   ],
   "stack": ["Rust", "Tauri", "React", "TypeScript", "librdkafka"]
 }

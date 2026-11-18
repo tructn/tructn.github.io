@@ -1,6 +1,6 @@
 # Truc Nguyen Apps
 
-The storefront for my apps at <https://tructn.github.io>. Each app gets a product page, and a privacy policy and support page when it needs them, e.g. Framelet:
+The storefront for my apps at <https://tructn.github.io>. Each app gets a product page, and a privacy policy and support page when it needs them, e.g. Framelet Studio:
 
 - <https://tructn.github.io/framelet-app/>
 - <https://tructn.github.io/framelet-app/privacy/>

@@ -19,7 +19,7 @@ export function GetButton({
 
   if (!url) {
     return (
-      <span className="inline-flex flex-col items-start gap-1">
+      <span className="inline-flex flex-col items-center gap-1">
         <span className="get get-static" title={note}>
           <FaApple aria-hidden="true" />
           {label}

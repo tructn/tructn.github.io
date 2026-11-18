@@ -1,12 +1,12 @@
 {
-  "name": "Framelet",
+  "name": "Framelet Studio",
   "order": 1,
   "subtitle": "Sort, clean up & search photos",
   "tagline": "See more in every moment",
   "summary": "A fast, private way to go through folders of photos and videos on your Mac, keep the best and clear out the rest. Everything runs on your Mac.",
   "description": [
-    "Framelet is a Mac app for your folders of photos and videos: browse them, relive your trips on a map, enhance and decorate your shots, pull stills and subjects out of them, and clear out what you don’t need.",
-    "There’s nothing to import. Framelet works directly with your folders, and all analysis runs on your Mac, using the Neural Engine on Apple silicon."
+    "Framelet Studio is a Mac app for your folders of photos and videos: browse them, relive your trips on a map, enhance and decorate your shots, pull stills and subjects out of them, and clear out what you don’t need.",
+    "There’s nothing to import. Framelet Studio works directly with your folders, and all analysis runs on your Mac, using the Neural Engine on Apple silicon."
   ],
   "icon": "icon.png",
   "theme": { "from": "#1b2556", "to": "#3a1d5c", "accent": "#7c8cff" },
@@ -14,20 +14,20 @@
   "price": "Free",
   "purchases": "Offers In-App Purchases",
   "platform": "Mac",
-  "requires": "macOS 15 Sequoia or later",
+  "requires": "macOS 26 Tahoe or later",
   "version": "1.0.0",
   "languages": "English",
   "age": "4+",
   "get": {
     "label": "Mac App Store",
-    "note": "Search “Framelet” on the Mac App Store"
+    "note": "Search “Framelet Studio” on the Mac App Store"
   },
   "screenshots": [
     {
       "file": "01-browse.webp",
       "title": "All your photos, beautifully laid out",
       "subtitle": "Browse every folder together. Nothing to import.",
-      "alt": "Framelet showing a grid of photos with categories in the sidebar and the inspector open"
+      "alt": "Framelet Studio showing a grid of photos with categories in the sidebar and the inspector open"
     },
     {
       "file": "02-map.webp",
@@ -113,7 +113,7 @@
     "features": [
       {
         "title": "Search by content",
-        "text": "Type “dog at the beach” and find it. Framelet reads scenes, objects and text."
+        "text": "Type “dog at the beach” and find it. Framelet Studio reads scenes, objects and text."
       },
       {
         "title": "Categories",
@@ -131,6 +131,6 @@
   },
   "privacy": {
     "label": "Data Not Collected",
-    "text": "Framelet has no accounts, no analytics and no tracking. Your photos never leave your Mac."
+    "text": "Framelet Studio has no accounts, no analytics and no tracking. Your photos never leave your Mac."
   }
 }

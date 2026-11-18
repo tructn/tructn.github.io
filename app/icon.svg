@@ -1,6 +1,46 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect x="1.5" y="1.5" width="61" height="61" rx="12" fill="#ecdcba" stroke="#2e2014" stroke-width="3"/>
-  <path d="M37.67 17.17 V46.83" stroke="#8a7354" stroke-width="1.5"/>
-  <path d="M8 46.83 A29.67 29.67 0 0 1 37.67 17.17 A18.33 18.33 0 0 1 56 35.5 A11.33 11.33 0 0 1 44.67 46.83 A7 7 0 0 1 37.67 39.83 A4.33 4.33 0 0 1 41.99 35.5 A2.68 2.68 0 0 1 44.67 38.18" fill="none" stroke="#2e2014" stroke-width="4.5" stroke-linecap="round"/>
-  <circle cx="44.67" cy="38.18" r="3.6" fill="#a3402a"/>
+  <defs>
+    <radialGradient id="glass" cx="0.38" cy="0.32" r="0.75">
+      <stop offset="0" stop-color="#3b3f9e"/>
+      <stop offset="0.55" stop-color="#1b1652"/>
+      <stop offset="1" stop-color="#07051c"/>
+    </radialGradient>
+    <linearGradient id="ribbon" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="0.5" stop-color="#8b5cf6"/>
+      <stop offset="1" stop-color="#f472b6"/>
+    </linearGradient>
+    <radialGradient id="core" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="0.35" stop-color="#a5f3fc" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="shine" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.05"/>
+      <stop offset="1" stop-color="#67e8f9" stop-opacity="0.7"/>
+    </linearGradient>
+    <clipPath id="ball"><circle cx="32" cy="32" r="29"/></clipPath>
+  </defs>
+
+  <circle cx="32" cy="32" r="29" fill="url(#glass)"/>
+
+  <g clip-path="url(#ball)">
+    <!-- cat's-eye swirl suspended in the glass -->
+    <path d="M6 44 C 16 22, 30 46, 40 30 S 54 12, 62 20 L 62 28 C 54 22, 46 40, 36 40 S 18 34, 6 52 Z" fill="url(#ribbon)" opacity="0.85"/>
+    <path d="M2 24 C 14 14, 24 30, 34 24 S 50 26, 60 42 C 50 34, 42 36, 34 32 S 14 26, 2 30 Z" fill="url(#ribbon)" opacity="0.45"/>
+    <!-- glowing core -->
+    <circle cx="32" cy="32" r="16" fill="url(#core)"/>
+  </g>
+
+  <!-- AI sparkle at the heart of the marble -->
+  <path d="M32 21.5 C 33 29, 35 31, 42.5 32 C 35 33, 33 35, 32 42.5 C 31 35, 29 33, 21.5 32 C 29 31, 31 29, 32 21.5 Z" fill="#ffffff"/>
+
+  <!-- glass highlights -->
+  <ellipse cx="23" cy="16.5" rx="10" ry="5.5" transform="rotate(-32 23 16.5)" fill="url(#shine)"/>
+  <circle cx="44" cy="47" r="1.6" fill="#ffffff" opacity="0.7"/>
+  <circle cx="32" cy="32" r="28.25" fill="none" stroke="url(#rim)" stroke-width="1.5"/>
 </svg>

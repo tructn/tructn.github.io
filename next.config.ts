@@ -1,7 +1,5 @@
 import type { NextConfig } from "next";
 
-const isGithubActions = process.env.GITHUB_ACTIONS || false;
-
 const nextConfig: NextConfig = {
     /**
      * Enable static exports.
@@ -11,13 +9,8 @@ const nextConfig: NextConfig = {
     output: "export",
 
     /**
-     * Set base path. This is usually the slug of your repository.
+     * No basePath: this is the user site, served from the domain root.
      *
-     * @see https://nextjs.org/docs/app/api-reference/next-config-js/basePath
-     */
-    basePath: isGithubActions ? "/tructn.github.io" : "",
-
-    /**
      * Write /framelet-app/privacy/index.html rather than privacy.html, so
      * the URLs with a trailing slash given to App Store Connect resolve.
      */

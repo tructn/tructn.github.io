@@ -61,13 +61,10 @@ jobs:
           bun-version: "1.2.0"
 
       - name: Setup Pages
+        # No static_site_generator: it only reads next.config.js/.mjs, so with
+        # next.config.ts it writes a blank next.config.js that shadows ours and
+        # drops trailingSlash. next.config.ts already sets everything Pages needs.
         uses: actions/configure-pages@v5
-        with:
-          # Automatically inject basePath in your Next.js configuration file and disable
-          # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
-          #
-          # You may remove this line if you want to manage the configuration yourself.
-          static_site_generator: next
 
       - name: Restore cache
         uses: actions/cache@v4

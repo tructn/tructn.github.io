@@ -1,12 +1,12 @@
 {
   "name": "Framelet Studio",
   "order": 1,
-  "subtitle": "Sort, clean up & search photos",
+  "subtitle": "Search, clean up and enhance",
   "tagline": "See more in every moment",
   "summary": "A fast, private way to go through folders of photos and videos on your Mac, keep the best and clear out the rest. Everything runs on your Mac.",
   "description": [
     "Framelet Studio is a Mac app for your folders of photos and videos: browse them, relive your trips on a map, enhance and decorate your shots, pull stills and subjects out of them, and clear out what you don’t need.",
-    "There’s nothing to import. Framelet Studio works directly with your folders, and all analysis runs on your Mac, using the Neural Engine on Apple silicon."
+    "There’s nothing to import. Framelet Studio works directly with your folders, and all analysis runs on your Mac, on the Neural Engine."
   ],
   "icon": "icon.png",
   "theme": { "from": "#1b2556", "to": "#3a1d5c", "accent": "#7c8cff" },
@@ -14,7 +14,7 @@
   "price": "Free",
   "purchases": "Offers In-App Purchases",
   "platform": "Mac",
-  "requires": "macOS 26 Tahoe or later",
+  "requires": "Apple silicon (M1 or later), macOS 26 Tahoe or later",
   "version": "1.0.0",
   "languages": "English",
   "age": "4+",
@@ -79,7 +79,7 @@
     },
     {
       "title": "Relive the trip",
-      "text": "A colorful route with a numbered pin at every stop, along the real roads if you like. Tilt to see the land in 3D."
+      "text": "A colorful route with a numbered pin at every stop, along the real roads if you like. Tilt to see the land and buildings in 3D, or zoom out to the globe."
     },
     {
       "title": "Quick preview",
@@ -87,7 +87,7 @@
     },
     {
       "title": "Clean up safely",
-      "text": "Marked items go to the Trash together, only when you confirm, and every decision can be undone."
+      "text": "Marked items go to the Trash together, only when you confirm. Every decision can be undone, and you can see how much space you freed each day."
     },
     {
       "title": "Find duplicates, free",
@@ -95,7 +95,7 @@
     },
     {
       "title": "Organize in place",
-      "text": "Rename, move and label files. Favorites and labels are Finder tags, so they show up in Finder too."
+      "text": "Rename, move and label files, and give folders their own color and icon. Favorites and labels are Finder tags, so they show up in Finder too."
     },
     {
       "title": "Extract frames",
@@ -107,9 +107,9 @@
     }
   ],
   "pro": {
-    "name": "Framelet Pro",
+    "name": "Framelet Studio Pro",
     "kind": "One-time purchase",
-    "text": "Unlocks Framelet Intelligence, all on device. Bought it before? It unlocks on its own on any Mac signed in with the same App Store account.",
+    "text": "A one-time purchase that unlocks Framelet Intelligence, all on device. Choose Upgrade to Pro in the toolbar. Bought it before? It unlocks on its own on any Mac signed in with the same App Store account, and Family Sharing is on.",
     "features": [
       {
         "title": "Search by content",
@@ -121,7 +121,7 @@
       },
       {
         "title": "Enhance Photo",
-        "text": "One-click fixes for light, color and a level horizon, plus holiday looks and cartoon stickers."
+        "text": "One-click fixes for light, color and a level horizon, compared before and after, plus holiday looks and cartoon stickers."
       },
       {
         "title": "Extract Subject",

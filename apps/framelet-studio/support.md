@@ -4,7 +4,7 @@ title: Support
 
 ## Contact
 
-Questions, problems or ideas: email [truchjkl@gmail.com](mailto:truchjkl@gmail.com). Please include
+Questions, problems or ideas: email [truchjkl@gmail.com](mailto:truchjkl@gmail.com?subject=Framelet%20Studio%20support). Please include
 your macOS version and, if something went wrong, what you were doing at the time. Replies usually
 come within two working days.
 
@@ -12,8 +12,8 @@ come within two working days.
 
 ### Which Macs does Framelet Studio run on?
 
-macOS 26 Tahoe or later, on Apple silicon or Intel. Every feature works on both. Apple silicon is
-recommended: on-device analysis is much faster on the Neural Engine.
+A Mac with Apple silicon (M1 or later) and macOS 26 Tahoe or later. Framelet Studio doesn’t run on
+Intel Macs: its on-device analysis runs on the Neural Engine.
 
 ### Do I need to import my photos?
 
@@ -45,27 +45,30 @@ photos.
 Yes. Framelet Studio finds exact copies, nearly identical shots and similar photos, suggests the best one
 to keep and marks the extra copies for you. No purchase needed.
 
-### What does Framelet Pro include?
+### What does Framelet Studio Pro include?
 
-Framelet Intelligence, as a one-time purchase:
+Framelet Studio Pro is a one-time in-app purchase that unlocks Framelet Intelligence, all on your Mac:
 
 - **Search by content**: describe a photo, like “dog at the beach”, and Framelet Studio finds it. It reads
   scenes, objects and text.
 - **Categories**: People, Animals, Food & Drink, Landscapes, Documents and more.
 - **Enhance Photo**: one-click fixes and looks picked for each photo, for light, color and a level
-  horizon, plus holiday looks (Christmas, Halloween, New Year, Lunar New Year, Valentine’s, Diwali
+  horizon. Compare before and after, then save a new copy or replace the original. Plus holiday looks (Christmas, Halloween, New Year, Lunar New Year, Valentine’s, Diwali
   and more) and cartoon stickers like a Santa hat, pumpkin or party hat.
 - **Extract Subject**: lift the subject off its background and copy it, or save it as a PNG or a
   sticker with an outline, glow or comic style.
+
+To buy it, choose **Upgrade to Pro** in the toolbar, or try any Pro feature. Family Sharing is on,
+so people in your Family Sharing group get it too.
 
 ### Search by content doesn’t find my photo.
 
 Search by content understands English descriptions. Try describing what’s in the photo in English,
 such as “birthday cake” or “mountain lake”.
 
-### I bought Framelet Pro. How do I get it on another Mac?
+### I bought Framelet Studio Pro. How do I get it on another Mac?
 
-Sign in to the Mac App Store with the same Apple Account and open Framelet Studio; Pro unlocks on its own.
+Sign in to the Mac App Store with the same Apple Account and open Framelet Studio; Framelet Studio Pro unlocks on its own.
 If it doesn’t, choose **Settings ▸ About ▸ Restore Purchases**.
 
 ### Framelet Studio can’t open a folder it opened before.
@@ -80,6 +83,5 @@ them and lets you clear them at any time.
 
 ### Is my data sent anywhere?
 
-No. All analysis runs on your Mac: on the Neural Engine on Apple silicon, and on the CPU and GPU on
-Intel. Framelet Studio collects no data, has no accounts and never uploads your photos. See the
+No. All analysis runs on your Mac, on the Neural Engine. Framelet Studio collects no data, has no accounts and never uploads your photos. See the
 [Privacy Policy](/framelet-studio/privacy/).

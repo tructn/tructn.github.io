@@ -39,7 +39,7 @@ Framelet Studio works offline. It goes online only for:
   sends those two places (the average location of the photos at each stop) to Apple. No photos,
   file names or dates are sent. Turn it off and nothing more is asked; roads already found are
   kept in memory only until you open another folder.
-- **Framelet Pro**, which is bought and restored through the Mac App Store. Apple handles the
+- **Framelet Studio Pro**, the in-app purchase, which is bought and restored through the Mac App Store. Apple handles the
   payment; Framelet Studio never sees your payment details or Apple Account information.
 
 ## This website

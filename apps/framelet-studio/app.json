@@ -90,10 +90,6 @@
       "text": "Marked items go to the Trash together, only when you confirm. Every decision can be undone, and you can see how much space you freed each day."
     },
     {
-      "title": "Find duplicates, free",
-      "text": "Exact copies and near-identical shots, with the best one suggested and the rest marked for you."
-    },
-    {
       "title": "Organize in place",
       "text": "Rename, move and label files, and give folders their own color and icon. Favorites and labels are Finder tags, so they show up in Finder too."
     },
@@ -111,8 +107,12 @@
     "kind": "One-time purchase",
     "price": "£2.99",
     "icon": "icon-pro.png",
-    "text": "A one-time purchase that unlocks Framelet Intelligence, all on device. Choose Upgrade to Pro in the toolbar. Bought it before? It unlocks on its own on any Mac signed in with the same App Store account, and Family Sharing is on.",
+    "text": "A one-time purchase that unlocks Find Duplicates and Framelet Intelligence, all on device. Choose Upgrade to Pro in the toolbar. Bought it before? It unlocks on its own on any Mac signed in with the same App Store account, and Family Sharing is on.",
     "features": [
+      {
+        "title": "Find duplicates",
+        "text": "Exact copies, resized copies, bursts and retakes, with the best one to keep suggested and the extras marked in one step."
+      },
       {
         "title": "Search by content",
         "text": "Type “dog at the beach” and find it. Framelet Studio reads scenes, objects and text."
@@ -127,7 +127,7 @@
       },
       {
         "title": "Extract Subject",
-        "text": "Lift the subject off its background and save it as a PNG or a sticker."
+        "text": "Lift the subject off its background and copy it, share it, or save it as a PNG or a sticker."
       }
     ]
   },

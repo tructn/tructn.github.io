@@ -40,15 +40,12 @@ Yes. Favorites and labels are saved as Finder tags on your files, so they show u
 Framelet Studio suggests a video’s featured frames, or you can pick any frame yourself, and saves them as
 photos.
 
-### Is finding duplicates free?
-
-Yes. Framelet Studio finds exact copies, nearly identical shots and similar photos, suggests the best one
-to keep and marks the extra copies for you. No purchase needed.
-
 ### What does Framelet Studio Pro include?
 
-Framelet Studio Pro is a one-time in-app purchase that unlocks Framelet Intelligence, all on your Mac:
+Framelet Studio Pro is a one-time in-app purchase that unlocks Find Duplicates and Framelet Intelligence, all on your Mac:
 
+- **Find duplicates**: exact copies, resized copies, bursts and retakes. Framelet Studio suggests the best
+  one to keep, shows the space the extras take and marks them all in one step.
 - **Search by content**: describe a photo, like “dog at the beach”, and Framelet Studio finds it. It reads
   scenes, objects and text.
 - **Categories**: People, Animals, Food & Drink, Landscapes, Documents and more.

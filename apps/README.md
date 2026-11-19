@@ -37,7 +37,7 @@ public/apps/<slug>/
 | `order` | no | Lower comes first; the first app is featured on the home page |
 | `purchases`, `version`, `languages`, `age`, `repo` | no | |
 | `features` | no | `[{ "title", "text" }]` |
-| `pro` | no | `{ "name", "kind", "text", "features": [{ "title", "text" }] }` |
+| `pro` | no | `{ "name", "kind", "text", "features": [{ "title", "text" }] }`, plus optional `"price"` (e.g. `£2.99`) and `"icon"` (a file in `public/apps/<slug>/`) |
 | `privacy` | no | `{ "label", "text" }`, the App Privacy card |
 | `stack` | no | List of strings |
 

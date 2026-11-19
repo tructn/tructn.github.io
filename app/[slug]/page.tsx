@@ -184,9 +184,21 @@ export default async function Page({ params }) {
       {app.pro && (
         <section className="wrap mt-16" aria-labelledby="pro">
           <div className="banner rounded-[28px] p-6 sm:p-10">
-            <div className="flex flex-wrap items-end justify-between gap-4">
+            <div className="flex flex-wrap items-center gap-5">
+              {app.pro.icon && (
+                <img
+                  src={app.pro.icon}
+                  alt={`${app.pro.name} icon`}
+                  width={96}
+                  height={96}
+                  className="app-icon size-20 sm:size-24"
+                />
+              )}
               <div>
-                <p className="eyebrow !text-white/70">In-App Purchase · {app.pro.kind}</p>
+                <p className="eyebrow !text-white/70">
+                  In-App Purchase · {app.pro.kind}
+                  {app.pro.price && ` · ${app.pro.price}`}
+                </p>
                 <h2 id="pro" className="headline mt-1">
                   {app.pro.name}
                 </h2>

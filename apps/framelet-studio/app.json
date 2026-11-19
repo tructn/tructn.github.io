@@ -109,6 +109,8 @@
   "pro": {
     "name": "Framelet Studio Pro",
     "kind": "One-time purchase",
+    "price": "£2.99",
+    "icon": "icon-pro.png",
     "text": "A one-time purchase that unlocks Framelet Intelligence, all on device. Choose Upgrade to Pro in the toolbar. Bought it before? It unlocks on its own on any Mac signed in with the same App Store account, and Family Sharing is on.",
     "features": [
       {

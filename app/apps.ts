@@ -37,7 +37,7 @@ type AppFile = {
   order?: number;
   screenshots: { file: string; title: string; subtitle?: string; alt: string }[];
   features?: Item[];
-  pro?: { name: string; kind: string; text: string; features: Item[] };
+  pro?: { name: string; kind: string; price?: string; icon?: string; text: string; features: Item[] };
   privacy?: { label: string; text: string };
   stack?: string[];
 };
@@ -53,7 +53,8 @@ export type Screenshot = {
 
 export type DocKind = 'privacy' | 'support';
 
-export type App = Omit<AppFile, 'icon' | 'screenshots'> & {
+export type App = Omit<AppFile, 'icon' | 'screenshots' | 'pro'> & {
+  pro?: Omit<NonNullable<AppFile['pro']>, 'icon'> & { icon?: string };
   slug: string;
   href: string;
   icon: string;
@@ -147,6 +148,7 @@ function toApp(slug: string, data: AppFile): App {
     href: `/${slug}/`,
     icon: asset(data.icon),
     features: data.features ?? [],
+    pro: data.pro && { ...data.pro, icon: data.pro.icon && asset(data.pro.icon) },
     stack: data.stack ?? [],
     docs,
     shots: data.screenshots.map((shot) => {

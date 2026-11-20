@@ -30,10 +30,10 @@
       "alt": "Framelet Studio showing a grid of photos with categories in the sidebar and the inspector open"
     },
     {
-      "file": "02-map.webp",
-      "title": "Relive the trip on a map",
-      "subtitle": "Every stop in order, with a colorful route and a 3D globe.",
-      "alt": "Photos pinned on a globe, joined by a numbered, colorful trip route"
+      "file": "05-extract-subject.webp",
+      "title": "Lift the subject off the photo",
+      "subtitle": "Copy it, or save it as a PNG or sticker.",
+      "alt": "Extract Subject cutting a subject out of a photo with the sticker style"
     },
     {
       "file": "03-enhance.webp",
@@ -48,16 +48,10 @@
       "alt": "Enhance Photo applying the Valentine’s holiday look with floating hearts"
     },
     {
-      "file": "05-extract-subject.webp",
-      "title": "Lift the subject off the photo",
-      "subtitle": "Copy it, or save it as a PNG or sticker.",
-      "alt": "Extract Subject cutting a subject out of a photo with the sticker style"
-    },
-    {
-      "file": "06-duplicates.webp",
-      "title": "Find duplicates, keep the best",
-      "subtitle": "Exact copies, look-alikes and similar shots, sorted for you.",
-      "alt": "The Duplicates and Similar Photos sheet suggesting which copy to keep"
+      "file": "09-find-duplicates.webp",
+      "title": "Spot every duplicate at once",
+      "subtitle": "Exact copies are paired up, with the best one kept and the extras marked.",
+      "alt": "The Duplicates and Similar Photos sheet comparing a kept black dog photo with its marked copy"
     },
     {
       "file": "07-clean-up.webp",
@@ -70,6 +64,12 @@
       "title": "Free up space, safely",
       "subtitle": "Marked photos go to the Trash only when you confirm.",
       "alt": "A banner showing how much space was freed after emptying the Trash"
+    },
+    {
+      "file": "02-map.webp",
+      "title": "Relive the trip on a map",
+      "subtitle": "Every stop in order, with a colorful route and a 3D globe.",
+      "alt": "Photos pinned on a globe, joined by a numbered, colorful trip route"
     }
   ],
   "features": [
